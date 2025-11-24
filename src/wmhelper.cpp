@@ -226,8 +226,9 @@ QString WMHelper::getXFCEEditor()
  */
 QString WMHelper::getOctopiSudoCommand()
 {
-  QString result = ctn_OCTOPISUDO;
-  result += ctn_OCTOPISUDO_PARAMS;
+  QString result = UnixCommand::findExecutable(ctn_QTSUDO);
+  result += QStringLiteral(" ");
+  result += ctn_QTSUDO_PARAMS;
 
   return result;
 }
@@ -237,13 +238,13 @@ QString WMHelper::getOctopiSudoCommand()
  */
 QString WMHelper::getSUCommand()
 {
-  QString result(ctn_NO_SU_COMMAND);
+  QString qtSudoPath = UnixCommand::findExecutable(ctn_QTSUDO);
 
-  if (QFile::exists(ctn_OCTOPISUDO)){
-    result = ctn_OCTOPISUDO;
+  if (!qtSudoPath.isEmpty() && QFile::exists(qtSudoPath)){
+    return qtSudoPath;
   }
 
-  return result;
+  return ctn_NO_SU_COMMAND;
 }
 
 /*
@@ -251,13 +252,13 @@ QString WMHelper::getSUCommand()
  */
 QString WMHelper::getSUTool()
 {
-  QString result(QLatin1String(""));
+  QString qtSudoPath = UnixCommand::findExecutable(ctn_QTSUDO);
 
-  if (QFile::exists(ctn_OCTOPISUDO)){
-    return ctn_OCTOPISUDO;
+  if (!qtSudoPath.isEmpty() && QFile::exists(qtSudoPath)){
+    return qtSudoPath;
   }
 
-  return result;
+  return QLatin1String("");
 }
 
 /*

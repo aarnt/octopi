@@ -699,7 +699,7 @@ QString SettingsManager::readSUToolValue()
 
 QString SettingsManager::getSUTool()
 {
-  return ctn_OCTOPISUDO;
+  return ctn_QTSUDO;
 }
 
 bool SettingsManager::getShowGroupsPanel()

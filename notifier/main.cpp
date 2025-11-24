@@ -25,7 +25,6 @@
 #include "mainwindow.h"
 
 #include "../src/QtSolutions/qtsingleapplication.h"
-//#include <QApplication>
 #include <QtGui>
 #include <QMessageBox>
 #include <QDebug>
@@ -47,12 +46,6 @@ int main(int argc, char *argv[])
     qDebug() << QLatin1String("Octopi Notifier - ") + ctn_APPLICATION_VERSION +
                   QLatin1String(" (") + StrConstants::getQtVersion() + QLatin1String(")");
 
-  /*if (UnixCommand::isAppRunning(QStringLiteral("octopi-notifier")))
-  {
-    qDebug() << "Aborting notifier as another instance is already running!";
-    return (-1);
-  }*/
-
   if (!QFile::exists(ctn_CHECKUPDATES_BINARY))
   {
     qDebug() << "Aborting notifier as 'checkupdates' binary could not be found! [" << ctn_CHECKUPDATES_BINARY << "]";
@@ -65,9 +58,9 @@ int main(int argc, char *argv[])
     return (-3);
   }
 
-  if (!QFile::exists(ctn_OCTOPISUDO))
+  if (UnixCommand::findExecutable(ctn_QTSUDO).isEmpty())
   {
-    qDebug() << "Aborting notifier as 'qt-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    qDebug() << "Aborting notifier as 'qt-sudo' binary could not be found! [" << ctn_QTSUDO << "]";
     return (-4);
   }
 

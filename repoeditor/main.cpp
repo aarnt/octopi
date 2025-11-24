@@ -62,9 +62,9 @@ int main( int argc, char *argv[] )
     return (-2);
   }
 
-  if (!QFile::exists(ctn_OCTOPISUDO))
+  if (UnixCommand::findExecutable(ctn_QTSUDO).isEmpty())
   {
-    qDebug() << "Aborting Repository Editor as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    qDebug() << "Aborting Repository Editor as 'qt-sudo' binary could not be found! [" << ctn_QTSUDO << "]";
     return (-3);
   }
 

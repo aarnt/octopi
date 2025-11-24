@@ -822,7 +822,7 @@ bool MainWindow::isInternetAvailable()
  */
 bool MainWindow::isSUAvailable()
 {
-  if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO))
+  if (UnixCommand::hasTheExecutable(ctn_QTSUDO))
     return true;
   else
   {

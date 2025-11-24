@@ -214,8 +214,8 @@ const int ctn_RUN_IN_TERMINAL(328);
 const QString ctn_NO_SU_COMMAND(QStringLiteral("none"));
 const QString ctn_ROOT_SH(QStringLiteral("/bin/sh -c "));
 
-const QString ctn_OCTOPISUDO(QStringLiteral("/usr/local/bin/qt-sudo"));
-const QString ctn_OCTOPISUDO_PARAMS(QStringLiteral("-d"));
+const QString ctn_QTSUDO(QStringLiteral("qt-sudo"));
+const QString ctn_QTSUDO_PARAMS(QStringLiteral("-d"));
 
 const QString ctn_KDE_DESKTOP(QStringLiteral("kwin"));
 const QString ctn_KDE_X11_DESKTOP(QStringLiteral("kwin_x11"));

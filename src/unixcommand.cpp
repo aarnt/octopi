@@ -701,14 +701,19 @@ bool UnixCommand::doInternetPingTest()
 }
 
 /*
+ * Use standard Qt method to retrieve a binary path
+ */
+QString UnixCommand::findExecutable(const QString& exeName)
+{
+  return QStandardPaths::findExecutable(exeName);
+}
+
+/*
  * Checks if the given executable is available somewhere in the system
  */
 bool UnixCommand::hasTheExecutable(const QString& exeName)
 {
-  if (exeName == ctn_OCTOPISUDO)
-    return (QFile::exists(ctn_OCTOPISUDO));
-  else
-    return (QFile::exists(QStringLiteral("/usr/bin/") + exeName));
+  return !findExecutable(exeName).isEmpty();
 }
 
 /*
@@ -1003,7 +1008,7 @@ void UnixCommand::executeCommand(const QString &pCommand)
   m_process->setProcessEnvironment(env);
   QString suCommand = WMHelper::getSUCommand();
   QStringList sl;
-  sl << ctn_OCTOPISUDO_PARAMS;
+  sl << ctn_QTSUDO_PARAMS;
   sl << getShell();
   sl << QLatin1String("-c");
   sl << pCommand;
@@ -1034,7 +1039,7 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
 
   QStringList sl;
-  sl << ctn_OCTOPISUDO_PARAMS;
+  sl << ctn_QTSUDO_PARAMS;
   sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
   m_process->start(WMHelper::getSUCommand(), sl);
 }
@@ -1147,7 +1152,7 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   QStringList sl;
-  sl << ctn_OCTOPISUDO_PARAMS;
+  sl << ctn_QTSUDO_PARAMS;
   sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
   pacman.start(WMHelper::getSUCommand(), sl);
   pacman.waitForFinished(-1);
