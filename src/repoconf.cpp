@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "repoconf.h"
 #include "qprocess.h"
+#include "constants.h"
 
 #include <QApplication>
 #include <QFile>
@@ -141,14 +142,19 @@ QStringList RepoConf::getRepos()
 QStringList RepoConf::getReposFromPacmanConf()
 {
   QStringList res;
-  QProcess proc;
-  QStringList sl;
-  sl << QStringLiteral("-l");
-  proc.start(QStringLiteral("pacman-conf"), sl);
-  proc.waitForFinished();
 
-  QString out = QString::fromUtf8(proc.readAll().trimmed());
-  res = out.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
+  if (QFile::exists(ctn_PACMANCONF))
+  {
+    QProcess proc;
+    QStringList sl;
+    sl << QStringLiteral("-l");
+    proc.start(ctn_PACMANCONF, sl);
+    proc.waitForFinished();
+
+    QString out = QString::fromUtf8(proc.readAll().trimmed());
+    res = out.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
+  }
+  else res = getRepos();
 
   return res;
 
