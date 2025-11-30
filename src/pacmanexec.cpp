@@ -446,6 +446,8 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("GConf Error:.+")));
     msg.remove(QRegularExpression(QStringLiteral(":: Do.*")));
     msg.remove(QRegularExpression(QStringLiteral("org\\.kde\\.")));
+    msg.remove(QRegularExpression(QStringLiteral("Call to org\\..+")));
+    msg.remove(QRegularExpression(QStringLiteral("Call for getting org\\..+")));
     msg.remove(QRegularExpression(QStringLiteral("QCommandLineParser")));
     msg.remove(QRegularExpression(QStringLiteral("QCoreApplication.+")));
     msg.remove(QRegularExpression(QStringLiteral("Detected locale.+")));
