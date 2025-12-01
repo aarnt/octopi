@@ -1656,6 +1656,18 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
       if (aux.indexOf(QLatin1String(":")) == -1)
         aux = aux.replace(QLatin1String(" "), QLatin1String(""));
     }
+    else if (field == QLatin1String("Make Deps"))
+    {
+      fieldPos = pkgInfo.indexOf(QLatin1String(":"), fieldPos+1);
+      fieldPos+=2;
+      aux = pkgInfo.mid(fieldPos);
+      fieldEnd = aux.indexOf(QLatin1String("Check Deps"));
+      int fieldEnd2 = aux.indexOf(QLatin1String("Conflicts With"));
+      if(fieldEnd > fieldEnd2 && fieldEnd2 != -1) fieldEnd = fieldEnd2;
+
+      aux = aux.left(fieldEnd).trimmed();
+      aux = aux.replace(QLatin1String("\n"), QLatin1String("<br>"));
+    }
     else
     {
       fieldPos = pkgInfo.indexOf(QLatin1String(":"), fieldPos+1);
