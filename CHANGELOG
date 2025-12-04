@@ -20,7 +20,7 @@
     (thanks to qumuq-til).
   BugFix: Use pacman-conf to retrieve repository names.
   BugFix: qt-sudo path was hardcoded in source code (thanks to fnune's PR).
-  *Relevant* performance improvement on instant search and package list building time.
+  RELEVANT performance improvement on instant search and package list building time.
   Add support to COSMIC DE.
   Add the option to make the whole interface text less condensed.
   Add the option to show/hide "Repository" and "Download Size" columns in package list.
