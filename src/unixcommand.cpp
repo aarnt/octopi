@@ -1015,6 +1015,20 @@ void UnixCommand::executeCommand(const QString &pCommand)
   m_process->start(suCommand, sl);
 }
 
+void UnixCommand::executeCommandWithoutShell(const QString &pCommand)
+{
+  //COLUMNS variable code!
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.remove(QStringLiteral("COLUMNS"));
+  env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
+  m_process->setProcessEnvironment(env);
+  QString suCommand = WMHelper::getSUCommand();
+  QStringList sl;
+  sl << ctn_QTSUDO_PARAMS;
+  sl << pCommand;
+  m_process->start(suCommand, sl);
+}
+
 /*
  * Executes the given command using QProcess async technology with ROOT credentials
  */

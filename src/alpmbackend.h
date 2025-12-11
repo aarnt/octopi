@@ -28,6 +28,7 @@ class AlpmBackend
 public:
   AlpmBackend();
 
+  static int getMajorVersion();
   static QStringList getPackageList();
   static QStringList getUnrequiredList();
   static QStringList getForeignList();

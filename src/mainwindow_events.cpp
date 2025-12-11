@@ -31,6 +31,7 @@
 #include "globals.h"
 #include "settingsmanager.h"
 #include "utils.h"
+#include "alpmbackend.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -401,6 +402,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   /*else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //TEST CODE
+    qDebug() << "Major version: " << AlpmBackend::getMajorVersion();
   }*/
   else if (ke->key()  == Qt::Key_M && ke->modifiers() == (Qt::ControlModifier))
   {

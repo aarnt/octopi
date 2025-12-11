@@ -23,6 +23,7 @@
 #include "strconstants.h"
 #include "unixcommand.h"
 #include "wmhelper.h"
+#include "alpmbackend.h"
 
 #include <QRegularExpression>
 
@@ -844,6 +845,60 @@ void PacmanExec::onStarted()
   emit started();
 }
 
+void PacmanExec::parseCheckUpdates(QString &output)
+{
+  if (!output.isEmpty())
+  {
+    //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
+    if (m_listOfOutdatedPackages.count() == 0)
+      m_listOfOutdatedPackages = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
+    else
+    {
+      //checkupdates returned more than 1 time from the QProcess event, so we have to concatenate the list...
+      QString lastPackage = m_listOfOutdatedPackages.last();
+      QStringList newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
+      QString firstPackage = newList.first();
+      QStringList partsLast = lastPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+      QStringList partsFirst = firstPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+
+      if (partsLast.count() < 4 || partsFirst.count() < 4)
+      {
+        m_listOfOutdatedPackages.removeLast();
+        newList.removeFirst();
+        lastPackage += firstPackage;
+        m_listOfOutdatedPackages.append(lastPackage);
+        m_listOfOutdatedPackages.append(newList);
+      }
+      else
+      {
+        newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
+        m_listOfOutdatedPackages.append(newList);
+      }
+    }
+  }
+
+  for (auto it = m_listOfOutdatedPackages.begin(); it != m_listOfOutdatedPackages.end(); )
+  {
+    if (!it->contains(QStringLiteral("->")))
+    {
+      it = m_listOfOutdatedPackages.erase(it);
+    }
+    else
+    {
+      ++it;
+    }
+  }
+
+  output.replace(QLatin1String("\\n"), QLatin1String("<br>"));
+  int i = output.lastIndexOf(QLatin1String("<"));
+  if (i != -1) output.remove(i, 4);
+
+  if (output.contains(QStringLiteral("->")))
+    prepareTextToPrint(output, ectn_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+
+  return;
+}
+
 /*
  * Whenever QProcess' read output is retrieved...
  */
@@ -852,44 +907,7 @@ void PacmanExec::onReadOutput()
   if (m_commandExecuting == ectn_CHECK_UPDATES)
   {
     QString output = m_unixCommand->readAllStandardOutput();
-
-    if (!output.isEmpty())
-    {
-      //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
-      if (m_listOfOutdatedPackages.count() == 0)
-        m_listOfOutdatedPackages = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
-      else
-      {
-        //checkupdates returned more than 1 time from the QProcess event, so we have to concatenate the list...
-        QString lastPackage = m_listOfOutdatedPackages.last();
-        QStringList newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
-        QString firstPackage = newList.first();
-        QStringList partsLast = lastPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-        QStringList partsFirst = firstPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-
-        if (partsLast.count()<4 || partsFirst.count()<4)
-        {
-          m_listOfOutdatedPackages.removeLast();          
-          newList.removeFirst();
-          lastPackage += firstPackage;
-          m_listOfOutdatedPackages.append(lastPackage);
-          m_listOfOutdatedPackages.append(newList);
-        }
-        else
-        {
-          newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
-          m_listOfOutdatedPackages.append(newList);
-        }
-      }
-    }
-
-    output.replace(QLatin1String("\\n"), QLatin1String("<br>"));
-    int i = output.lastIndexOf(QLatin1String("<"));
-    if (i != -1) output.remove(i, 4);
-    prepareTextToPrint(output, ectn_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
-
-    emit readOutput();
-    return;
+    parseCheckUpdates(output);
   }
   else if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
@@ -974,8 +992,16 @@ void PacmanExec::onReadOutputError()
     emit readOutputError();
     return;
   }
+  else if (m_commandExecuting == ectn_CHECK_UPDATES)
+  {
+    QString output = m_unixCommand->readAllStandardError();
+    parseCheckUpdates(output);
+    emit readOutputError();
+    return;
+  }
 
   QString msg = m_unixCommand->readAllStandardError();
+
   msg = msg.remove(QStringLiteral("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:"));
   msg = msg.remove(QStringLiteral("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually"));
 
@@ -1016,7 +1042,11 @@ void PacmanExec::doCheckUpdates()
 {
   m_commandExecuting = ectn_CHECK_UPDATES;
   m_listOfOutdatedPackages.clear();
-  m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY, QStringList());
+
+  if (AlpmBackend::getMajorVersion() <= 15)
+    m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY, QStringList());
+  else
+    m_unixCommand->executeCommandWithoutShell(ctn_CHECKUPDATES_BINARY);
 }
 
 /*

@@ -61,6 +61,7 @@ private:
   void parsePacmanProcessOutput(const QString &output);
   bool criticalPhaseInTransaction(const QString &str);
   void prepareTextToPrint(QString str, TreatString ts = ectn_TREAT_STRING, TreatURLLinks tl = ectn_TREAT_URL_LINK);
+  void parseCheckUpdates(QString &output);
 
 private slots:
   //UnixCommand slots:

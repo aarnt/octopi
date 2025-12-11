@@ -34,6 +34,19 @@ AlpmBackend::AlpmBackend()
 
 }
 
+int AlpmBackend::getMajorVersion()
+{
+  QString ret = QStringLiteral("");
+
+  const char* ver = alpm_version();
+  ret = QString::fromUtf8(ver);
+
+  if (ret.indexOf(QLatin1Char('.')) != -1)
+    ret = ret.mid(0, QString::fromUtf8(ver).indexOf(QLatin1Char('.')));
+
+  return ret.toInt();
+}
+
 /*
  * Retrieves all packages available (excluding foreign ones)
  */

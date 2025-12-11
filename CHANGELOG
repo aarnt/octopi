@@ -21,11 +21,12 @@
   BugFix: Use pacman-conf to retrieve repository names.
   BugFix: qt-sudo path was hardcoded in source code (thanks to fnune's PR).
   RELEVANT performance improvement on instant search and package list building time.
-  Add support to COSMIC DE.
-  Add the option to make the whole interface text less condensed.
-  Add the option to show/hide "Repository" and "Download Size" columns in package list.
+  Added support for pacman 7.1 release.
+  Added support to COSMIC DE.
+  Added the option to make the whole interface text less condensed.
+  Added the option to show/hide "Repository" and "Download Size" columns in package list.
   Pressing Ctrl+M toggles the visibility of the menu bar.
-  Add Repository field in Info tab.
+  Added Repository field in Info tab.
   Make "Search for outdated AUR packages" a notifier only option.
   Enable Check updates and System upgrade tool buttons in AUR mode.
   Show current version of the packages on Notifier's System Upgrade dialog 
