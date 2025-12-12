@@ -992,13 +992,13 @@ void PacmanExec::onReadOutputError()
     emit readOutputError();
     return;
   }
-  else if (m_commandExecuting == ectn_CHECK_UPDATES)
+  /*else if (m_commandExecuting == ectn_CHECK_UPDATES)
   {
     QString output = m_unixCommand->readAllStandardError();
     parseCheckUpdates(output);
     emit readOutputError();
     return;
-  }
+  }*/
 
   QString msg = m_unixCommand->readAllStandardError();
 
@@ -1043,10 +1043,10 @@ void PacmanExec::doCheckUpdates()
   m_commandExecuting = ectn_CHECK_UPDATES;
   m_listOfOutdatedPackages.clear();
 
-  if (AlpmBackend::getMajorVersion() <= 15)
+  //if (AlpmBackend::getMajorVersion() <= 15)
     m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY, QStringList());
-  else
-    m_unixCommand->executeCommandWithoutShell(ctn_CHECKUPDATES_BINARY);
+  //else
+  //  m_unixCommand->executeCommandWithoutShell(ctn_CHECKUPDATES_BINARY);
 }
 
 /*
