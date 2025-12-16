@@ -1,4 +1,4 @@
-0.19 (dev)
+0.19.0 (2025-12-16)
   ** WARNING ** => This version removed hardcoded qt-sudo path from Octopi, Notifier,
     CacheCleaner and RepoEditor, so AUR packagers and distros no longer have to patch 
     the source code to work correctly with qt-sudo pkg.
@@ -6,7 +6,7 @@
     Packagers and distros CAN continue to patch qt-sudo package, so it installs on /usr/bin
     instead of BSD's default /usr/local/bin.
 
-  ** PLEASE, install version 2.3.0 of qt-sudo if you are using Plasma.
+  ** PLEASE, install (at least) version 2.3.0 of qt-sudo if you are using Plasma.
 
   BugFix: Pressing F11 to maximize bottom panel crashed Octopi if Info tab was selected.
   BugFix: Octopi crashed after using AUR/KCP tool and clicking on a package anchor 
