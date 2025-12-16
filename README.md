@@ -25,7 +25,7 @@ Currently, 11 Linux distros are compatible with it
 You'll need:
  * [Alpm_octopi_utils](https://github.com/aarnt/alpm_octopi_utils/) library
  * A helper to execute pacman commands called "octphelper", available on "./helper" dir
- * A privilege escalation tool called [qt-sudo](https://github.com/aarnt/qt-sudo/)
+ * A privilege escalation tool called [qt-sudo](https://github.com/aarnt/qt-sudo/) (at least version 2.3.0 if you run a Plasma session)
  * qtermwidget package, in order to build Octopi with embedded terminal support
 
 ### To install Octopi using pacman
