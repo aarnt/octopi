@@ -22,6 +22,8 @@
     (thanks to qumuq-til).
   BugFix: Use pacman-conf to retrieve repository names.
   BugFix: qt-sudo path was hardcoded in source code (thanks to fnune's PR).
+  BugFix: Open PKGBUILD and Show PKGBUILD diff were not working due to AUR site restrictions 
+    (thanks to urbenlegend).
   RELEVANT performance improvement on instant search and package list building time.
   Added support to COSMIC DE.
   Added the option to make the whole interface text less condensed.

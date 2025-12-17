@@ -1488,7 +1488,8 @@ void MainWindow::onAUROpenPKGBUILD()
       QProcess curl;
       QStringList params;
 
-      QString pkgBase = getAURPackageBase(package->name);
+      //QString pkgBase = getAURPackageBase(package->name);
+      QString pkgBase = package->name;
       if (pkgBase.isEmpty()) return;
 
       params << pkgbuildSite.arg(pkgBase);
@@ -1523,23 +1524,27 @@ void MainWindow::onAURShowPKGBUILDDiff()
 
       //Let's download LOG html page and find the two newest version commit hashes
 
-      QString pkgBase = getAURPackageBase(package->name);
+      //QString pkgBase = getAURPackageBase(package->name);
+      QString pkgBase = package->name;
       if (pkgBase.isEmpty())
       {
         delete cic;
         return;
       }
 
-      QNetworkAccessManager manager;
-      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkglogSite.arg(pkgBase))));
-      QEventLoop event;
-      connect(response, SIGNAL(finished()), &event, SLOT(quit()));
-      event.exec();
+      QProcess p;
+      QStringList params;
 
-      QString res = QString::fromUtf8(response->readAll());
+      params << pkglogSite.arg(pkgBase);
+      p.start(QStringLiteral("/usr/bin/curl"), params);
+      p.waitForFinished(-1);
+
+      QString res = QString::fromLatin1(p.readAll());
       QRegularExpression re(QStringLiteral(";id=(?<commit>[a-f0-9]+)"));
+      //qDebug() << res;
       QRegularExpressionMatchIterator i = re.globalMatch(res);
       QStringList commits;
+      QString version;
 
       while (i.hasNext())
       {
@@ -1547,6 +1552,7 @@ void MainWindow::onAURShowPKGBUILDDiff()
         if (match.hasMatch())
         {
           commits << match.captured(QStringLiteral("commit"));
+
           if (commits.count() == 2) break;
         }
       }
@@ -1563,8 +1569,10 @@ void MainWindow::onAURShowPKGBUILDDiff()
       QString tempPkgLatest(QStringLiteral(".temp_octopi_commit_latest"));
       QString tempPkgPrevious(QStringLiteral(".temp_octopi_commit_previous"));
 
-      QProcess p;
-      QStringList params;
+      //qDebug() << commits.at(0);
+      //qDebug() << commits.at(1);
+
+      params.clear();
       params << pkgCommit.arg(commits.at(0));
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempPkgLatest;
