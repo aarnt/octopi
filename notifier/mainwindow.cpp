@@ -1092,7 +1092,7 @@ void MainWindow::refreshAppIcon()
 
 #ifdef KSTATUS
     m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
-    m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
+    m_systemTrayIcon->setStatus(KStatusNotifierItem::Active);
 #endif
   }
   else if(m_outdatedAURStringList->count() > 0) //YELLOW ICON!
@@ -1106,7 +1106,7 @@ void MainWindow::refreshAppIcon()
 
 #ifdef KSTATUS
     m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
-    m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
+    m_systemTrayIcon->setStatus(KStatusNotifierItem::Active);
 #endif
   }
   else //YEAHHH... GREEN ICON!

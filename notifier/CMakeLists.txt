@@ -1,6 +1,6 @@
 option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" OFF)
 option(USE_KF5NOTIFICATIONS "Build with KF5Notifications support" OFF)
-option(USE_KF6NOTIFICATIONS "Build with KF6StatusNotifierItem support" OFF)
+option(USE_KF6NOTIFICATIONS "Build with KF6StatusNotifierItem support" ON)
 
 if (USE_QTERMWIDGET6)
   find_package(Qt6 REQUIRED COMPONENTS Core Core5Compat Xml Gui Widgets Network Multimedia)
