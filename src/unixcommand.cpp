@@ -175,6 +175,11 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
   aur.waitForFinished(-1);
   result = aur.readAllStandardOutput();
 
+  if (result.isEmpty())
+  {
+    result = aur.readAllStandardError();
+  }
+
   aur.close();
   return result;
 }
@@ -324,7 +329,17 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 
   if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
   {
+    if (result.isEmpty())
+      result = aur.readAllStandardError();
+
     QString input = QString::fromUtf8(result);
+
+    if (input.contains(QStringLiteral("error"), Qt::CaseInsensitive))
+    {
+      QString error = QStringLiteral("ERROR");
+      return error.toLatin1();
+    }
+
     QRegularExpression regex(QStringLiteral("\\\033(.*?)\\\033\\\\"));
     QRegularExpressionMatch match = regex.match(input);
 

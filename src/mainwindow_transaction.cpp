@@ -873,6 +873,12 @@ void MainWindow::doCheckUpdates()
     m_outdatedAURStringList->clear();
     m_outdatedAURPackagesNameVersion->insert(f.result()->content);
 
+    if (m_outdatedAURPackagesNameVersion->size() == 1 && m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("ERROR"))
+    {
+      m_outdatedAURPackagesNameVersion->clear();
+      QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+    }
+
     QString pkg, html, availableVersion;
     QHash<QString, QString>::const_iterator i;
 

@@ -498,6 +498,13 @@ QStringList *Package::getOutdatedAURStringList()
   outPkgList = outPkgList.trimmed();
 
   QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
+
+  if (packageTuples.size() == 1 && packageTuples.at(0).contains(QStringLiteral("error while loading shared libraries:")))
+  {
+    res->append(QStringLiteral("ERROR"));
+    return res;
+  }
+
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   for(auto packageTuple: packageTuples)
@@ -1343,7 +1350,7 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
 
   pkgDescription = QLatin1String("");
   for(auto packageTuple: packageTuples)
-  {
+  {    
     if (packageTuple[0].isNumber())
     {
       int space=packageTuple.indexOf(QLatin1String(" "));
@@ -1352,6 +1359,15 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
 
     if (!packageTuple[0].isSpace())
     {
+      if (packageTuple == QStringLiteral("ERROR"))
+      {
+        PackageListData pld =
+            PackageListData(QStringLiteral("ERROR"), QStringLiteral("ERROR"), QStringLiteral("ERROR"), QStringLiteral("ERROR"), ectn_NON_INSTALLED, QStringLiteral("ERROR"));
+        res->append(pld);
+
+        return res;
+      }
+
       addPkg=true;
       //Do we already have a description?
       if (pkgDescription != QLatin1String(""))
@@ -1379,6 +1395,7 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
       //First we get repository and name!
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       QString repoName = parts[0];
+
       int a = repoName.indexOf(QLatin1String("/"));
       pkgRepository = repoName.left(a);
 
@@ -2381,7 +2398,14 @@ QHash<QString, QString> Package::getForeignToolOutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
         const QString& pkgName = nameVersion.at(0);
 
-        if (pkgName==QLatin1String("::")) continue;
+        if (pkgName.contains(QStringLiteral("yay:")) ||
+            pkgName.contains(QStringLiteral("yay-bin:")))
+        {
+          hash.insert(QLatin1String("ERROR"), QLatin1String("ERROR"));
+          return hash;
+        }
+
+        if (pkgName == QLatin1String("::")) continue;
 
         if (!ignorePkgList.contains(pkgName))
         {

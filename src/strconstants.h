@@ -152,6 +152,7 @@ public:
   static QString getCommandFinishedWithErrors();  
   static QString getTempYayDownloaded();
   static QString getDownloadingTempYay();
+  static QString getYayNotWorking();
   static QString getErrorCouldNotDownloadTempYay();
   static QString getErrorPacmanProcessExecuting();
   static QString geRetrievingPackage();

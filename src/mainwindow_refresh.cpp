@@ -445,6 +445,18 @@ void MainWindow::preBuildAURPackageList()
   m_time->start();
 
   m_listOfAURPackages = g_fwAUR.result();
+
+  if (m_listOfAURPackages->size() == 1 && m_listOfAURPackages->at(0).name == QStringLiteral("ERROR"))
+  {
+    if (m_cic) {
+      delete m_cic;
+      m_cic = nullptr;
+    }
+
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+    m_listOfAURPackages->clear();
+  }
+
   buildAURPackageList();
 
   if (m_cic) {
@@ -1084,6 +1096,14 @@ void MainWindow::refreshOutdatedAURStringList()
 void MainWindow::postRefreshOutdatedAURStringList()
 {
   m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+
+  if (m_outdatedAURStringList->size() == 1 && m_outdatedAURStringList->at(0) == QStringLiteral("ERROR"))
+  {
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+    m_outdatedAURStringList->clear();
+    return;
+  }
+
   m_foreignPackageList->clear();
   delete m_foreignPackageList;
   m_foreignPackageList = nullptr;
@@ -1263,6 +1283,12 @@ void MainWindow::showToolButtonAUR()
   //if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
 
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
+
+  if (m_outdatedAURPackagesNameVersion->size() == 1 && m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("ERROR"))
+  {
+    m_outdatedAURPackagesNameVersion->clear();
+    return;
+  }
 
   if(m_outdatedAURPackagesNameVersion->count() > 0)
   {

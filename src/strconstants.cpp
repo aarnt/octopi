@@ -631,6 +631,11 @@ QString StrConstants::getDownloadingTempYay()
   return QObject::tr("Downloading temporary \"yay-bin\"...");
 }
 
+QString StrConstants::getYayNotWorking()
+{
+  return QObject::tr("Yay is not working.\nPlease remove the package and try again.");
+}
+
 QString StrConstants::geRetrievingPackage(){
   return QObject::tr("Retrieving %1");
 }
