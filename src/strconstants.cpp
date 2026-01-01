@@ -633,7 +633,7 @@ QString StrConstants::getDownloadingTempYay()
 
 QString StrConstants::getYayNotWorking()
 {
-  return QObject::tr("Yay is not working.\nPlease remove the package and try again.");
+  return QObject::tr("Yay is not working.\nPlease, upgrade the package and try again.");
 }
 
 QString StrConstants::geRetrievingPackage(){

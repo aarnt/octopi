@@ -26,7 +26,7 @@
     (thanks to urbenlegend).
   RELEVANT performance improvement on instant search and package list building time.
   Use KF6 KStatusNotifierItem as the default systray icon in Notifier.
-  Octopi now detects Yay libalpm related errors.
+  Octopi and Notifier now detect Yay libalpm related errors.
   Added support to COSMIC DE.
   Added the option to make the whole interface text less condensed.
   Added the option to show/hide "Repository" and "Download Size" columns in package list.

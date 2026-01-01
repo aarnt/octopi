@@ -1048,6 +1048,12 @@ void MainWindow::refreshAppIcon()
     {
       m_outdatedAURStringList = Package::getOutdatedAURStringList();
 
+      if (m_outdatedAURStringList->size() == 1 && m_outdatedAURStringList->at(0) == QStringLiteral("ERROR"))
+      {
+        QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+        m_outdatedAURStringList->clear();
+      }
+
       for(int c=0; c<m_outdatedAURStringList->count(); ++c)
       {
         //If we find an outdated AUR pkg in the official pkg list, let's remove it
