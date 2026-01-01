@@ -2398,8 +2398,7 @@ QHash<QString, QString> Package::getForeignToolOutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
         const QString& pkgName = nameVersion.at(0);
 
-        if (pkgName.contains(QStringLiteral("yay:")) ||
-            pkgName.contains(QStringLiteral("yay-bin:")))
+        if (pkgName.contains(QStringLiteral("yay:")))
         {
           hash.insert(QLatin1String("ERROR"), QLatin1String("ERROR"));
           return hash;
