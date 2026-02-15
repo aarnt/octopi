@@ -24,7 +24,7 @@
   BugFix: qt-sudo path was hardcoded in source code (thanks to fnune's PR).
   BugFix: Open PKGBUILD and Show PKGBUILD diff were not working due to AUR site restrictions 
     (thanks to urbenlegend).
-  RELEVANT performance improvement on instant search and package list building time.
+  RELEVANT performance improvement on instant search, package list and Files tab building time.
   Use KF6 KStatusNotifierItem as the default systray icon in Notifier.
   Octopi and Notifier now detect Yay libalpm related errors.
   Added support to COSMIC DE.

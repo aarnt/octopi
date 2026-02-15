@@ -342,6 +342,9 @@ private:
 
   bool isNotifierBusy();
 
+  QStandardItem *ensureDirectoryExists(const QString &path, QHash<QString, QStandardItem *> &dirMap,
+      QStandardItem *root, const QIcon &iconFolder);
+
 private slots:
   void initTabTerminal();
   void removeTabTerminal();
