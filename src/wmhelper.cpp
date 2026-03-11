@@ -388,7 +388,14 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
   QString p;
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
-  if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
+  
+  // Check for xdg-open first (respects user's default editor and environment variables)
+  if (UnixCommand::hasTheExecutable(ctn_XDG_OPEN))
+  {
+    p = ctn_XDG_OPEN + QLatin1Char(' ') + fileName;
+  }
+  // Fall back to DE-specific editors if xdg-open isn't available
+  else if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
     p = ctn_ARCHBANG_EDITOR + QLatin1Char(' ') + fileName;
   }
@@ -431,10 +438,6 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
     p = getXFCEEditor() + QLatin1Char(' ') + fileName;
-  }
-  else if (UnixCommand::hasTheExecutable(ctn_XDG_OPEN))
-  {
-    p = ctn_XDG_OPEN + QLatin1Char(' ') + fileName;
   }
 
   if (opt == ectn_EDIT_AS_NORMAL_USER && !p.isEmpty())
