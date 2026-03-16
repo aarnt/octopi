@@ -549,5 +549,10 @@ void WMHelper::openDirectory(const QString& dirName)
       s << dir;
       p->startDetached( ctn_GNOME_FILE_MANAGER, s );
     }
+    else if (UnixCommand::hasTheExecutable(ctn_XDG_OPEN))
+    {
+      s << dir;
+      p->startDetached( ctn_XDG_OPEN, s);
+    }
   }
 }
