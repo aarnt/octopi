@@ -44,8 +44,13 @@ private:
     PackageGroupModel *m_uninstalled;
     QTcpServer *m_tcpServer;
 
+    QString m_installedPackagesTitle;
+    QString m_uninstalledPackagesTitle;
+
 private slots:
   void onSendInfoToOctopiHelper();
+  void onUninstalledPackagesCountChanged();
+  void onInstalledPackagesCountChanged();
 
 public:
     explicit CacheCleaner(QWidget *parent = 0);

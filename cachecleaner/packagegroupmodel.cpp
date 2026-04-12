@@ -66,7 +66,6 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
   connect( m_spinner, SIGNAL( editingFinished() ), SLOT( keepArchivesChanged() ) );
   connect( m_refreshButton, SIGNAL( clicked() ), SLOT( refreshCacheView() ) );
   connect( m_cleanButton, SIGNAL( clicked() ), SLOT( cleanCache() ) );
-
   isExecutingCommand = false;
 
   //refresh cache informations at startup

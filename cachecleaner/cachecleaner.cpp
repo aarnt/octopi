@@ -59,7 +59,24 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
   m_tcpServer = new QTcpServer(this);
   connect(m_tcpServer, &QTcpServer::newConnection, this, &CacheCleaner::onSendInfoToOctopiHelper);
 
+  connect(ui->uninstalledPackagesList->model(), &QAbstractItemModel::modelReset,
+          this, &CacheCleaner::onUninstalledPackagesCountChanged);
+  connect(ui->uninstalledPackagesList->model(), &QAbstractItemModel::rowsInserted,
+          this, &CacheCleaner::onUninstalledPackagesCountChanged);
+  connect(ui->uninstalledPackagesList->model(), &QAbstractItemModel::rowsRemoved,
+          this, &CacheCleaner::onUninstalledPackagesCountChanged);
+
+  connect(ui->installedPackagesList->model(), &QAbstractItemModel::modelReset,
+          this, &CacheCleaner::onInstalledPackagesCountChanged);
+  connect(ui->installedPackagesList->model(), &QAbstractItemModel::rowsInserted,
+          this, &CacheCleaner::onInstalledPackagesCountChanged);
+  connect(ui->installedPackagesList->model(), &QAbstractItemModel::rowsRemoved,
+          this, &CacheCleaner::onInstalledPackagesCountChanged);
+
   restoreGeometry(SettingsManager::getCacheCleanerWindowSize());
+
+  m_uninstalledPackagesTitle = ui->UninstalledPackagesBox->title();
+  m_installedPackagesTitle = ui->installedPackagesBox->title();
 }
 
 /*
@@ -70,6 +87,38 @@ CacheCleaner::~CacheCleaner()
   delete m_installed;
   delete m_uninstalled;
   delete ui;
+}
+
+/*
+ * Let's show the number of installed packages to clean!
+ */
+void CacheCleaner::onUninstalledPackagesCountChanged()
+{
+  if (ui->uninstalledPackagesList->count() == 0)
+  {
+    ui->UninstalledPackagesBox->setTitle(m_uninstalledPackagesTitle);
+  }
+  else
+  {
+    QString strCount = QStringLiteral(" (") + QString::number(ui->uninstalledPackagesList->count()) + QStringLiteral(")");
+    ui->UninstalledPackagesBox->setTitle(m_uninstalledPackagesTitle + strCount);
+  }
+}
+
+/*
+ * Let's show the number of installed packages to clean!
+ */
+void CacheCleaner::onInstalledPackagesCountChanged()
+{
+  if (ui->installedPackagesList->count() == 0)
+  {
+    ui->installedPackagesBox->setTitle(m_installedPackagesTitle);
+  }
+  else
+  {
+    QString strCount = QStringLiteral(" (") + QString::number(ui->installedPackagesList->count()) + QStringLiteral(")");
+    ui->installedPackagesBox->setTitle(m_installedPackagesTitle + strCount);
+  }
 }
 
 /*
