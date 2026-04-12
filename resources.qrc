@@ -9,6 +9,9 @@
         <file>resources/styles/vline.png</file>
         <file>resources/images/octopi_transparent.png</file>
         <file>resources/images/octopi_red.png</file>
+        <file>resources/images/octopi_green-big.png</file>
+        <file>resources/images/octopi_red-big.png</file>
+        <file>resources/images/octopi_yellow-big.png</file>
         <file>resources/images/octopi_yellow.png</file>
         <file>resources/images/octopi_green.png</file>
         <file>resources/images/esf-search.png</file>

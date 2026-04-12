@@ -28,6 +28,7 @@
   BugFix: Simpler logic for WMHelper::openDirectory (thanks to Zebra2711).
   BugFix: Searching for certain Yay packages results in Error messages (thanks to ravencrowonyt).
   BugFix: The use of "." char was not allowed in package searches (thanks to Doc-4).
+  BugFix: Added 512x512 pixel png for main Octopi app icon. 
   RELEVANT performance improvement on instant search, package list and Files tab building time.
   Use KF6 KStatusNotifierItem as the default systray icon in Notifier.
   Octopi and Notifier now detect Yay libalpm related errors.

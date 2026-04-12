@@ -88,19 +88,19 @@ public:
         break;
       case ectn_OCTOPI_RED:
         if (useDefaultIcons)
-          res = QStringLiteral(":/resources/images/octopi_red.png");
+          res = QStringLiteral(":/resources/images/octopi_red-big.png");
         else
           res = SettingsManager::getOctopiRedIconPath();
         break;
       case ectn_OCTOPI_YELLOW:
         if (useDefaultIcons)
-          res = QStringLiteral(":/resources/images/octopi_yellow.png");
+          res = QStringLiteral(":/resources/images/octopi_yellow-big.png");
         else
           res = SettingsManager::getOctopiYellowIconPath();
         break;
       case ectn_OCTOPI_GREEN:
         if (useDefaultIcons)
-          res = QStringLiteral(":/resources/images/octopi_green.png");
+          res = QStringLiteral(":/resources/images/octopi_green-big.png");
         else
           res = SettingsManager::getOctopiGreenIconPath();
     }
@@ -111,7 +111,7 @@ public:
   static QIcon getIconOctopi(){
     if (WMHelper::isKDERunning())
       return QIcon::fromTheme(QStringLiteral("octopi"), QIcon());
-    else return QIcon::fromTheme(QStringLiteral(":/resources/images/octopi_green.png"));
+    else return QIcon::fromTheme(QStringLiteral(":/resources/images/octopi_green-big.png"));
   }
 
   static QIcon getIconOctopiBusy(){
