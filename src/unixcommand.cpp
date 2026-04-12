@@ -329,12 +329,17 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 
   if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
   {
+    bool testForErrorString = false;
+
     if (result.isEmpty())
+    {
+      testForErrorString = true;
       result = aur.readAllStandardError();
+    }
 
     QString input = QString::fromUtf8(result);
 
-    if (input.contains(QStringLiteral("error"), Qt::CaseInsensitive))
+    if (testForErrorString && input.contains(QStringLiteral("error"), Qt::CaseInsensitive))
     {
       QString error = QStringLiteral("ERROR");
       return error.toLatin1();
