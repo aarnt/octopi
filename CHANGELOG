@@ -24,6 +24,8 @@
   BugFix: qt-sudo path was hardcoded in source code (thanks to fnune's PR).
   BugFix: Open PKGBUILD and Show PKGBUILD diff were not working due to AUR site restrictions 
     (thanks to urbenlegend).
+  BugFix: Make xdg-open the primary choice for WMHelper::editFile (thanks to boussou).
+  BugFix: Simpler logic for WMHelper::openDirectory (thanks to Zebra2711).
   BugFix: Searching for certain Yay packages results in Error messages (thanks to ravencrowonyt).
   BugFix: The use of "." char was not allowed in package searches (thanks to Doc-4).
   RELEVANT performance improvement on instant search, package list and Files tab building time.

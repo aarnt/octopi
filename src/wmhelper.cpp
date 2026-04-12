@@ -28,6 +28,8 @@
 #include <QApplication>
 #include <QProcess>
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 /*
  * This class is a helper to abstract some Desktop Environments services for Octopi.
@@ -458,7 +460,7 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
  */
 void WMHelper::openDirectory(const QString& dirName)
 {
-  QProcess *p = new QProcess(qApp->activeWindow());
+  //QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
   QString dir(dirName);
 
@@ -470,7 +472,9 @@ void WMHelper::openDirectory(const QString& dirName)
     f = QFileInfo(dir);
   }
 
-  if (f.exists())
+  QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
+
+  /*if (f.exists())
   {
     LinuxDistro distro = UnixCommand::getLinuxDistro();
 
@@ -552,5 +556,10 @@ void WMHelper::openDirectory(const QString& dirName)
       s << dir;
       p->startDetached( ctn_GNOME_FILE_MANAGER, s );
     }
-  }
+    else if (UnixCommand::hasTheExecutable(ctn_XDG_OPEN))
+    {
+      s << dir;
+      p->startDetached( ctn_XDG_OPEN, s);
+    }
+  }*/
 }
