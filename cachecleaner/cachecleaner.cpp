@@ -84,6 +84,20 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
  */
 CacheCleaner::~CacheCleaner()
 {
+  disconnect(ui->uninstalledPackagesList->model(), &QAbstractItemModel::modelReset,
+          this, &CacheCleaner::onUninstalledPackagesCountChanged);
+  disconnect(ui->uninstalledPackagesList->model(), &QAbstractItemModel::rowsInserted,
+          this, &CacheCleaner::onUninstalledPackagesCountChanged);
+  disconnect(ui->uninstalledPackagesList->model(), &QAbstractItemModel::rowsRemoved,
+          this, &CacheCleaner::onUninstalledPackagesCountChanged);
+
+  disconnect(ui->installedPackagesList->model(), &QAbstractItemModel::modelReset,
+          this, &CacheCleaner::onInstalledPackagesCountChanged);
+  disconnect(ui->installedPackagesList->model(), &QAbstractItemModel::rowsInserted,
+          this, &CacheCleaner::onInstalledPackagesCountChanged);
+  disconnect(ui->installedPackagesList->model(), &QAbstractItemModel::rowsRemoved,
+          this, &CacheCleaner::onInstalledPackagesCountChanged);
+
   delete m_installed;
   delete m_uninstalled;
   delete ui;
