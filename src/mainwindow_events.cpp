@@ -387,7 +387,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     if (m_commandExecuting != ectn_NONE) return;
 
     LinuxDistro ld=UnixCommand::getLinuxDistro();
-    if((ld == ectn_KAOS || ld == ectn_CHAKRA) || (
+    if((ld == ectn_KAOS) || (
        m_hasForeignTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
        !isAURGroupSelected()))
     {

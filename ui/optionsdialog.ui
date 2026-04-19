@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
@@ -671,6 +671,30 @@ Any use of the provided files is at your own risk.</string>
             </property>
             <property name="text">
              <string notr="true">--editmenu</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbSearchOutdatedAURPackages">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>300</y>
+              <width>381</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LayoutDirection::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Search for outdated AUR packages</string>
             </property>
            </widget>
           </widget>
@@ -1376,30 +1400,6 @@ Any use of the provided files is at your own risk.</string>
             </property>
             <property name="text">
              <string notr="true">Never</string>
-            </property>
-           </widget>
-           <widget class="QCheckBox" name="cbSearchOutdatedAURPackages">
-            <property name="geometry">
-             <rect>
-              <x>14</x>
-              <y>300</y>
-              <width>381</width>
-              <height>22</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string notr="true"/>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LayoutDirection::LeftToRight</enum>
-            </property>
-            <property name="text">
-             <string>Search for outdated AUR packages</string>
             </property>
            </widget>
           </widget>

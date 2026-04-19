@@ -317,14 +317,15 @@ void OptionsDialog::initPackageListTab()
  */
 void OptionsDialog::initAURTab()
 {
+  cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+
   gbAURVoting->setStyleSheet(QStringLiteral("border:none"));
 
   cbEditMenu->setEnabled(false);
   cbOverwrite->setChecked(false);
   cbOverwrite->setEnabled(false);
 
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS ||
-      UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS ||      
       UnixCommand::getLinuxDistro() == ectn_PARABOLA)
   {
     removeTabByName(QStringLiteral("AUR"));
@@ -438,8 +439,6 @@ void OptionsDialog::initIconTab()
 
 void OptionsDialog::initUpdatesTab()
 {
-  cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
-
   lblCheck->setText(StrConstants::getNotiferSetupDialogGroupBoxTitle());
   rbOnceADay->setText(StrConstants::getOnceADay());
   rbOnceADayAt->setText(StrConstants::getOnceADayAt());
@@ -703,9 +702,13 @@ void OptionsDialog::accept()
 
   //Set AUR Tool...
   if (UnixCommand::getLinuxDistro() != ectn_KAOS ||
-      UnixCommand::getLinuxDistro() != ectn_CHAKRA ||
       UnixCommand::getLinuxDistro() != ectn_PARABOLA)
   {
+    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
+    {
+      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
+    }
+
     if (comboAUR->currentText() == ctn_PACAUR_TOOL && SettingsManager::getAURToolName() != ctn_PACAUR_TOOL)
     {
       SettingsManager::setAURTool(ctn_PACAUR_TOOL);
@@ -904,11 +907,6 @@ void OptionsDialog::accept()
   //Set update interval...
   if (!m_calledByOctopi || (m_calledByOctopi && UnixCommand::isOctoToolRunning(QLatin1String("octopi-notifier"))))
   {
-    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
-    {
-      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
-    }
-
     //Set Check Updates interval...
     if (rbOnceADay->isChecked())
     {

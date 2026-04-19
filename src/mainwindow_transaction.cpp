@@ -2731,6 +2731,8 @@ void MainWindow::onPressAnyKeyToContinue()
 
   if (m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
   {
+    m_numberOfOutdatedPackages = 0;
+    m_outdatedStringList->clear();
     m_checkupdatesStringList->clear();
     m_checkUpdatesNameNewVersion->clear();
     m_leFilterPackage->clear();

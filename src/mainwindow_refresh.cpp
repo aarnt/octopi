@@ -794,16 +794,15 @@ void MainWindow::buildPackageList()
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
 
   static bool firstTime = true;
-  bool searchOutdatedPackages = false; //SettingsManager::getSearchOutdatedAURPackages();
-
+  //bool searchOutdatedPackages = false; //SettingsManager::getSearchOutdatedAURPackages();
+  bool searchOutdatedPackages = SettingsManager::getSearchOutdatedAURPackages();
 
   // WARNING THIS WAS COMMENTED IN OCTOBER 2025
-  /*if (!searchOutdatedPackages)
+  if (!searchOutdatedPackages)
   {
     m_outdatedAURStringList->clear();
     m_outdatedAURPackagesNameVersion->clear();
-  }*/
-
+  }
 
   if(m_refreshPackageLists) //If it's not the starting of the app...
   {
