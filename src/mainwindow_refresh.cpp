@@ -1332,7 +1332,6 @@ void MainWindow::refreshToolBar()
   {
     LinuxDistro ld = UnixCommand::getLinuxDistro();
     if (ld != ectn_KAOS &&
-        ld != ectn_CHAKRA &&
         ld != ectn_PARABOLA)
     {
       //Here the user lost the AUR tool he was using
@@ -1376,13 +1375,13 @@ void MainWindow::refreshStatusBarToolButtons()
 {
   if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
 
-  /*if (m_hasForeignTool && SettingsManager::getSearchOutdatedAURPackages())
+  if (m_hasForeignTool && SettingsManager::getSearchOutdatedAURPackages())
   {
     QFuture<FTOutdatedPackages *> f;
     f = QtConcurrent::run(getOutdatedForeignToolPackages);
     g_fwOutdatedAURPackages.setFuture(f);
     connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
-  }*/
+  }
 
   if (m_commandExecuting == ectn_NONE && !isSearchByFileSelected() && !m_actionSwitchToForeignTool->isChecked())
     ui->twGroups->setEnabled(true);
