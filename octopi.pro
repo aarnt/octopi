@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network xml widgets multimedia
+QT += core gui network xml widgets multimedia svg
 DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
 
 # Disable automatic string conversions
@@ -208,10 +208,10 @@ desktop.files += cachecleaner/octopi-cachecleaner.desktop
 
 gnome.path = $$DATADIR/icons/gnome/32x32/apps
 gnome.files += resources/images/octopi_green.png
-gnome.files += resources/images/octopi.png
+gnome.files += resources/images/octopi.svg
 
 icon.path = $$DATADIR/icons/hicolor/48x48/apps
-icon.files += resources/images/octopi.png
+icon.files += resources/images/octopi.svg
 icon.files += resources/images/octopi_green.png
 icon.files += resources/images/octopi_red.png
 icon.files += resources/images/octopi_yellow.png

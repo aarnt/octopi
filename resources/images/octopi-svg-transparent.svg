@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="512" width="512" viewBox="20 25 360 360" fill="#355E42">
+  <path d="M 70 180 A 130 130 0 0 1 330 180 L 330 340 A 26 26 0 0 1 278 340 A 26 26 0 0 0 226 340 A 26 26 0 0 1 174 340 A 26 26 0 0 0 122 340 A 26 26 0 0 1 70 340 Z"/>
+  <!-- Eyes -->
+  <circle cx="142" cy="170" r="35" fill="#5A8A68"/>
+  <circle cx="264" cy="170" r="35" fill="#5A8A68"/>
+  <!-- Pupils -->
+  <circle cx="159" cy="173" r="10" fill="#5A8A68"/>
+  <circle cx="281" cy="173" r="10" fill="#5A8A68"/>
+</svg>

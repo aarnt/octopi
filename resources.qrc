@@ -109,5 +109,9 @@
         <file>resources/images/keys.png</file>
         <file>resources/images/group.png</file>
         <file>resources/images/ignored.png</file>
+        <file>resources/images/octopi-svg-green.svg</file>
+        <file>resources/images/octopi-svg-red.svg</file>
+        <file>resources/images/octopi-svg-yellow.svg</file>
+        <file>resources/images/octopi-svg-transparent.svg</file>
     </qresource>
 </RCC>
