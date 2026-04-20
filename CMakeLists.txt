@@ -120,11 +120,10 @@ else()
   target_link_libraries(octopi PRIVATE Qt5::Core Qt5::Gui Qt5::Network Qt5::Xml Qt5::Widgets Qt5::Multimedia Qt5::Svg qtermwidget5 alpm_octopi_utils)
 endif()
 
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
-file(RENAME "${CMAKE_CURRENT_BINARY_DIR}/octopi_green.png" "${CMAKE_CURRENT_BINARY_DIR}/octopi.png")
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi.svg" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 install(TARGETS octopi RUNTIME DESTINATION bin LIBRARY DESTINATION lib PUBLIC_HEADER DESTINATION include)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/octopi.desktop" DESTINATION share/applications)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png" DESTINATION share/icons/hicolor/48x48/apps)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.svg" DESTINATION share/icons/hicolor/48x48/apps)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.svg" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png"
         "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_red.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_yellow.png" DESTINATION share/icons/hicolor/48x48/apps)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE" DESTINATION share/licenses/octopi)
