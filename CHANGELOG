@@ -1,4 +1,4 @@
-0.19.0 (-)
+0.19.0 (2026-04-23)
   ** WARNING ** => This version removed hardcoded qt-sudo path from Octopi, Notifier,
     CacheCleaner and RepoEditor, so AUR packagers and distros no longer have to patch 
     the source code to work correctly with qt-sudo pkg.
@@ -33,6 +33,7 @@
   Use KF6 KStatusNotifierItem as the default systray icon in Notifier.
   Octopi and Notifier main icons are now in SVG format (thanks to dcog989).
   Octopi and Notifier now detect Yay libalpm related errors.
+  Make "Search for outdated AUR packages" a notifier only option.
   Reverted: make "Search for outdated AUR packages" a notifier only option. Config is now located 
     in the Options dialog AUR tab.
   Added number of packages in CacheCleaner (thanks to compulsions).
@@ -41,7 +42,6 @@
   Added the option to show/hide "Repository" and "Download Size" columns in package list.
   Pressing Ctrl+M toggles the visibility of the menu bar.
   Added Repository field in Info tab.
-  Make "Search for outdated AUR packages" a notifier only option.
   Enable Check updates and System upgrade tool buttons in AUR mode.
   Show current version of the packages on Notifier's System Upgrade dialog 
     (thanks to valchx's code).
