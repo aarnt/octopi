@@ -28,7 +28,7 @@
  * Collection of Octopi constants and enums
  */
 
-const QString ctn_APPLICATION_VERSION(QStringLiteral("0.19.0"));
+const QString ctn_APPLICATION_VERSION(QStringLiteral("0.20 (dev)"));
 
 //MainWindow related
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
@@ -186,8 +186,8 @@ const QString ctn_PACMAN_CORE_DB_FILE = QStringLiteral("/var/lib/pacman/sync/cor
 //ARTIX MAIN DB FILE
 const QString ctn_PACMAN_SYSTEM_DB_FILE = QStringLiteral("/var/lib/pacman/sync/system.db");
 
-enum PackageStatus { ectn_IGNORED, ectn_INSTALLED, ectn_NON_INSTALLED,
-                     ectn_OUTDATED, ectn_NEWER, ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
+enum PackageStatus { ectn_IGNORED, ectn_NEWER, ectn_INSTALLED, ectn_NON_INSTALLED,
+                     ectn_OUTDATED, ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
 enum ViewOptions { ectn_ALL_PKGS, ectn_IGNORED_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
 
