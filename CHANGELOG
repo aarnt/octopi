@@ -1,4 +1,5 @@
 0.20 (dev)
+  BugFix: Updated Categories session in octopi.desktop file (thanks to mescon).
   BugFix: After a pkg transaction other than an upgrade, reset the lists of outdated
     pacman and AUR packages.
   Newer packages are now listed before installed packages.
