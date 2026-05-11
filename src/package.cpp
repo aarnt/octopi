@@ -531,7 +531,7 @@ QStringList *Package::getOutdatedAURStringList()
         }
         else if (!pkgName.contains(QStringLiteral("\t"))) //We have a TRIZEN output
         {
-          if (!ignorePkgList.contains(pkgName))
+          if (!ignorePkgList.contains(pkgName) && pkgName != QStringLiteral("->"))
           {
             res->append(pkgName); //We only need the package name!
           }
@@ -2404,7 +2404,7 @@ QHash<QString, QString> Package::getForeignToolOutdatedPackagesNameVersion()
           return hash;
         }
 
-        if (pkgName == QLatin1String("::")) continue;
+        if (pkgName == QLatin1String("::") || pkgName == QLatin1String("->")) continue;
 
         if (!ignorePkgList.contains(pkgName))
         {

@@ -1,7 +1,9 @@
-0.20 (dev)
+0.19.1 (dev)
   BugFix: Updated Categories session in octopi.desktop file (thanks to mescon).
   BugFix: After a pkg transaction other than an upgrade, reset the lists of outdated
     pacman and AUR packages.
+  BugFix: Notifier/Octopi incorrectly show an AUR update is available if no internet
+    (thanks to urbenlegend).
   Newer packages are now listed before installed packages.
   Updated translations.
 
