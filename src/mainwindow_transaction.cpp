@@ -2603,6 +2603,11 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK && m_commandExecuting != ectn_CHECK_UPDATES)
       {
+        m_checkupdatesStringList->clear(); //ADDED IN MAY/26
+        m_checkUpdatesNameNewVersion->clear();
+        m_outdatedAURStringList->clear();
+        m_outdatedAURPackagesNameVersion->clear();
+
         //The user wants to go to "Display All groups"
         if (!isAllGroupsSelected())
         {
