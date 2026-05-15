@@ -2590,7 +2590,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
         {
           QStringList sl;
           sl << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Spu");
-          execCommandInAnotherThread(QStringLiteral("pacman"), sl);
+          execCommandInAnotherThread(QStringLiteral("/usr/bin/pacman"), sl);
         }
       }
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
