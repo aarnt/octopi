@@ -636,6 +636,11 @@ QString StrConstants::getYayNotWorking()
   return QObject::tr("Yay is not working.\nPlease, upgrade the package and try again.");
 }
 
+QString StrConstants::getAURToolNotWorking()
+{
+  return QObject::tr("%1 is not working.\nPlease, upgrade the package and try again.");
+}
+
 QString StrConstants::geRetrievingPackage(){
   return QObject::tr("Retrieving %1");
 }

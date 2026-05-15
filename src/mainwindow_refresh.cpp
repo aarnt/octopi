@@ -453,7 +453,7 @@ void MainWindow::preBuildAURPackageList()
       m_cic = nullptr;
     }
 
-    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(Package::getForeignRepositoryToolName()));
     m_listOfAURPackages->clear();
   }
 
@@ -1098,7 +1098,7 @@ void MainWindow::postRefreshOutdatedAURStringList()
 
   if (m_outdatedAURStringList->size() == 1 && m_outdatedAURStringList->at(0) == QStringLiteral("ERROR"))
   {
-    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(Package::getForeignRepositoryToolName()));
     m_outdatedAURStringList->clear();
     return;
   }

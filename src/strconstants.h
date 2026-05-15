@@ -57,7 +57,6 @@ public:
   static QString getOptions();
   static QString getName();
   static QString getVersion();
-  //static QString getOutdated();
   static QString getOutdatedVersion();
   static QString getAvailableVersion();
   static QString getNoDescriptionAvailabe();
@@ -153,6 +152,7 @@ public:
   static QString getTempYayDownloaded();
   static QString getDownloadingTempYay();
   static QString getYayNotWorking();
+  static QString getAURToolNotWorking();
   static QString getErrorCouldNotDownloadTempYay();
   static QString getErrorPacmanProcessExecuting();
   static QString geRetrievingPackage();

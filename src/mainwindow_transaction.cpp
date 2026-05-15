@@ -876,7 +876,7 @@ void MainWindow::doCheckUpdates()
     if (m_outdatedAURPackagesNameVersion->size() == 1 && m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("ERROR"))
     {
       m_outdatedAURPackagesNameVersion->clear();
-      QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+      QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(Package::getForeignRepositoryToolName()));
     }
 
     QString pkg, html, availableVersion;
