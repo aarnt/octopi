@@ -528,7 +528,8 @@ void MainWindow::doSystemUpgrade()
 
   if(isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
-    if(isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() || (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
+    if( isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() ||
+        (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_systemUpgradeDialog = false;
