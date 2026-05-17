@@ -1,15 +1,15 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="th_TH" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="en_TH" version="2.0">
 <context>
     <name>CacheCleaner</name>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation>โปรแกรมทำความสะอาดไฟล์ขยะ - Octopi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation>โปรแกรมที่ถูกถอนการติดตั้งแล้ว</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
@@ -21,18 +21,18 @@
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="157"/>
         <source>Number of old versions to keep</source>
-        <translation>จำนวนของเวอร์ชั่นเก่าที่เก็บเอาไว้</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="102"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="183"/>
         <source>Refresh</source>
-        <translation>รีเฟรช</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation>โปรแกรมที่ถูกติดตั้งแล้ว</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -40,7 +40,7 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="199"/>
         <source>Clean</source>
-        <translation>ทำความสะอาด</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="222"/>

@@ -1,15 +1,15 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="th_TH">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="en_TH">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="96"/>
         <source>Info</source>
-        <translation>รายละเอียด</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="101"/>
         <source>Files</source>
-        <translation>ไฟล์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
@@ -19,95 +19,95 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
         <source>Output</source>
-        <translation>ผลลัพธ์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation>ความช่วยเหลือ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation>มุมมอง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="174"/>
         <source>&amp;File</source>
-        <translation>ไฟล์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="186"/>
         <source>&amp;Search</source>
-        <translation>ค้นหา</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="196"/>
         <source>T&amp;ools</source>
-        <translation>เครื่องมือ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>&amp;About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="229"/>
         <source>About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="243"/>
         <source>Non installed</source>
-        <translation>ไม่ได้ติดตั้ง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
         <source>Apply</source>
-        <translation>บันทึกการเปลี่ยนแปลง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="273"/>
         <source>Cancel</source>
-        <translation>ยกเลิก</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="285"/>
         <source>Check &amp;updates</source>
-        <translation>ค้นหาการอัพเดท</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="293"/>
         <source>E&amp;xit</source>
-        <translation>ออก</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
         <source>System u&amp;pgrade</source>
-        <translation>อัพเดทระบบ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="329"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Install</source>
-        <translation>ติดตั้ง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="338"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Remove</source>
-        <translation>ถอนการติดตั้ง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="346"/>
         <source>Outdated packages</source>
-        <translation>โปรแกรมที่ยังไม่ได้รับการอัพเดท</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="355"/>
         <source>&amp;Get latest distro news</source>
-        <translation>รับข่าวสารล่าสุดของระบบปฏิบัติการ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
@@ -122,160 +122,160 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Collapse item</source>
-        <translation>ยุบรายการ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Expand item</source>
-        <translation>ขยายรายการ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Collapse all items</source>
-        <translation>ยุบรายการทั้งหมด&lt;div contenteditable=&quot;true&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;br data-mce-bogus=&quot;1&quot;&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="412"/>
         <source>Expand all items</source>
-        <translation>ขยายรายการทั้งหมด</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="421"/>
         <source>Open file</source>
-        <translation>เปิดไฟล์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
         <source>Edit file</source>
-        <translation>แก้ไขไฟล์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
         <source>Open directory</source>
-        <translation>เปิดตัวจัดการไฟล์ในนี้</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="448"/>
         <source>Open terminal here</source>
-        <translation>เปิด Terminal ที่นี่</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="457"/>
         <source>Remove item</source>
-        <translation>ลบรายการ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>Remove items</source>
-        <translation>ลบรายการ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;description</source>
-        <translation>ค้นหาโดยคำอธิบาย</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
         <source>By &amp;name</source>
-        <translation>ค้นหาโดยชื่อ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
         <source>Find a file</source>
-        <translation>หาไฟล์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="512"/>
         <source>Open root terminal</source>
-        <translation>เปิด Terminal ในสิทธิผู้ดูแลระบบ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Usage</source>
-        <translation>วิธีใช้</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="528"/>
         <source>&amp;Install local package...</source>
-        <translation>ติดตั้งโปรแกรมจากไฟล์ในเครื่อง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="545"/>
         <source>Pacman Log Viewer</source>
-        <translation>บันทึกการปฏิบัติงานของ pacman</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
         <source>Repository Editor</source>
-        <translation>แก้ไขฐานข้อมูลโปรแกรม</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Cache Cleaner</source>
-        <translation>โปรแกรมทำความสะอาดไฟล์ขยะ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="583"/>
         <source>Installed</source>
-        <translation>ติดตั้งแล้ว</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>By &amp;file</source>
-        <translation>ค้นหาโดยไฟล์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="616"/>
         <source>Use Instant Search</source>
-        <translation>ใช้การค้นหาเร่งด่วน</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="624"/>
         <source>Donate!</source>
-        <translation>บริจาคเงิน!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="635"/>
         <source>Outdated</source>
-        <translation>ยังไม่ได้รับการอัพเดท</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="644"/>
         <source>Add to Ignored</source>
-        <translation>เพิ่มไปยังรายการละลเย</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="656"/>
         <source>Remove from Ignored</source>
-        <translation>ลบจากรายการละเลย</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="667"/>
         <source>Ignored</source>
-        <translation>รายการโปรแกรมที่ถูกละเลย</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="71"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation>กด Ctrl+Shift+O เพื่อแสดง %1 โปรแกรมที่ยังไม่ได้รับการอัพเดท</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation>กด Ctrl+Shift+A เพื่อแสดงโปรแกรมที่ถูกโหวตใน AUR</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>For more information, visit:</source>
-        <translation>โปรดดูข้อมูลเพิ่มเติมที่: </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="211"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>หน้า GUI สำหรับ pacman ที่ถูกเขียนขึ้นโดยใช้ Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
@@ -287,79 +287,79 @@
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="219"/>
         <source>Package classification:</source>
-        <translation>ภาพที่ใช้แทนวลีต่างๆ ในแอพนี้</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="222"/>
         <source>An ignored package</source>
-        <translation>โปรแกรมที่ถูกละเลย</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="224"/>
         <source>An installed package</source>
-        <translation>โปรแกรมที่ถูกติดตั้งแล้ว</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="226"/>
         <source>An installed package (not required by others)</source>
-        <translation>โปรแกรมที่ถูกติดตั้งแล้ว (แต่ไม่ถูกใช้งานโดยโปรแกรมอื่น)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="229"/>
         <source>A foreign package, installed from</source>
-        <translation>โปรแกรมที่ติดตั้งโดยแอพภายนอก</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="232"/>
         <source>A non installed package</source>
-        <translation>โปรแกรมที่ไม่ได้ติดตั้ง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="235"/>
         <source>An outdated package</source>
-        <translation>โปรแกรมที่ยังไม่ได้รับการอัพเดท</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="238"/>
         <source>An outdated foreign package</source>
-        <translation>โปรแกรมภายนอกที่ยังไม่ได้รับการอัพเดท</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="241"/>
         <source>A newer version of this package is installed</source>
-        <translation>เวอร์ชั่นที่ใหม่กว่าของแอพนี้ถูกติดตั้งอยู่ในเครื่อง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="244"/>
         <source>Basic usage help:</source>
-        <translation>วิธีการใช้งานเบื้องต้น</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="246"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>วางเมาส์ไว้บนชื่อโปรแกรมเพื่ออ่านคำอธิบายของมัน</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="248"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>คลิกสองครั้งติดกันเพื่อดูไฟล์ภายในโปรแกรม</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="139"/>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="250"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>คลิกขวาที่ชื่อโปรแกรมเพื่อติดตั้ง, ติดตั้งใหม่หรือถอนการติดตั้ง</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
@@ -1197,7 +1197,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1207,27 +1207,27 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
         <source>%n selected</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="494"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="498"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="502"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="506"/>
@@ -1357,12 +1357,12 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
@@ -1382,7 +1382,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
