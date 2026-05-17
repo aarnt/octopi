@@ -2,6 +2,9 @@
   BugFix: Updated Categories session in octopi.desktop file (thanks to mescon).
   BugFix: After a pkg transaction other than an upgrade, reset the lists of outdated
     pacman and AUR packages.
+  BugFix: Octopi update window shows a blank list when dependencies can not be satisfied -
+    the workaround in that case is to execute the upgrade action in the terminal, so
+    the user can see the proper error msg (thanks to urbenlegend).
   BugFix: Notifier/Octopi incorrectly show an AUR update is available if no internet
     (thanks to urbenlegend).
   BugFix: Make all Octopi commands use "/usr/bin/pacman" full path (thanks to xandark).

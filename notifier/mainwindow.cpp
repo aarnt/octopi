@@ -595,6 +595,29 @@ void MainWindow::doSystemUpgrade()
     {
       return;
     }
+    // If there is no target available to show to the user, let's exec this upgrade in terminal
+    else if (targets->count() == 0)
+    {
+      m_systemUpgradeDialog = false;
+
+      //If there are no means to run the actions, we must warn!
+      if (!_isSUAvailable()) return;
+
+      m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
+      m_outputDialog->setViewAsTextBrowser(false);
+      QObject::connect(m_outputDialog, SIGNAL( finished(int)),
+                       this, SLOT( doSystemUpgradeFinished(int) ));
+
+      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      toggleEnableInterface(false);
+      m_actionSystemUpgrade->setEnabled(false);
+      setUpgradingTooltip();
+      m_outputDialog->show();
+      m_outputDialog->doSystemUpgradeInTerminal();
+
+      return;
+    }
 
     QString list;
     double totalDownloadSize = 0;

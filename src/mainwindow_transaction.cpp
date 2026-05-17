@@ -1200,6 +1200,23 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         }
       }
     }
+    // If there is no target available to show to the user, let's exec this upgrade in terminal
+    else if (targets->count() == 0)
+    {
+      int res = prepareSystemUpgrade();
+      if (!res)
+      {
+        m_systemUpgradeDialog = false;
+        enableTransactionActions();
+        return;
+      }
+
+      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      m_pacmanExec->doSystemUpgradeInTerminal();
+      m_commandQueued = ectn_NONE;
+
+      return;
+    }
 
     QString list;
 
