@@ -41,6 +41,7 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/QtSolutions/qtlocalpeer.h \
         repoeditor/repoentry.h \
         src/aurvote.h \
+        src/aurvote2.h \
         src/propertiestabwidget.h \
         src/qaesencryption.h \
         src/repoconf.h \

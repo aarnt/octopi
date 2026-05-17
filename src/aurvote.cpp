@@ -248,11 +248,33 @@ QStringList AurVote::getVotedPackages()
   QString searchUrl=QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
   QEventLoop eventLoop;
   QNetworkRequest request(QUrl{searchUrl});
-  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
+
+  request.setRawHeader(
+      "User-Agent",
+      "Mozilla/5.0");
+
+  request.setRawHeader(
+      "Accept",
+      "text/html,application/xhtml+xml");
+
+  request.setRawHeader(
+      "Accept-Language",
+      "en-US,en;q=0.9");
+
+  request.setAttribute(
+      QNetworkRequest::RedirectPolicyAttribute,
+      QNetworkRequest::NoLessSafeRedirectPolicy);
+
+  //request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+  if (r->error() != QNetworkReply::NoError)
+  {
+    qDebug() << "Erro:" << r->errorString();
+  }
 
   QString res = QString::fromUtf8(r->readAll());
 

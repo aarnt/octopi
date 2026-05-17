@@ -936,7 +936,7 @@ void MainWindow::buildPackageList()
     m_initializationCompleted = true;
     firstTime = false;
 
-    if(SettingsManager::getEnableAURVoting())
+    /*if(SettingsManager::getEnableAURVoting())
     {
       m_aurVote = new AurVote(this);
       if (m_debugInfo) m_aurVote->turnDebugInfoOn();
@@ -944,6 +944,7 @@ void MainWindow::buildPackageList()
       m_aurVote->setPassword(SettingsManager::getAURPassword());
       m_aurVote->login();
     }
+    */
 
     refreshHelpUsageText();
 

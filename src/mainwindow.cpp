@@ -33,6 +33,7 @@
 #include "termwidget.h"
 #include "aurvote.h"
 #include "alpmbackend.h"
+#include "aurvote2.h"
 
 #include <QDropEvent>
 #include <QMimeData>
@@ -803,6 +804,22 @@ void MainWindow::outputAURVotedPackageList()
       text->scrollToAnchor(anchorBegin);
     }
   }
+
+  /*AurClient aur;
+
+  aur.setCredentials(
+      SettingsManager::getAURUserName(),
+      SettingsManager::getAURPassword());
+
+  if (aur.login())
+  {
+    qDebug() << "Logged in";
+
+    QStringList voted =
+        aur.votedPackages();
+
+    qDebug() << voted;
+  }*/
 }
 
 /*
