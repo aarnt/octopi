@@ -8,6 +8,8 @@
   BugFix: Notifier/Octopi incorrectly show an AUR update is available if no internet
     (thanks to urbenlegend).
   BugFix: Make all Octopi commands use "/usr/bin/pacman" full path (thanks to xandark).
+  BugFix: Hide the "YES" button in the transaction dialog in notifier when one of the 
+    packages to be upgraded is pacman.
   Newer packages are now listed before installed packages.
   Updated translations.
 
