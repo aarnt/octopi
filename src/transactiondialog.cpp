@@ -82,7 +82,7 @@ void TransactionDialog::setDetailedText(const QString &detailedtext)
 
   //We must search for a 'pacman-version-number' pkg to force terminal upgrade use
   if (detailedtext.contains(QRegularExpression(QStringLiteral("pacman-[0-9]+"))) ||
-      detailedtext.contains(QRegularExpression(QStringLiteral("pacman$"))))
+      detailedtext.contains(QRegularExpression(QStringLiteral("pacman :"))))
   {
     removeYesButton();
   }
