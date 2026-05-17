@@ -595,8 +595,25 @@ void MainWindow::doSystemUpgrade()
     {
       return;
     }
-    // If there is no target available to show to the user, let's exec this upgrade in terminal
-    else if (targets->count() == 0)
+
+    QString list;
+    double totalDownloadSize = 0;
+
+    if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
+    {
+      targets->clear();
+      for(const auto &name : std::as_const(m_checkUpdatesStringList))
+      {
+        PackageListData aux;
+        aux = PackageListData(
+            name, m_checkUpdatesNameCurrentVersion->value(name),
+            m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0"));
+        targets->append(aux);
+      }
+    }
+
+    // If the targets list is empty here, there has been an error, let's execute in the terminal
+    if (targets->count() == 0)
     {
       m_systemUpgradeDialog = false;
 
@@ -617,22 +634,6 @@ void MainWindow::doSystemUpgrade()
       m_outputDialog->doSystemUpgradeInTerminal();
 
       return;
-    }
-
-    QString list;
-    double totalDownloadSize = 0;
-
-    if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
-    {
-      targets->clear();
-      for(const auto &name : std::as_const(m_checkUpdatesStringList))
-      {
-        PackageListData aux;
-        aux = PackageListData(
-            name, m_checkUpdatesNameCurrentVersion->value(name),
-            m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0"));
-        targets->append(aux);
-      }
     }
 
     for(const auto &target : std::as_const(*targets))
