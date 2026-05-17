@@ -108,6 +108,7 @@ TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_zh_CN.ts \
     resources/translations/octopi_cachecleaner_ko.ts \
     resources/translations/octopi_cachecleaner_ko_KR.ts \
+    resources/translations/octopi_cachecleaner_th_TH.ts
     
 # install
 isEmpty(PREFIX) {
