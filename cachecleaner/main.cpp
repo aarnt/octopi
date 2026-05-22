@@ -64,9 +64,9 @@ int main( int argc, char *argv[] )
     return (-3);
   }
 
-  if (!QFile::exists(ctn_OCTOPI_HELPER_PATH))
+  if (!QFile::exists(UnixCommand::getOctopiHelperPath()))
   {
-    qDebug() << "Aborting cache-cleaner as 'octphelper' binary could not be found! [" << ctn_OCTOPI_HELPER_PATH << "]";
+    qDebug() << "Aborting cache-cleaner as 'octphelper' binary could not be found! [" << UnixCommand::getOctopiHelperPath() << "]";
     return (-4);
   }
 
