@@ -52,9 +52,9 @@ int main(int argc, char *argv[])
     return (-2);
   }
 
-  if (!QFile::exists(ctn_OCTOPI_HELPER_PATH))
+  if (!QFile::exists(UnixCommand::getOctopiHelperPath()))
   {
-    qDebug() << "Aborting notifier as 'octphelper' binary could not be found! [" << ctn_OCTOPI_HELPER_PATH << "]";
+    qDebug() << "Aborting notifier as 'octphelper' binary could not be found! [" << UnixCommand::getOctopiHelperPath() << "]";
     return (-3);
   }
 

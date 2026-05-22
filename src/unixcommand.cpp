@@ -729,6 +729,16 @@ QString UnixCommand::findExecutable(const QString& exeName)
 }
 
 /*
+ * Prefer a sibling octphelper next to the running binary so dev builds
+ * use their own helper; fall back to the system-installed path.
+ */
+QString UnixCommand::getOctopiHelperPath()
+{
+  const QString sibling = QCoreApplication::applicationDirPath() + QStringLiteral("/octphelper");
+  return QFile::exists(sibling) ? sibling : ctn_OCTOPI_HELPER_PATH;
+}
+
+/*
  * Checks if the given executable is available somewhere in the system
  */
 bool UnixCommand::hasTheExecutable(const QString& exeName)
@@ -1074,7 +1084,7 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
 
   QStringList sl;
   sl << ctn_QTSUDO_PARAMS;
-  sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
+  sl << getOctopiHelperPath() << QStringLiteral("-ts");
   m_process->start(WMHelper::getSUCommand(), sl);
 }
 
@@ -1187,7 +1197,7 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   QStringList sl;
   sl << ctn_QTSUDO_PARAMS;
-  sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
+  sl << getOctopiHelperPath() << QStringLiteral("-ts");
   pacman.start(WMHelper::getSUCommand(), sl);
   pacman.waitForFinished(-1);
   return pacman.exitCode();
@@ -1219,10 +1229,13 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
 }
 
 /*
- * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed from /usr/bin
+ * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed from allowed paths
+ * Allowed paths can be configured via OCTOPI_ALLOWED_PATHS environment variable (colon-separated)
+ * Default: /usr/bin only (security: only system-installed binaries are trusted)
+ * Development: set OCTOPI_ALLOWED_PATHS=/usr/bin:/path/to/your/build to allow running from build dir
  */
 bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
-{  
+{
   char exePath[PATH_MAX];
   ssize_t count = readlink("/proc/self/exe", exePath, sizeof(exePath));
   if (count == -1)
@@ -1233,6 +1246,18 @@ bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
 
   QString path = QString::fromUtf8(exePath, count);
   QFileInfo fi(path);
+
+  QByteArray allowedPathsEnv = qgetenv("OCTOPI_ALLOWED_PATHS");
+  if (!allowedPathsEnv.isEmpty())
+  {
+    QStringList allowedPaths = QString::fromUtf8(allowedPathsEnv).split(QLatin1Char(':'), Qt::SkipEmptyParts);
+    for (const QString &allowedPath : allowedPaths)
+    {
+      if (fi.absoluteFilePath() == allowedPath + QLatin1Char('/') + octoToolName)
+        return true;
+    }
+    return false;
+  }
 
   return (fi.absoluteFilePath() == QLatin1String("/usr/bin/") + octoToolName);
 }
@@ -1653,7 +1678,8 @@ bool UnixCommand::isOctopiHelperRunning()
   if (out.contains(QLatin1String("|"))) return false;
   out=out.remove(QStringLiteral("\n"));
   out=out.remove(QStringLiteral("COMMAND"));
-  if ((out == QLatin1String("/usr/lib/octopi/") + octoToolName) || out.contains(QLatin1String("/usr/lib/octopi/") + octoToolName + QLatin1String(" "))) res=true;
+  const QString helperPath = getOctopiHelperPath();
+  if (out == helperPath || out.contains(helperPath + QLatin1Char(' '))) res=true;
 
   return res;
 }

@@ -23,6 +23,7 @@
 
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <dirent.h>
 
 #include <QProcess>
@@ -217,24 +218,40 @@ pid_t OctopiHelper::findPidByName(const QString &processName)
   return -1;
 }
 
+static QString readProcExe(pid_t pid)
+{
+  QString exeLink = QStringLiteral("/proc/%1/exe").arg(pid);
+  char buf[PATH_MAX];
+  ssize_t len = readlink(exeLink.toLocal8Bit().constData(), buf, sizeof(buf) - 1);
+  if (len == -1) return QString();
+  buf[len] = '\0';
+  return QFileInfo(QString::fromLocal8Bit(buf)).canonicalFilePath();
+}
+
+static bool isDirOwnerWritableOnly(const QString &dir)
+{
+  struct stat st{};
+  if (stat(dir.toLocal8Bit().constData(), &st) != 0) return false;
+  return (st.st_mode & (S_IWGRP | S_IWOTH)) == 0;
+}
+
 /*
- * Tests if the given process is running from the expected file path (/usr/bin)
+ * Trust /usr/bin (system install) or the helper's own directory if that
+ * directory is owner-writable only. The widened trust uses the same
+ * path-based model as before: filesystem permissions, not binary content.
  */
 bool OctopiHelper::isProcessRunningFromPath(pid_t pid)
 {
-  QString exeLink = QStringLiteral("/proc/%1/exe").arg(pid);
-  char actualPath[PATH_MAX];
-  ssize_t len = readlink(exeLink.toLocal8Bit().constData(), actualPath, sizeof(actualPath) - 1);
-  if (len == -1) {
-    //perror("readlink");
-    return false;
-  }
-
-  actualPath[len] = '\0';
-  QString realPath = QFileInfo(QString::fromLocal8Bit(actualPath)).canonicalFilePath();
-
+  QString realPath = readProcExe(pid);
+  if (realPath.isEmpty()) return false;
   log(QStringLiteral("Path of PID %1 is %2").arg(pid).arg(realPath));
-  return realPath.startsWith(QStringLiteral("/usr/bin"));
+
+  if (realPath.startsWith(QStringLiteral("/usr/bin"))) return true;
+
+  QString helperDir = QFileInfo(readProcExe(getpid())).canonicalPath();
+  return !helperDir.isEmpty()
+      && QFileInfo(realPath).canonicalPath() == helperDir
+      && isDirOwnerWritableOnly(helperDir);
 }
 
 /*
