@@ -94,6 +94,10 @@ class SettingsManager
     static QString getDistroNewsSite();
 
     static bool getShowPackageNumbersOutput();
+
+    static bool getDarkModeEnabled();
+    static void setDarkModeEnabled(bool b);
+
     static bool getShowStopTransaction();
 
     static bool getMakeInterfaceLessCondensed();

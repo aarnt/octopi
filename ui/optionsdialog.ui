@@ -129,6 +129,19 @@
           <string>Enable internet checking</string>
          </property>
         </widget>
+        <widget class="QCheckBox" name="cbEnableDarkMode">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>230</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Enable dark mode theme</string>
+         </property>
+        </widget>
         <widget class="QGroupBox" name="gbInternetChecking">
          <property name="geometry">
           <rect>

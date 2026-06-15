@@ -125,6 +125,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
   setAcceptDrops(true);
   m_aurVote=nullptr;
+
+  if (SettingsManager::getDarkModeEnabled()) {
+    QFile file(QStringLiteral(":/resources/dark.qss"));
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+      qApp->setStyleSheet(QLatin1String(file.readAll()));
+    }
+  }
 }
 
 /*

@@ -62,5 +62,5 @@ echo -e "${BLUE}=== 3. Compiling local changes ===${NC}"
 cd build
 make -j$(nproc)
 
-echo -e "${GREEN}=== 4. Running Octopi ===${NC}"
-./octopi "$@"
+echo -e "${GREEN}=== 4. Running Octopi with QSS Theme ===${NC}"
+./octopi -stylesheet ../dark.qss "$@"

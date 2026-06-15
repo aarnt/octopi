@@ -230,6 +230,7 @@ void OptionsDialog::initGeneralTab()
 
   cbAlwaysUseTheTerminal->setChecked(SettingsManager::getAlwaysUseTheTerminal());
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
+  cbEnableDarkMode->setChecked(SettingsManager::getDarkModeEnabled());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
   cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());  
@@ -625,6 +626,19 @@ void OptionsDialog::accept()
   if (cbShowPackageNumbersOutput->isChecked() != SettingsManager::getShowPackageNumbersOutput())
   {
     SettingsManager::setShowPackageNumbersOutput(cbShowPackageNumbersOutput->isChecked());
+  }
+
+  if (cbEnableDarkMode->isChecked() != SettingsManager::getDarkModeEnabled())
+  {
+    SettingsManager::setDarkModeEnabled(cbEnableDarkMode->isChecked());
+    if (cbEnableDarkMode->isChecked()) {
+      QFile file(QStringLiteral(":/resources/dark.qss"));
+      if (file.open(QFile::ReadOnly | QFile::Text)) {
+        qApp->setStyleSheet(QLatin1String(file.readAll()));
+      }
+    } else {
+      qApp->setStyleSheet(QString());
+    }
   }
   if (cbShowStopTransaction->isChecked() != SettingsManager::getShowStopTransaction())
   {
