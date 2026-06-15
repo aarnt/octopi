@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
+
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+    add_compile_definitions(OCTOPI_DEBUG_MODE)
+endif()
+
 project(octopi VERSION 0.19.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)

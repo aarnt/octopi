@@ -144,12 +144,14 @@ int main(int argc, char *argv[])
     return(0);
   }
 
+#ifndef OCTOPI_DEBUG_MODE
   if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi")))
   {
     QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiAsUsrBin());
     delete argList;
     return (-5);
   }
+#endif
 
   if (UnixCommand::isRootRunning())
   {
