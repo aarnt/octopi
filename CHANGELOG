@@ -10,6 +10,8 @@
   BugFix: Make all Octopi commands use "/usr/bin/pacman" full path (thanks to xandark).
   BugFix: Hide the "YES" button in the transaction dialog in notifier when one of the 
     packages to be upgraded is pacman.
+  BugFix: Heap corruption crash (SIGABRT) in PackageRepository::setAURData() — 
+    erase-while-iterating bug with many foreign/AUR packages (thanks to eugenesflanagin-spec)
   BugFix: Make AUR voting work again.
   Newer packages are now listed before installed packages.
   Updated translations.

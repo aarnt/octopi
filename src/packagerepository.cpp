@@ -95,16 +95,20 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
   std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
   //delete AUR items in list
-  for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-    if (*it != nullptr && (*it)->managedByAUR) {
+  for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); )
+  {
+    if (*it != nullptr && (*it)->managedByAUR)
+    {
       delete *it;
       it = m_listOfPackages.erase(it);
+    }
+    else {
+      ++it;
     }
   }
   m_listOfAURPackages.clear();
 
-  for (QList<PackageListData>::const_iterator it = listOfForeignPackages->begin();
-       it != listOfForeignPackages->end(); ++it)
+  for (QList<PackageListData>::const_iterator it = listOfForeignPackages->begin(); it != listOfForeignPackages->end(); ++it)
   {
     PackageData*const pkg = new PackageData(*it, !unrequiredPackages.contains(it->name), true);
     m_listOfPackages.push_back(pkg);   
