@@ -66,7 +66,7 @@ HEADERS  += \
     ../src/searchbar.h \
     ../src/optionsdialog.h \
     ../src/termwidget.h \
-    ../src/aurvote.h \
+    ../src/aurvote2.h \
     ../src/qaesencryption.h
 
 ALPM_BACKEND{
@@ -92,7 +92,6 @@ SOURCES += main.cpp \
     ../src/searchbar.cpp \
     ../src/optionsdialog.cpp \
     ../src/termwidget.cpp \
-    ../src/aurvote.cpp \
     ../src/qaesencryption.cpp
 
 ALPM_BACKEND{
