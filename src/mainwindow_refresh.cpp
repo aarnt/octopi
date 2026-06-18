@@ -31,7 +31,7 @@
 #include "strconstants.h"
 #include "uihelper.h"
 #include "globals.h"
-#include "aurvote.h"
+#include "aurvote2.h"
 #include "utils.h"
 
 #include <QElapsedTimer>
@@ -936,15 +936,14 @@ void MainWindow::buildPackageList()
     m_initializationCompleted = true;
     firstTime = false;
 
-    /*if(SettingsManager::getEnableAURVoting())
+    if(SettingsManager::getEnableAURVoting())
     {
-      m_aurVote = new AurVote(this);
-      if (m_debugInfo) m_aurVote->turnDebugInfoOn();
+      m_aurVote = new AurVote2();
+      //if (m_debugInfo) m_aurVote->turnDebugInfoOn();
       m_aurVote->setUserName(SettingsManager::getAURUserName());
       m_aurVote->setPassword(SettingsManager::getAURPassword());
       m_aurVote->login();
     }
-    */
 
     refreshHelpUsageText();
 

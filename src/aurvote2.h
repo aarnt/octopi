@@ -104,6 +104,12 @@ class AurVote2
     return html.contains(QStringLiteral("/logout"));
   }
 
+  /*
+   * Returns
+   *    0  if pkg is voted
+   *    1  if pkg is not voted
+   *    -1 if pkg is not found
+   */
   int isPkgVoted(const QString& pkg)
   {
     int ret = -1;
@@ -114,12 +120,10 @@ class AurVote2
 
     if (logged)
     {
-      QString html =
-          get(PACKAGES_URL.arg(pkg));
+      QString html = get(PACKAGES_URL.arg(pkg));
 
       if (html.contains(QStringLiteral("error-page")))
         return -1;
-      //throw std::runtime_error("package not found");
 
       if (html.contains(QStringLiteral("Remove vote"))) ret = 0;
       else ret = 1;
@@ -135,7 +139,6 @@ class AurVote2
 
     if (html.contains(QStringLiteral("error-page")))
       return QStringLiteral("");
-      //throw std::runtime_error("package not found");
 
     QRegularExpression re(
         R"REGEX(href="/pkgbase/([^"]+)")REGEX");
@@ -144,7 +147,6 @@ class AurVote2
 
     if (!match.hasMatch())
       return QStringLiteral("");
-      //throw std::runtime_error("pkgbase not found");
 
     return match.captured(1);
   }*/
@@ -166,8 +168,7 @@ class AurVote2
           QStringLiteral("do_Vote"),
           QStringLiteral("Vote for this package"));
 
-      QByteArray data =
-          q.toString(QUrl::FullyEncoded).toUtf8();
+      QByteArray data = q.toString(QUrl::FullyEncoded).toUtf8();
 
       QString html = post(req, data);
 
@@ -194,8 +195,7 @@ class AurVote2
           QStringLiteral("do_UnVote"),
           QStringLiteral("Remove vote"));
 
-      QByteArray data =
-          q.toString(QUrl::FullyEncoded).toUtf8();
+      QByteArray data = q.toString(QUrl::FullyEncoded).toUtf8();
 
       QString html = post(req, data);
 
@@ -275,8 +275,7 @@ class AurVote2
 
     loop.exec();
 
-    QString data =
-        QString::fromUtf8(reply->readAll());
+    QString data = QString::fromUtf8(reply->readAll());
 
     reply->deleteLater();
 
@@ -299,8 +298,7 @@ class AurVote2
 
     loop.exec();
 
-    QString result =
-        QString::fromUtf8(reply->readAll());
+    QString result = QString::fromUtf8(reply->readAll());
 
     reply->deleteLater();
 

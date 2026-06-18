@@ -40,7 +40,6 @@ UI_DIR += build
 HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/QtSolutions/qtlocalpeer.h \
         repoeditor/repoentry.h \
-        src/aurvote.h \
         src/aurvote2.h \
         src/propertiestabwidget.h \
         src/qaesencryption.h \
@@ -77,7 +76,6 @@ ALPM_BACKEND{
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
         repoeditor/repoentry.cpp \
-        src/aurvote.cpp \
         src/propertiestabwidget.cpp \
         src/qaesencryption.cpp \
         src/repoconf.cpp \

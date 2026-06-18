@@ -31,7 +31,6 @@
 #include <iostream>
 #include "optionsdialog.h"
 #include "termwidget.h"
-#include "aurvote.h"
 #include "alpmbackend.h"
 #include "aurvote2.h"
 
@@ -125,13 +124,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
   setAcceptDrops(true);
   m_aurVote=nullptr;
-
-  if (SettingsManager::getEnableAURVoting())
-  {
-    m_aurVote = new AurVote2();
-    m_aurVote->setUserName(SettingsManager::getAURUserName());
-    m_aurVote->setPassword(SettingsManager::getAURPassword());
-  }
 }
 
 /*
