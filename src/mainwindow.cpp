@@ -125,6 +125,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
   setAcceptDrops(true);
   m_aurVote=nullptr;
+
+  if (SettingsManager::getEnableAURVoting())
+  {
+    m_aurVote = new AurVote2();
+    m_aurVote->setUserName(SettingsManager::getAURUserName());
+    m_aurVote->setPassword(SettingsManager::getAURPassword());
+  }
 }
 
 /*
@@ -774,7 +781,7 @@ void MainWindow::outputOutdatedPackageList()
  */
 void MainWindow::outputAURVotedPackageList()
 {
-  if (m_aurVote!=nullptr)
+  if (m_aurVote != nullptr)
   {
     clearTabOutput();
     QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
@@ -785,7 +792,7 @@ void MainWindow::outputAURVotedPackageList()
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
 
     QStringList v=m_aurVote->getVotedPackages();
-    v.sort();
+
     QString list=QStringLiteral("<ul>");
     for(const QString& vote: v)
     {
@@ -804,22 +811,6 @@ void MainWindow::outputAURVotedPackageList()
       text->scrollToAnchor(anchorBegin);
     }
   }
-
-  /*AurClient aur;
-
-  aur.setCredentials(
-      SettingsManager::getAURUserName(),
-      SettingsManager::getAURPassword());
-
-  if (aur.login())
-  {
-    qDebug() << "Logged in";
-
-    QStringList voted =
-        aur.votedPackages();
-
-    qDebug() << voted;
-  }*/
 }
 
 /*
@@ -1362,9 +1353,11 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
       if (selectedRows.count() == 1 && m_aurVote != nullptr)
       {
-        if (m_aurVote->isPkgVoted(aurPkg) == 0)
+        int vote_status = m_aurVote->isPkgVoted(aurPkg);
+
+        if (vote_status == 0)
           menu->addAction(m_actionAURUnvote);
-        else if (m_aurVote->isPkgVoted(aurPkg) == 1)
+        else if (vote_status == 1)
           menu->addAction(m_actionAURVote);
       }
 

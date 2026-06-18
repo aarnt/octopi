@@ -1,407 +1,310 @@
+/*
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2026 Alexandre Albuquerque Arnt
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*
+*/
+
 #ifndef AURVOTE2_H
 #define AURVOTE2_H
 
-/*
- * Modern AUR login/vote helper
- * Qt5 / Qt6 compatible
- */
-
-#include <QObject>
+#include <QCoreApplication>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QNetworkCookieJar>
 #include <QNetworkRequest>
+#include <QNetworkCookieJar>
+#include <QUrlQuery>
 #include <QEventLoop>
 #include <QRegularExpression>
-#include <QUrlQuery>
-#include <QJsonDocument>
-#include <QDebug>
 
-class AurClient : public QObject
+static const QString LOGIN_URL = QStringLiteral(
+    "https://aur.archlinux.org/login");
+
+static const QString SEARCH_URL_TEMPLATE = QStringLiteral(
+    "https://aur.archlinux.org/packages?SeB=nd&PP=%1&SB=w&O=0&SO=d");
+
+static const QString PACKAGES_URL = QStringLiteral(
+    "https://aur.archlinux.org/packages/%1");
+
+static const QString VOTE_URL = QStringLiteral(
+    "https://aur.archlinux.org/pkgbase/%1/vote");
+
+static const QString UNVOTE_URL = QStringLiteral(
+    "https://aur.archlinux.org/pkgbase/%1/unvote");
+
+constexpr int PACKAGES_PER_PAGE = 250;
+
+class AurVote2
 {
-  Q_OBJECT
-
   public:
-  explicit AurClient(QObject *parent = nullptr)
-      : QObject(parent)
+
+  AurVote2()
   {
-    m_manager = new QNetworkAccessManager(this);
-
-    m_manager->setCookieJar(
-        new QNetworkCookieJar(this));
-
-    m_manager->setRedirectPolicy(
-        QNetworkRequest::NoLessSafeRedirectPolicy);
+    manager.setCookieJar(new QNetworkCookieJar(&manager));
   }
 
-  void setCredentials(const QString &user,
-                      const QString &password)
+  void setUserName(const QString& user)
   {
-    m_user = user;
-    m_password = password;
+    m_username = user;
+  }
+
+  void setPassword(const QString& pass)
+  {
+    m_password = pass;
+  }
+
+  bool testLogin()
+  {
+    return login();
+  }
+
+  bool isLoggedIn()
+  {
+    QString html = get(LOGIN_URL);
+
+    return html.contains(QStringLiteral("/logout"));
   }
 
   bool login()
   {
-    //------------------------------------------
-    // STEP 1: GET LOGIN PAGE
-    //------------------------------------------
+    QUrl url(LOGIN_URL);
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("user"), m_username);
+    query.addQueryItem(QStringLiteral("passwd"), m_password);
+    query.addQueryItem(QStringLiteral("next"), QStringLiteral("/"));
 
-    QString loginUrl = QStringLiteral("https://aur.archlinux.org/login");
+    QByteArray data =
+        query.toString(QUrl::FullyEncoded).toUtf8();
 
-    QNetworkRequest getReq{QUrl(loginUrl)};
+    QNetworkRequest req(url);
 
-    setupHeaders(getReq);
-
-    QNetworkReply *reply =
-        blockingGet(getReq);
-
-    if (!reply)
-      return false;
-
-    if (reply->error())
-    {
-      qDebug() << "GET login error:"
-               << reply->errorString();
-
-      reply->deleteLater();
-      return false;
-    }
-
-    QString html =
-        QString::fromUtf8(reply->readAll());
-
-    reply->deleteLater();
-
-    //------------------------------------------
-    // STEP 2: EXTRACT CSRF TOKEN
-    //------------------------------------------
-
-    QString token =
-        extractToken(html);
-
-    if (token.isEmpty())
-    {
-      qDebug() << "Failed to extract CSRF token";
-      return false;
-    }
-
-    qDebug() << "CSRF token:" << token;
-
-    //------------------------------------------
-    // STEP 3: POST LOGIN
-    //------------------------------------------
-
-    QUrlQuery postData;
-
-    postData.addQueryItem(QStringLiteral("user"), m_user);
-    postData.addQueryItem(QStringLiteral("passwd"), m_password);
-    postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
-    postData.addQueryItem(QStringLiteral("next"), QStringLiteral("/"));
-    postData.addQueryItem(QStringLiteral("token"), token);
-
-    QByteArray body =
-        postData.toString(
-                    QUrl::FullyEncoded).toUtf8();
-
-    QNetworkRequest postReq{QUrl(loginUrl)};
-
-    setupHeaders(postReq);
-
-    postReq.setHeader(
+    req.setHeader(
         QNetworkRequest::ContentTypeHeader,
         QStringLiteral("application/x-www-form-urlencoded"));
 
-    reply =
-        blockingPost(postReq, body);
+    req.setRawHeader(
+        "referer",
+        LOGIN_URL.toLatin1());
 
-    if (!reply)
-      return false;
+    QString html = post(req, data);
 
-    if (reply->error())
-    {
-      qDebug() << "POST login error:"
-               << reply->errorString();
-
-      reply->deleteLater();
-      return false;
-    }
-
-    QString response =
-        QString::fromUtf8(reply->readAll());
-
-    reply->deleteLater();
-
-    //------------------------------------------
-    // STEP 4: VERIFY LOGIN
-    //------------------------------------------
-
-    bool ok =
-        response.contains(QStringLiteral("Logout"),
-            Qt::CaseInsensitive);
-
-    qDebug() << QStringLiteral("Login result:") << ok;
-
-    return ok;
+    return html.contains(QStringLiteral("/logout"));
   }
 
-  QStringList votedPackages()
+  int isPkgVoted(const QString& pkg)
   {
-    QString url = QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
+    int ret = -1;
+    bool logged = isLoggedIn();
 
-    QNetworkRequest req{QUrl(url)};
+    if (!logged)
+      logged = login();
 
-    setupHeaders(req);
-
-    QNetworkReply *reply =
-        blockingGet(req);
-
-    QStringList result;
-
-    if (!reply)
-      return result;
-
-    if (reply->error())
+    if (logged)
     {
-      qDebug() << reply->errorString();
+      QString html =
+          get(PACKAGES_URL.arg(pkg));
 
-      reply->deleteLater();
-      return result;
+      if (html.contains(QStringLiteral("error-page")))
+        return -1;
+      //throw std::runtime_error("package not found");
+
+      if (html.contains(QStringLiteral("Remove vote"))) ret = 0;
+      else ret = 1;
     }
 
+    return ret;
+  }
+
+  /*QString getPkgBase(const QString& pkg)
+  {
     QString html =
-        QString::fromUtf8(reply->readAll());
+        get(PACKAGES_URL.arg(pkg));
 
-    reply->deleteLater();
+    if (html.contains(QStringLiteral("error-page")))
+      return QStringLiteral("");
+      //throw std::runtime_error("package not found");
 
-    //------------------------------------------
-    // Parse voted packages
-    //------------------------------------------
+    QRegularExpression re(
+        R"REGEX(href="/pkgbase/([^"]+)")REGEX");
 
-    html.remove(QStringLiteral("\n"));
-    html.remove(QStringLiteral("\t"));
+    auto match = re.match(html);
 
-    QStringList rows =
-        html.split(QStringLiteral("<tr"));
+    if (!match.hasMatch())
+      return QStringLiteral("");
+      //throw std::runtime_error("pkgbase not found");
 
-    for (const QString &row : rows)
+    return match.captured(1);
+  }*/
+
+  bool voteForPkg(const QString& pkgBase)
+  {
+    bool logged = isLoggedIn();
+
+    if (!logged)
+      logged = login();
+
+    if (logged)
     {
-      if (!row.contains(QStringLiteral(">Yes<")))
-        continue;
+      QNetworkRequest req(
+          QUrl(VOTE_URL.arg(pkgBase)));
 
-      QRegularExpression rx(QStringLiteral("/packages/([^\"/]+)/"));
-      //QRegularExpression rx(
-      //    R"(/packages/([^"/]+)/)");
+      QUrlQuery q;
+      q.addQueryItem(
+          QStringLiteral("do_Vote"),
+          QStringLiteral("Vote for this package"));
 
-      QRegularExpressionMatch m =
-          rx.match(row);
+      QByteArray data =
+          q.toString(QUrl::FullyEncoded).toUtf8();
 
-      if (m.hasMatch())
+      QString html = post(req, data);
+
+      return !html.isEmpty();
+    }
+    else return false;
+  }
+
+  bool unvoteForPkg(const QString& pkgBase)
+  {
+    bool logged = isLoggedIn();
+
+    if (!logged)
+      logged = login();
+
+    if (logged)
+    {
+      QString s = UNVOTE_URL.arg(pkgBase);
+      QNetworkRequest req(
+          QUrl(UNVOTE_URL.arg(pkgBase)));
+
+      QUrlQuery q;
+      q.addQueryItem(
+          QStringLiteral("do_UnVote"),
+          QStringLiteral("Remove vote"));
+
+      QByteArray data =
+          q.toString(QUrl::FullyEncoded).toUtf8();
+
+      QString html = post(req, data);
+
+      return !html.isEmpty();
+    }
+    else return false;
+  }
+
+  QStringList getVotedPackages()
+  {
+    QStringList votedPackages;
+    int offset = 0;
+    bool logged = isLoggedIn();
+
+    if (!logged)
+      logged = login();
+
+    if (logged)
+    {
+      QString html = get(SEARCH_URL_TEMPLATE.arg(offset));
+
+      if (html.isEmpty())
+        return votedPackages;
+
+      html = html.remove(QRegularExpression(QStringLiteral("\\t")));
+      html = html.remove(QRegularExpression(QStringLiteral("\\n")));
+
+      //<td>\n                    <a href=\"/packages/zoneminder\">\n
+      //<td>                    <a href="/packages/yay-bin">                        yay-bin                    </a>                </td
+      QString packageToSearch = QStringLiteral("<a href=\"/packages/(?<pkgName>\\S+)\">");
+      QString blockToSearch = QStringLiteral("<tr>(.*)</tr>");
+      QRegularExpression re(blockToSearch);
+
+      QStringList rows = html.split(QRegularExpression(QStringLiteral("<tr>")));
+      for(const QString& row: rows)
       {
-        result << m.captured(1);
+        if (row.contains(QRegularExpression(QStringLiteral("<td>\\s*Yes\\s*</td>"))))
+        {
+          QRegularExpression re(packageToSearch);
+          QRegularExpressionMatch rem;
+
+          if (row.contains(re, &rem))
+          {
+            QString votedPackage = rem.captured(QStringLiteral("pkgName"));
+            votedPackages << votedPackage;
+          }
+        }
       }
     }
 
-    return result;
-  }
+    if (!votedPackages.isEmpty())
+      votedPackages.sort();
 
-  bool votePackage(const QString &pkg)
-  {
-    return performVoteAction(
-        pkg,
-        true);
-  }
-
-  bool unvotePackage(const QString &pkg)
-  {
-    return performVoteAction(
-        pkg,
-        false);
+    return votedPackages;
   }
 
   private:
 
-  QString m_user;
+  QString m_username;
   QString m_password;
+  QNetworkAccessManager manager;
 
-  QNetworkAccessManager *m_manager {};
-
-  //------------------------------------------
-  // Helpers
-  //------------------------------------------
-
-  void setupHeaders(QNetworkRequest &req)
+  QString get(const QString& url)
   {
-    req.setHeader(
-        QNetworkRequest::UserAgentHeader,
-        QStringLiteral("Mozilla/5.0"));
+    const QNetworkRequest req{QUrl(url)};
 
-    req.setRawHeader(
-        "Accept", "text/html,application/xhtml+xml");
+    QNetworkReply* reply =
+        manager.get(req);
 
-    req.setRawHeader(
-        "Accept-Language",
-        "en-US,en;q=0.9");
-
-    req.setAttribute(
-        QNetworkRequest::RedirectPolicyAttribute,
-        QNetworkRequest::NoLessSafeRedirectPolicy);
-  }
-
-  QString extractToken(const QString &html)
-  {
-    //QRegularExpression rx(
-    //    R"(name="token"\s+value="([^"]+)")");
-
-    QRegularExpression rx(QStringLiteral("name=\"token\"\\s+value=\"([^\"]+)\""));
-
-    QRegularExpressionMatch m = rx.match(html);
-
-    if (!m.hasMatch())
-      return {};
-
-    return m.captured(1);
-  }
-
-  QNetworkReply *blockingGet(
-      const QNetworkRequest &req)
-  {
     QEventLoop loop;
 
-    QNetworkReply *reply =
-        m_manager->get(req);
-
-    connect(reply,
-            &QNetworkReply::finished,
-            &loop,
-            &QEventLoop::quit);
+    QObject::connect(
+        reply,
+        &QNetworkReply::finished,
+        &loop,
+        &QEventLoop::quit);
 
     loop.exec();
 
-    return reply;
-  }
-
-  QNetworkReply *blockingPost(
-      const QNetworkRequest &req,
-      const QByteArray &body)
-  {
-    QEventLoop loop;
-
-    QNetworkReply *reply =
-        m_manager->post(req, body);
-
-    connect(reply,
-            &QNetworkReply::finished,
-            &loop,
-            &QEventLoop::quit);
-
-    loop.exec();
-
-    return reply;
-  }
-
-  bool performVoteAction(
-      const QString &pkg,
-      bool vote)
-  {
-    //------------------------------------------
-    // GET PACKAGE PAGE
-    //------------------------------------------
-
-    QString pkgUrl =
-        QString(
-                         QStringLiteral("https://aur.archlinux.org/packages/%1/"))
-            .arg(pkg);
-
-    QNetworkRequest req{QUrl(pkgUrl)};
-
-    setupHeaders(req);
-
-    QNetworkReply *reply =
-        blockingGet(req);
-
-    if (!reply)
-      return false;
-
-    if (reply->error())
-    {
-      qDebug() << reply->errorString();
-
-      reply->deleteLater();
-      return false;
-    }
-
-    QString html =
+    QString data =
         QString::fromUtf8(reply->readAll());
 
     reply->deleteLater();
 
-    //------------------------------------------
-    // Extract token
-    //------------------------------------------
+    return data;
+  }
 
-    QString token =
-        extractToken(html);
+  QString post(const QNetworkRequest& req,
+               const QByteArray& data)
+  {
+    QNetworkReply* reply =
+        manager.post(req, data);
 
-    if (token.isEmpty())
-    {
-      qDebug() << "Failed to get CSRF token";
-      return false;
-    }
+    QEventLoop loop;
 
-    //------------------------------------------
-    // POST vote/unvote
-    //------------------------------------------
+    QObject::connect(
+        reply,
+        &QNetworkReply::finished,
+        &loop,
+        &QEventLoop::quit);
 
-    QString actionUrl =
-        QString(
-            QStringLiteral("https://aur.archlinux.org/pkgbase/%1/%2/"))
-            .arg(pkg)
-                            .arg(vote ? QStringLiteral("vote")
-                      : QStringLiteral("unvote"));
+    loop.exec();
 
-    QUrlQuery postData;
-
-    postData.addQueryItem(
-        QStringLiteral("token"),
-        token);
-
-    QByteArray body =
-        postData.toString(
-                    QUrl::FullyEncoded).toUtf8();
-
-    QNetworkRequest postReq{
-      QUrl(actionUrl)
-    };
-
-    setupHeaders(postReq);
-
-    postReq.setHeader(
-        QNetworkRequest::ContentTypeHeader,
-        QStringLiteral("application/x-www-form-urlencoded"));
-
-    reply =
-        blockingPost(postReq, body);
-
-    if (!reply)
-      return false;
-
-    bool ok =
-        !reply->error();
-
-    if (!ok)
-    {
-      qDebug() << reply->errorString();
-    }
-
-    QString response =
+    QString result =
         QString::fromUtf8(reply->readAll());
-
-    qDebug() << response.left(500);
 
     reply->deleteLater();
 
-    return ok;
+    return result;
   }
 };
 

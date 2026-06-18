@@ -23,7 +23,7 @@
 #include "unixcommand.h"
 #include "strconstants.h"
 #include "uihelper.h"
-#include "aurvote.h"
+#include "aurvote2.h"
 #include "termwidget.h"
 
 #include <QPushButton>
@@ -816,14 +816,13 @@ void OptionsDialog::accept()
           return;
         }
 
-        //Here we test if the connection is ok!
-        AurVote v;
+        AurVote2 v;
         v.setUserName(leAurUserName->text());
         v.setPassword(leAurPassword->text());
 
         //qDebug() << "Trying to connect with: " << leAurPassword->text();
 
-        if (!v.login())
+        if (!v.testLogin())
         {
           delete cic;
           QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURUserNameOrPasswordIsIncorrect());
@@ -1193,27 +1192,23 @@ void OptionsDialog::onEnableAURVoting(int state)
  */
 void OptionsDialog::onAURConnect()
 {
-  AurVote v;
+  AurVote2 v;
   v.setUserName(leAurUserName->text());
   v.setPassword(leAurPassword->text());
-
-  if (m_debugInfo) v.turnDebugInfoOn();
+  //qDebug() << "Trying to connect with: " << leAurPassword->text();
+  //if (m_debugInfo) v.turnDebugInfoOn();
   bool logged = v.login();
 
   if(logged)
   {
     //Connection was ok. Let's ask user if he wants to help Octopi project by voting for it
-    bool octopiDevVoted=false;
     bool octopiVoted=false;
-    bool alpmUtilsVoted=false;
     bool qtsudoVoted=false;
 
-    if (v.isPkgVoted(QStringLiteral("octopi-dev"))==0) octopiDevVoted=true;
-    if (v.isPkgVoted(QStringLiteral("octopi"))==0) octopiVoted=true;
-    if (v.isPkgVoted(QStringLiteral("alpm_octopi_utils"))==0) alpmUtilsVoted=true;
-    if (v.isPkgVoted(QStringLiteral("qt-sudo"))==0) qtsudoVoted=true;
+    if (v.isPkgVoted(QStringLiteral("octopi")) == 0) octopiVoted=true;
+    if (v.isPkgVoted(QStringLiteral("qt-sudo")) == 0) qtsudoVoted=true;
 
-    if (octopiDevVoted && octopiVoted && alpmUtilsVoted)
+    if (octopiVoted && qtsudoVoted)
     {
       QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getAURConnectionIsOK());
     }
@@ -1227,9 +1222,7 @@ void OptionsDialog::onAURConnect()
       if (r == QMessageBox::Yes)
       {
         //User opted to help the project, so let's vote for the packages
-        if (!octopiDevVoted) v.voteForPkg(QStringLiteral("octopi-dev"));
         if (!octopiVoted) v.voteForPkg(QStringLiteral("octopi"));
-        if (!alpmUtilsVoted) v.voteForPkg(QStringLiteral("alpm_octopi_utils"));
         if (!qtsudoVoted) v.voteForPkg(QStringLiteral("qt-sudo"));
 
         //Let's thank user for voting!

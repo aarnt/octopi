@@ -33,7 +33,7 @@
 #include <iostream>
 #include <cassert>
 #include "termwidget.h"
-#include "aurvote.h"
+#include "aurvote2.h"
 #include "constants.h"
 #include "utils.h"
 #include "alpmbackend.h"
@@ -1907,9 +1907,9 @@ void MainWindow::onAURVotingChanged()
   if(SettingsManager::getEnableAURVoting())
   {
     delete m_aurVote;
-    m_aurVote = new AurVote(this);
-    m_aurVote->setUserName(SettingsManager::getAURUserName());
-    m_aurVote->setPassword(SettingsManager::getAURPassword());
+    m_aurVote = new AurVote2();
+    //m_aurVote->setUserName(SettingsManager::getAURUserName());
+    //m_aurVote->setPassword(SettingsManager::getAURPassword());
     m_aurVote->login();
     refreshHelpUsageText();
   }

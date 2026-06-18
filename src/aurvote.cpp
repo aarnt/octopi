@@ -22,6 +22,8 @@
 
 #include <QEventLoop>
 #include <QtNetwork/QNetworkReply>
+#include <QNetworkCookieJar>
+#include <QNetworkCookie>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QRegularExpression>
@@ -39,6 +41,10 @@ AurVote::AurVote(QObject *parent) : QObject(parent),
 {
   m_debugInfo = false;
   m_networkManager = new QNetworkAccessManager(this);
+
+  m_networkManager->setCookieJar(
+      new QNetworkCookieJar(this));
+
   m_networkManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 }
 
@@ -105,15 +111,22 @@ bool AurVote::login()
 
     if (res.contains(QLatin1String("Logout"), Qt::CaseInsensitive))
     {
-      if (m_debugInfo)
-        qDebug() << "AurVote::login(): Second post replied with: " << res;
+      //if (m_debugInfo)
+      //  qDebug() << "AurVote::login(): Second post replied with: " << res;
+
+      qDebug() << "Cookies:";
+      for (const QNetworkCookie &cookie :
+           m_networkManager->cookieJar()->cookiesForUrl(QUrl(QStringLiteral("https://aur.archlinux.org"))))
+      {
+        qDebug() << cookie.name() << cookie.value();
+      }
 
       ret = true;
     }
     else
     {
-      if (m_debugInfo)
-        qDebug() << "AurVote::login(): Second post replied with: " << res;
+      //if (m_debugInfo)
+      //  qDebug() << "AurVote::login(): Second post replied with: " << res;
     }
   }
 
@@ -155,11 +168,31 @@ int AurVote::isPkgVoted(const QString &pkgName)
   int ret = 0;
   QEventLoop eventLoop;
   QNetworkRequest request(QUrl{m_pkgUrl.arg(pkgName)});
+
+  request.setRawHeader(
+      "User-Agent",
+      "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0");
+
+  request.setRawHeader(
+      "Accept",
+      "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+
+  request.setRawHeader(
+      "Accept-Language",
+      "en-US,en;q=0.5");
+
+  request.setRawHeader("Upgrade-Insecure-Requests", "1");
+
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+  if (r->error() != QNetworkReply::NoError)
+  {
+    qDebug() << "Erro:" << r->errorString();
+  }
 
   QString res = QString::fromUtf8(r->readAll());
 
@@ -261,6 +294,7 @@ QStringList AurVote::getVotedPackages()
       "Accept-Language",
       "en-US,en;q=0.9");
 
+
   request.setAttribute(
       QNetworkRequest::RedirectPolicyAttribute,
       QNetworkRequest::NoLessSafeRedirectPolicy);
@@ -274,6 +308,10 @@ QStringList AurVote::getVotedPackages()
   if (r->error() != QNetworkReply::NoError)
   {
     qDebug() << "Erro:" << r->errorString();
+    qDebug() << r->url();
+    qDebug() << r->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    qDebug() << r->rawHeaderPairs();
+    //qDebug() << r->attribute(QNetworkRequest::RedirectionTargetAttribute);
   }
 
   QString res = QString::fromUtf8(r->readAll());

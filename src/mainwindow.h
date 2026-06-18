@@ -33,7 +33,7 @@
 #include <QList>
 #include <QUrl>
 
-class AurVote;
+class AurVote2;
 class QTreeView;
 class QStandardItemModel;
 class QStandardItem;
@@ -86,7 +86,7 @@ private:
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 
-  AurVote *m_aurVote;
+  AurVote2 *m_aurVote;
   TermWidget *m_console;
   QTcpServer *m_tcpServer;
 
