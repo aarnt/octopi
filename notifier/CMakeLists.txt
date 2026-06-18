@@ -50,7 +50,6 @@ set(src
     ../src/searchbar.cpp
     ../src/optionsdialog.cpp
     ../src/termwidget.cpp
-    ../src/aurvote.cpp
     ../src/qaesencryption.cpp
     ../src/alpmbackend.cpp)
 
@@ -73,7 +72,7 @@ set(header
     ../src/searchbar.h
     ../src/optionsdialog.h
     ../src/termwidget.h
-    ../src/aurvote.h
+    ../src/aurvote2.h
     ../src/qaesencryption.h
     ../src/alpmbackend.h)
 
