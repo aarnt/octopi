@@ -76,6 +76,7 @@ ALPM_BACKEND{
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
         repoeditor/repoentry.cpp \
+        src/aurvote2.cpp \
         src/propertiestabwidget.cpp \
         src/qaesencryption.cpp \
         src/repoconf.cpp \

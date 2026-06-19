@@ -92,6 +92,7 @@ SOURCES += main.cpp \
     ../src/searchbar.cpp \
     ../src/optionsdialog.cpp \
     ../src/termwidget.cpp \
+    ../src/aurvote2.cpp \
     ../src/qaesencryption.cpp
 
 ALPM_BACKEND{

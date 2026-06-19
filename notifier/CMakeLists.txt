@@ -50,6 +50,7 @@ set(src
     ../src/searchbar.cpp
     ../src/optionsdialog.cpp
     ../src/termwidget.cpp
+    ../src/aurvote2.cpp
     ../src/qaesencryption.cpp
     ../src/alpmbackend.cpp)
 
