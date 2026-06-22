@@ -934,7 +934,7 @@ void MainWindow::doCheckUpdates(CheckUpdate check)
 
   if (check == ectn_AUTO_CHECK)
   {
-    if (SettingsManager::getEnableInternetChecking() && !UnixCommand::hasInternetConnection()) return;
+    if (SettingsManager::getEnableInternetChecking() && !isInternetAvailable()) return;
   }
   else if (check == ectn_USER_CHECK)
   {
