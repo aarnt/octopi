@@ -139,7 +139,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Enable dark mode theme</string>
+          <string>Enable dark theme</string>
          </property>
         </widget>
         <widget class="QGroupBox" name="gbInternetChecking">
