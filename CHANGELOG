@@ -15,6 +15,7 @@
   BugFix: Make AUR voting work again.
   Newer packages are now listed before installed packages.
   Updated translations.
+  Added a dark mode theme (thanks to prezdev88).
 
 0.19.0 (2026-04-23)
   ** WARNING ** => This version removed hardcoded qt-sudo path from Octopi, Notifier,

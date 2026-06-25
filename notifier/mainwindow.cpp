@@ -82,6 +82,13 @@ MainWindow::MainWindow(QWidget *parent) :
     UnixCommand::removeSharedMemFiles();
   }
 
+  if (SettingsManager::getDarkModeEnabled()) {
+    QFile file(QStringLiteral(":/resources/dark.qss"));
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+      qApp->setStyleSheet(QLatin1String(file.readAll()));
+    }
+  }
+
   initSystemTrayIcon();
 }
 
