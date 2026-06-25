@@ -443,6 +443,18 @@ bool SettingsManager::getShowPackageNumbersOutput()
   return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, true).toBool();
 }
 
+bool SettingsManager::getDarkModeEnabled()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_DARK_MODE, false).toBool();
+}
+
+void SettingsManager::setDarkModeEnabled(bool newValue)
+{
+  SettingsManager p_instance;
+  p_instance.getSYSsettings()->setValue(ctn_KEY_ENABLE_DARK_MODE, newValue);
+}
+
 bool SettingsManager::getShowStopTransaction()
 {
   SettingsManager p_instance;

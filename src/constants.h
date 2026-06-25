@@ -141,6 +141,7 @@ const QString ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH(QStringLiteral("Package_Bui
 const QString ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH(QStringLiteral("Package_Install_Date_Column_Width"));
 const QString ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH(QStringLiteral("Package_Install_Reason_Column_Width"));
 const QString ctn_KEY_PLAY_BELL_SOUND_ON_TERMINAL_PASSWORD_INPUT(QStringLiteral("Play_Bell_Sound_On_Terminal_Password_Input"));
+const QString ctn_KEY_ENABLE_DARK_MODE(QStringLiteral("Enable_Dark_Mode"));
 const QString ctn_KEY_SEARCH_METHOD(QStringLiteral("Search_Method"));
 const QString ctn_KEY_SHOW_PACKAGE_REPOSITORY_COLUMN(QStringLiteral("Show_Package_Repository_Column"));
 const QString ctn_KEY_SHOW_PACKAGE_DOWNLOAD_SIZE_COLUMN(QStringLiteral("Show_Package_Download_Size_Column"));

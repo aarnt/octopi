@@ -513,6 +513,11 @@
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="230"/>
+        <source>Enable dark mode theme</source>
+        <translation>Activar tema oscuro</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="184"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation type="unfinished"/>

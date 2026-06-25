@@ -113,5 +113,6 @@
         <file>resources/images/octopi-svg-red.svg</file>
         <file>resources/images/octopi-svg-yellow.svg</file>
         <file>resources/images/octopi-svg-transparent.svg</file>
+        <file>resources/dark.qss</file>
     </qresource>
 </RCC>
