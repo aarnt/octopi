@@ -1082,7 +1082,7 @@ void MainWindow::refreshAppIcon()
 
       if (m_outdatedAURStringList->size() == 1 && m_outdatedAURStringList->at(0) == QStringLiteral("ERROR"))
       {
-        QMessageBox::critical(this, StrConstants::getError(), StrConstants::getYayNotWorking());
+        QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(SettingsManager::getAURToolName()));
         m_outdatedAURStringList->clear();
       }
 
