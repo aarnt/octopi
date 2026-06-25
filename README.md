@@ -18,7 +18,7 @@ Currently, 11 Linux distros are compatible with it
  * [Garuda Linux](https://garudalinux.org/)
  * [KaOS](https://kaosx.us/)
  * [Manjaro](https://manjaro.org/)
- * [Obarun Linux](https://web.obarun.org/index.php?id=1)
+ * [Obarun Linux](https://web.obarun.org/)
 
 ### What you must install in order to have Octopi fully functional
 
