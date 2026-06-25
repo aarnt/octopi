@@ -1,4 +1,4 @@
-0.19.1 (dev)
+0.20.0 (dev)
   BugFix: Updated Categories session in octopi.desktop file (thanks to mescon).
   BugFix: After a pkg transaction other than an upgrade, reset the lists of outdated
     pacman and AUR packages.
@@ -14,8 +14,8 @@
     erase-while-iterating bug with many foreign/AUR packages (thanks to eugenesflanagin-spec)
   BugFix: Make AUR voting work again.
   Newer packages are now listed before installed packages.
-  Updated translations.
   Added a dark mode theme (thanks to prezdev88).
+  Updated translations.
 
 0.19.0 (2026-04-23)
   ** WARNING ** => This version removed hardcoded qt-sudo path from Octopi, Notifier,
