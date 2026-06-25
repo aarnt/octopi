@@ -86,6 +86,13 @@ RepoEditor::RepoEditor( QWidget *parent )
   ui->tableView->selectRow(0);
   ui->loadBackup->setVisible(false);
   restoreGeometry(SettingsManager::getRepoEditorWindowSize());
+
+  if (SettingsManager::getDarkModeEnabled()) {
+    QFile file(QStringLiteral(":/resources/dark.qss"));
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+      qApp->setStyleSheet(QLatin1String(file.readAll()));
+    }
+  }
 }
 
 RepoEditor::~RepoEditor()

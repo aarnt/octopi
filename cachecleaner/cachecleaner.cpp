@@ -77,6 +77,13 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
 
   m_uninstalledPackagesTitle = ui->UninstalledPackagesBox->title();
   m_installedPackagesTitle = ui->installedPackagesBox->title();
+
+  if (SettingsManager::getDarkModeEnabled()) {
+    QFile file(QStringLiteral(":/resources/dark.qss"));
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+      qApp->setStyleSheet(QLatin1String(file.readAll()));
+    }
+  }
 }
 
 /*

@@ -50,5 +50,6 @@
         <file>resources/translations/octopi_cachecleaner_zh_CN.qm</file>
         <file>resources/translations/octopi_cachecleaner_hr.qm</file>
         <file>resources/translations/octopi_cachecleaner_ko.qm</file>
+	<file>resources/dark.qss</file>
     </qresource>
 </RCC>

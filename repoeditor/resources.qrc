@@ -51,5 +51,6 @@
         <file>resources/translations/octopi_repoeditor_zh_CN.qm</file>
         <file>resources/translations/octopi_repoeditor_hr.qm</file>
         <file>resources/translations/octopi_repoeditor_ko.qm</file>
+	<file>resources/dark.qss</file>
     </qresource>
 </RCC>
