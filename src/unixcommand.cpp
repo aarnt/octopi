@@ -123,7 +123,7 @@ QByteArray UnixCommand::performQuery(const QStringList &args)
   env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C.UTF-8"));
   pacman.setProcessEnvironment(env);
 
-  pacman.start(QStringLiteral("/usr/bin/pacman"), args);
+  pacman.start(ctn_PACMANBIN, args);
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
   pacman.close();

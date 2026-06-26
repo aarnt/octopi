@@ -178,7 +178,9 @@ const QString ctn_KEY_REPO_EDITOR_WINDOW_SIZE(QStringLiteral("Repo_Editor_Window
 const QString ctn_PACMAN_SUP_COMMAND = QStringLiteral("pacman --print-format \"%n %v %s\" -Spu");
 
 //Package related
+const QString ctn_PACMANBIN = QStringLiteral("/usr/bin/pacman");
 const QString ctn_PACMANCONF = QStringLiteral("/usr/bin/pacman-conf");
+const QString ctn_PACMANKEY_REFRESH_CMD = QStringLiteral("/usr/bin/pacman-key --refresh-keys;");
 const QString ctn_TEMP_ACTIONS_FILE(QDir::tempPath() + QDir::separator() + QLatin1String(".qt_temp_octopi_"));
 const QString ctn_PACMAN_DATABASE_DIR = QStringLiteral("/var/lib/pacman");
 const QString ctn_PACMAN_DATABASE_LOCK_FILE(QStringLiteral("/var/lib/pacman/db.lck"));

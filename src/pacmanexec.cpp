@@ -1506,7 +1506,7 @@ void PacmanExec::doAURRemoveAndInstallInTerminal(const QString &listOfPackagesto
 void PacmanExec::doRefreshPacmanKeys()
 {
   m_lastCommandList.clear();
-  m_lastCommandList.append(QStringLiteral("/usr/bin/pacman-key --refresh-keys;"));
+  m_lastCommandList.append(ctn_PACMANKEY_REFRESH_CMD);
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 

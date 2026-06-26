@@ -954,7 +954,7 @@ void MainWindow::buildPackageList()
 
       QStringList sl;
       sl << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Spu");
-      execCommandInAnotherThread(QStringLiteral("/usr/bin/pacman"), sl);
+      execCommandInAnotherThread(ctn_PACMANBIN, sl);
     }
 
     if (m_callSystemUpgrade)
