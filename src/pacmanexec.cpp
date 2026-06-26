@@ -240,6 +240,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(QStringLiteral("E "));
   msg.remove(QStringLiteral("F "));
   msg.remove(QStringLiteral("********        "));
+  msg.remove(QRegularExpression(QStringLiteral("^\\]3008;.+")));
   msg.remove(QRegularExpression(QStringLiteral("^\\($")));
 
   if (storeMsgCache) msgCache+=msg;
@@ -473,7 +474,6 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("^for more information\\.")));
     msg.remove(QRegularExpression(QStringLiteral("QApplication:.+")));
     msg.remove(QRegularExpression(QStringLiteral("Available styles:.+")));
-    msg.remove(QRegularExpression(QStringLiteral(R"(\*\]3008;.+)")));
 
     msg = msg.trimmed();
     msg.remove(QRegularExpression(QStringLiteral("Total")));
