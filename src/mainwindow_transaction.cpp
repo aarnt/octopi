@@ -2580,7 +2580,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       if (m_commandExecuting == ectn_CHECK_UPDATES)
       {
         //Sets NOW as the last sync time value
-        SettingsManager::setLastCheckUpdatesTime(QDateTime::currentDateTime());
+        //SettingsManager::setLastCheckUpdatesTime(QDateTime::currentDateTime());
 
         //Retrieves the RSS News from respective Distro site...
         refreshDistroNews(true, false);
