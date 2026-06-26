@@ -558,159 +558,164 @@
         <translation>啟用網路檢查</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="184"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
+        <source>Enable dark theme</source>
+        <translation>啟用深色佈景主題</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>在系統升級中啟用確認對話框</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="210"/>
         <source>Increase text spacing in the main interface</source>
         <translation>增加主介面中的文字間距</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Use alternating row colors</source>
         <translation>使用交替色彩</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>顯示「授權條款」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>顯示「已安裝大小」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>顯示「建構日期」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>顯示「安裝日期」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>顯示「安裝理由」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Enable package tooltips</source>
         <translation>啟用軟體包工具提示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
         <source>Show &quot;Repository&quot; column</source>
         <translation>顯示「軟體庫」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="329"/>
         <source>Show &quot;Download Size&quot; column</source>
         <translation>顯示「下載大小」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="350"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="363"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>選取 Octopi 應該使用的 AUR 工具</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="476"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>User name</source>
         <translation>使用者名稱</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="502"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="520"/>
         <source>Register</source>
         <translation>註冊</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="525"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="538"/>
         <source>Connect</source>
         <translation>連線</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="544"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="557"/>
         <source>Enable AUR voting</source>
         <translation>啟用 AUR 投票</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="565"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR 軟體包是使用者產生的內容。
 任何使用檔案造成的風險由您自行承擔。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="626"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="639"/>
         <source>Build directory</source>
         <translation>建構目錄</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="742"/>
-        <source>Select the backend Octopi should use</source>
-        <translation>選取 Octopi 應該使用的後端</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="785"/>
-        <source>Use default notification icons</source>
-        <translation>使用預設通知圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="860"/>
-        <source>Red icon</source>
-        <translation>紅色圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="950"/>
-        <source>Busy icon</source>
-        <translation>忙碌圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1019"/>
-        <source>Yellow icon</source>
-        <translation>黃色圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1103"/>
-        <source>Green icon</source>
-        <translation>綠色圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1402"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="710"/>
         <source>Search for outdated AUR packages</source>
         <translation>搜尋過期的 AUR 軟體包</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1452"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="779"/>
+        <source>Select the backend Octopi should use</source>
+        <translation>選取 Octopi 應該使用的後端</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="822"/>
+        <source>Use default notification icons</source>
+        <translation>使用預設通知圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="897"/>
+        <source>Red icon</source>
+        <translation>紅色圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="987"/>
+        <source>Busy icon</source>
+        <translation>忙碌圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1056"/>
+        <source>Yellow icon</source>
+        <translation>黃色圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1140"/>
+        <source>Green icon</source>
+        <translation>綠色圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
         <source>Color Scheme</source>
         <translation>配色方案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1478"/>
         <source>Font Family</source>
         <translation>字型家族</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1498"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1511"/>
         <source>Font Size</source>
         <translation>字型大小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1521"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
         <translation>在終端機中提示輸入 root 密碼時播放鈴聲</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1547"/>
         <source>Force use of BASH shell</source>
         <translation>強制使用 BASH 殼層</translation>
     </message>
@@ -1337,107 +1342,114 @@ You may need to synchronize database!</source>
         <translation>正在下載暫時的 &quot;yay-bin&quot;……</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="635"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="636"/>
+        <source>%1 is not working.
+Please, upgrade the package and try again.</source>
+        <translation>%1 無法運作。
+請升級軟體包並再試一次。</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Retrieving %1</source>
         <translation>正在擷取 %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="644"/>
         <source>Total download size: %1 KB</source>
         <translation>總共下載大小：%1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>The following package needs to be retrieved</source>
         <translation>以下套件需要被擷取</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="647"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="652"/>
         <source>The following package will be removed</source>
         <translation>以下套件將被移除</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="656"/>
         <source>The following %n packages need to be retrieved</source>
         <translation><numerusform>需要擷取以下 %n 個軟體包</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>The following %n packages will be removed</source>
         <translation><numerusform>以下 %n 個軟體包將被移除</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>這些是在移除清單中將被遺棄的套件！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="663"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="668"/>
         <source>There are no new updates available!</source>
         <translation>目前沒有新的更新！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="667"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="672"/>
         <source>There is an update available!</source>
         <translation>有 1 個更新可用！</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="676"/>
         <source>There are %n updates available!</source>
         <translation><numerusform>有 %n 個更新可用！</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>Confirm?</source>
         <translation>確定？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="679"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="684"/>
         <source>Warning!!!</source>
         <translation>警告！！！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="683"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="688"/>
         <source>Confirmation</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="687"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="692"/>
         <source>There has been a transaction error!</source>
         <translation>有一個處理項目的錯誤！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="696"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>您確定要在終端機中執行這個處理項目嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="695"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
         <source>Do you really want to cancel actions?</source>
         <translation>您真的想要取消動作嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="699"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="704"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>請輸入超級使用者密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>無法獲得超級使用者的授權。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="715"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
         <translation>Pacman 正在執行或未完整關閉（有 /var/lib/pacman/db.lck！）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
         <translation>您必須安裝「qt-sudo」才能使用 Octopi。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="724"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
@@ -1446,96 +1458,96 @@ You may need to synchronize database!</source>
 %1, %2, %3 %4 或 %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="728"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
         <translation>您需要軟體包才能使用 AUR。
 您想要安裝它嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="739"/>
         <source>Connection is OK!</source>
         <translation>連線正常！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="743"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>您想投票協助此專案嗎？
 您只需要接受並等待幾秒鐘。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>感謝您投票給 Octopi！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>使用者與／或密碼不正確。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>AUR username is not set.</source>
         <translation>未設定 AUR 使用者名稱。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
         <source>AUR password is not set.</source>
         <translation>未設定 AUR 密碼。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
         <source>Select the build directory for the AUR packages</source>
         <translation>選取 AUR 軟體包的建構目錄</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="768"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="773"/>
         <source>Icon path information is not set.</source>
         <translation>未設定圖示路徑資訊。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="772"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="777"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
         <translation>您必須使用「/usr/bin/octopi」以執行 Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="781"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
         <translation>您必須使用「/usr/bin/octopi-notifier」以執行 Octopi 通知程式</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="785"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
         <translation>您必須使用「/usr/bin/octopi-cachecleaner」以執行 Octopi 快取清除程式</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="789"/>
         <source>You must use &quot;/usr/bin/octopi-repoeditor&quot; to run Octopi Repository Editor</source>
         <translation>您必須使用「/usr/bin/octopi-repoeditor」執行 Octopi 軟體庫編輯器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>您不能以超級使用者的權限執行 Octopi  。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>取消正在執行的處理項目可能會破壞您的系統！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>There are pending actions</source>
         <translation>有擱置中的動作</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>Do you really want to quit?</source>
         <translation>確定要離開嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="810"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1554,184 +1566,184 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="818"/>
         <source>Executing command</source>
         <translation>正在執行指令</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="822"/>
         <source>Run in terminal</source>
         <translation>在終端機中執行</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="826"/>
         <source>This change needs application restart to take effect</source>
         <translation>此變更需要重新啟動應用程式才能生效</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="830"/>
         <source>These changes need application restart to take effect!</source>
         <translation>這些更動需要重新啟動程式才能生效！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
         <source>Select the packages you want to install</source>
         <translation>選擇您想要安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>這個檔案似乎不是一般的文字檔。
 您確定您要開啟它嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="843"/>
         <source>To be installed</source>
         <translation>將要安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
         <source>To be removed</source>
         <translation>將要移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="850"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
         <source>Reinstall</source>
         <translation>重新安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Change Install Reason</source>
         <translation>變更安裝理由</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="870"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="874"/>
         <source>Remove item</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="878"/>
         <source>Remove items</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="882"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>按下 Ctrl+A 以選擇/取消選擇全部</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="886"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>使用「%1」工具</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="890"/>
         <source>Copy path to clipboard</source>
         <translation>複製路徑至剪貼簿</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="894"/>
         <source>Setup</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="898"/>
         <source>Check for package updates interval</source>
         <translation>檢查軟體包更新間隔</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="902"/>
         <source>Once a day</source>
         <translation>一天一次</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="906"/>
         <source>Once a day, at</source>
         <translation>一天一次，在</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="910"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>（24 小時格式的值：0 到 23）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="914"/>
         <source>Once every</source>
         <translation>一次，每</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>（分鐘格式的值：%1 到 %2）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="917"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
         <source>Set interval...</source>
         <translation>設定間隔...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
         <source>%1 could not be found in the system!</source>
         <translation>在系統中找不到 %1！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
         <source>Maximize</source>
         <translation>最大化</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
         <source>Paste</source>
         <translation>貼上</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
         <source>Never</source>
         <translation>從不</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
         <source>Upgrading...</source>
         <translation>正在升級……</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="972"/>
         <source>Exit</source>
         <translation>離開</translation>
     </message>
