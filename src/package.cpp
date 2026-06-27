@@ -2410,7 +2410,7 @@ QHash<QString, QString> Package::getForeignToolOutdatedPackagesNameVersion()
         {
           if (nameVersion.size() == 2)
             hash.insert(pkgName, nameVersion.at(1));
-          else if (nameVersion.size() == 4)
+          else if (nameVersion.size() >= 4)
             hash.insert(pkgName, nameVersion.at(3));
         }
       }
