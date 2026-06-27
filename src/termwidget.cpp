@@ -43,7 +43,11 @@ TermWidget::TermWidget(QWidget *parent):
   setScrollBarPosition(QTermWidget::ScrollBarRight);
   setContextMenuPolicy(Qt::CustomContextMenu);
 
-  setColorScheme(SettingsManager::getTerminalColorScheme());
+  if (SettingsManager::getDarkModeEnabled())
+    setColorScheme(QStringLiteral("DarkPastels"));
+  else
+    setColorScheme(SettingsManager::getTerminalColorScheme());
+
   QFont f = QApplication::font();
   f.setFamily(SettingsManager::getTerminalFontFamily());
   f.setPointSizeF(SettingsManager::getTerminalFontPointSize());

@@ -630,6 +630,7 @@ void OptionsDialog::accept()
 
   if (cbEnableDarkMode->isChecked() != SettingsManager::getDarkModeEnabled())
   {
+    consoleChanged = true;
     SettingsManager::setDarkModeEnabled(cbEnableDarkMode->isChecked());
     if (cbEnableDarkMode->isChecked()) {
       QFile file(QStringLiteral(":/resources/dark.qss"));
