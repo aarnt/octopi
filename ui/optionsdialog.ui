@@ -160,8 +160,8 @@
          <widget class="QRadioButton" name="rbGoogle">
           <property name="geometry">
            <rect>
-            <x>-1</x>
-            <y>-5</y>
+            <x>0</x>
+            <y>-3</y>
             <width>107</width>
             <height>26</height>
            </rect>
@@ -174,7 +174,7 @@
           <property name="geometry">
            <rect>
             <x>129</x>
-            <y>-5</y>
+            <y>-3</y>
             <width>107</width>
             <height>26</height>
            </rect>
