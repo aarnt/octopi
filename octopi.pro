@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT += core gui network xml widgets multimedia svg
-DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
+DEFINES += OCTOPI_MAIN_APP OCTOPI_EXTENSIONS ALPM_BACKEND
 
 # Disable automatic string conversions
 DEFINES += QT_USE_QSTRINGBUILDER \

@@ -642,7 +642,9 @@ void OptionsDialog::accept()
       QFile file(QStringLiteral(":/resources/dark.qss"));
       if (file.open(QFile::ReadOnly | QFile::Text)) {
         qApp->setStyleSheet(QLatin1String(file.readAll()));
+#ifdef OCTOPI_MAIN_APP
         if (m_propertiesTabWidget != nullptr) m_propertiesTabWidget->updateTabOutput();
+#endif
       }
     } else {
       qApp->setStyleSheet(QString());

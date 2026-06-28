@@ -23,8 +23,8 @@
 #include <QRegularExpression>
 
 #include "packagemodel.h"
-#include "src/uihelper.h"
-#include "src/strconstants.h"
+#include "../uihelper.h"
+#include "../strconstants.h"
 
 /*
  * The specific model which abstracts the package list data seen in the main treeview

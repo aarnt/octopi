@@ -56,8 +56,8 @@ class QTcpServer;
 class QSharedMemory;
 class OptionsDialog;
 
-#include "src/model/packagemodel.h"
-#include "src/packagerepository.h"
+#include "model/packagemodel.h"
+#include "packagerepository.h"
 
 namespace Ui {
   class MainWindow;

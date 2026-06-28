@@ -25,8 +25,7 @@
 #include <QIcon>
 #include <QRegularExpression>
 
-//#include "src/package.h"
-#include "src/packagerepository.h"
+#include "../packagerepository.h"
 
 class PackageModel : public QAbstractItemModel, public PackageRepository::IDependency
 {
