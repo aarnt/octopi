@@ -25,6 +25,7 @@
 #include "uihelper.h"
 #include "aurvote2.h"
 #include "termwidget.h"
+#include "propertiestabwidget.h"
 
 #include <QPushButton>
 #include <QFile>
@@ -591,6 +592,11 @@ void OptionsDialog::setCurrentIndexByTabName(const QString &tabName)
   }
 }
 
+void OptionsDialog::setPropertiesTabWidget(PropertiesTabWidget *ptw)
+{
+  m_propertiesTabWidget = ptw;
+}
+
 /*
  * When user chooses OK button and saves all his changes
  */
@@ -636,6 +642,7 @@ void OptionsDialog::accept()
       QFile file(QStringLiteral(":/resources/dark.qss"));
       if (file.open(QFile::ReadOnly | QFile::Text)) {
         qApp->setStyleSheet(QLatin1String(file.readAll()));
+        if (m_propertiesTabWidget != nullptr) m_propertiesTabWidget->updateTabOutput();
       }
     } else {
       qApp->setStyleSheet(QString());

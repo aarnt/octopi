@@ -24,6 +24,8 @@
 #include "ui_optionsdialog.h"
 #include <QDialog>
 
+class PropertiesTabWidget;
+
 namespace Options
 {
   enum { ectn_BACKEND=0x1, ectn_ICON=0x2 }; typedef unsigned long result;
@@ -38,6 +40,8 @@ private:
   bool m_backendHasChanged;
   bool m_calledByOctopi;
   bool m_debugInfo;
+
+  PropertiesTabWidget* m_propertiesTabWidget;
 
   QString m_redIconPath;
   QString m_yellowIconPath;
@@ -65,6 +69,7 @@ public:
 
   void gotoAURTab();
   void turnDebugInfoOn();
+  void setPropertiesTabWidget(PropertiesTabWidget* ptw);
 
 signals:
   void AURToolChanged();

@@ -300,8 +300,8 @@ void PropertiesTabWidget::initTabTerminal()
   QString aux(StrConstants::getTabTerminal());
   insertTab(ctn_TABINDEX_TERMINAL, tabTerminal, QApplication::translate (
                                                   "MainWindow", aux.toUtf8().constData(), nullptr) );
-  setCurrentIndex(ctn_TABINDEX_TERMINAL);
-  m_console->setFocus();
+  //setCurrentIndex(ctn_TABINDEX_TERMINAL);
+  //m_console->setFocus();
 }
 
 void PropertiesTabWidget::setConsole(TermWidget *console)
@@ -312,6 +312,27 @@ void PropertiesTabWidget::setConsole(TermWidget *console)
 void PropertiesTabWidget::setHelpUsageText(QString text)
 {
   m_helpUsageText = text;
+}
+
+void PropertiesTabWidget::updateTabOutput()
+{
+  QToolButton *btnAux1 = (QToolButton*) tabBar()->tabButton(2, QTabBar::LeftSide);
+  QToolButton *btnAux2 = (QToolButton*) tabBar()->tabButton(2, QTabBar::RightSide);
+  btnAux1->close();
+  btnAux2->close();
+
+  QToolButton *btn1 = new QToolButton(this);
+  btn1->setIconSize(QSize(16, 16));
+  btn1->setDefaultAction(m_actionApply);
+  btn1->setAutoRaise(true);
+
+  QToolButton *btn2 = new QToolButton(this);
+  btn2->setIconSize(QSize(16, 16));
+  btn2->setAutoRaise(true);
+  btn2->setDefaultAction(m_actionCancel);
+
+  tabBar()->setTabButton(2, QTabBar::LeftSide, btn1);
+  tabBar()->setTabButton(2, QTabBar::RightSide, btn2);
 }
 
 bool PropertiesTabWidget::eventFilter(QObject *obj, QEvent *event)

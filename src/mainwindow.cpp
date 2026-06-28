@@ -427,6 +427,7 @@ void MainWindow::onOptions(OptionsDialogTab tabToOpen)
   if (m_optionsDialog != nullptr || m_commandExecuting != ectn_NONE) return;
 
   m_optionsDialog = new OptionsDialog(this);
+  m_optionsDialog->setPropertiesTabWidget(ui->twProperties);
 
   if (m_debugInfo) m_optionsDialog->turnDebugInfoOn();
 
