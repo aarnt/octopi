@@ -948,9 +948,6 @@ void MainWindow::doCheckUpdates(CheckUpdate check)
     if (SettingsManager::getEnableInternetChecking() && !isInternetAvailable()) return;
   }
 
-  //disconnect(m_pacmanDatabaseSystemWatcher,
-  //        SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
-
   QTime now;
   if (m_debugInfo)
     qDebug() << now.currentTime().toString(QStringLiteral("HH:mm")).toLatin1().data() <<  ": At checkUpdates()...";
@@ -1293,16 +1290,10 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   {
     QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
   }
-  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT) //&&
-           //!UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
+  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT)
   {
     doCheckUpdates();
   }
-  /*else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
-           UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
-  {
-    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-checkupdates"));
-  }*/
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) ||
        !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 ||
