@@ -613,7 +613,11 @@ void MainWindow::removeTabTerminal()
 void MainWindow::onTerminalChanged()
 {
   if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
+  {
+    int lastSelectedTab = ui->twProperties->currentIndex();
     initTabTerminal();
+    ui->twProperties->setCurrentIndex(lastSelectedTab);
+  }
   else
     removeTabTerminal();
 }

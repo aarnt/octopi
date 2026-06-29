@@ -174,9 +174,6 @@ const QString ctn_KEY_KEEP_NUM_UNINSTALLED(QStringLiteral("Keep_Num_Uninstalled"
 //SettingsManager - RepoEditor related
 const QString ctn_KEY_REPO_EDITOR_WINDOW_SIZE(QStringLiteral("Repo_Editor_Window_Size"));
 
-//pacman command to retrieve list of upgradable packages with name, version and size
-const QString ctn_PACMAN_SUP_COMMAND = QStringLiteral("pacman --print-format \"%n %v %s\" -Spu");
-
 //Package related
 const QString ctn_PACMANBIN = QStringLiteral("/usr/bin/pacman");
 const QString ctn_PACMANCONF = QStringLiteral("/usr/bin/pacman-conf");
@@ -185,6 +182,9 @@ const QString ctn_TEMP_ACTIONS_FILE(QDir::tempPath() + QDir::separator() + QLati
 const QString ctn_PACMAN_DATABASE_DIR = QStringLiteral("/var/lib/pacman");
 const QString ctn_PACMAN_DATABASE_LOCK_FILE(QStringLiteral("/var/lib/pacman/db.lck"));
 const QString ctn_PACMAN_CORE_DB_FILE = QStringLiteral("/var/lib/pacman/sync/core.db");
+
+//pacman command to retrieve list of upgradable packages with name, version and size
+const QString ctn_PACMAN_SUP_COMMAND = ctn_PACMANBIN + QStringLiteral(" --print-format \"%n %v %s\" -Spu");
 
 //ARTIX MAIN DB FILE
 const QString ctn_PACMAN_SYSTEM_DB_FILE = QStringLiteral("/var/lib/pacman/sync/system.db");

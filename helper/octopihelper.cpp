@@ -313,22 +313,22 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       (line == QLatin1String("paccache -r -k 1")) ||
       (line == QLatin1String("paccache -r -k 2")) ||
       (line == QLatin1String("paccache -r -k 3")) ||
-      (line == QLatin1String("pacman -Fy")) ||
-      (line == QLatin1String("pacman -Syu")) ||
-      (line == QLatin1String("pacman -Syu --noconfirm")) ||
-      (line.startsWith(QLatin1String("pacman -D --asexplicit "))) ||
-      (line.startsWith(QLatin1String("pacman -D --asdeps "))) ||
-      (line.startsWith(QLatin1String("pacman -S "))) ||
-      (line.startsWith(QLatin1String("pacman -R "))))
+      (line == QLatin1String("/usr/bin/pacman -Fy")) ||
+      (line == QLatin1String("/usr/bin/pacman -Syu")) ||
+      (line == QLatin1String("/usr/bin/pacman -Syu --noconfirm")) ||
+      (line.startsWith(QLatin1String("/usr/bin/pacman -D --asexplicit "))) ||
+      (line.startsWith(QLatin1String("/usr/bin/pacman -D --asdeps "))) ||
+      (line.startsWith(QLatin1String("/usr/bin/pacman -S "))) ||
+      (line.startsWith(QLatin1String("/usr/bin/pacman -R "))))
     {
-      if (line.startsWith(QLatin1String("pacman -D --asexplicit ")) ||
-          line.startsWith(QLatin1String("pacman -D --asdeps ")) ||
-          line.startsWith(QLatin1String("pacman -S ")) ||
-          line.startsWith(QLatin1String("pacman -R ")))
+      if (line.startsWith(QLatin1String("/usr/bin/pacman -D --asexplicit ")) ||
+          line.startsWith(QLatin1String("/usr/bin/pacman -D --asdeps ")) ||
+          line.startsWith(QLatin1String("/usr/bin/pacman -S ")) ||
+          line.startsWith(QLatin1String("/usr/bin/pacman -R ")))
       {
         testCommandFromOctopi=true;
       }
-      else if (line.startsWith(QLatin1String("pacman -Syu")) || line == QLatin1String("garuda-update"))
+      else if (line.startsWith(QLatin1String("/usr/bin/pacman -Syu")) || line == QLatin1String("garuda-update"))
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
@@ -357,14 +357,21 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   contents = contents.replace(QLatin1String("pkgfile -u"), QLatin1String("/usr/bin/pkgfile -u"));
   contents = contents.replace(QLatin1String("garuda-update"), QLatin1String("/usr/bin/garuda-update"));
   contents = contents.replace(QLatin1String("paccache -r"), QLatin1String("/usr/bin/paccache -r"));
-  contents = contents.replace(QLatin1String("pacman -Fy"), QLatin1String("/usr/bin/pacman -Fy"));
-  contents = contents.replace(QLatin1String("pacman -Syu"), QLatin1String("/usr/bin/pacman -Syu"));
-  contents = contents.replace(QLatin1String("pacman -D "), QLatin1String("/usr/bin/pacman -D "));
-  contents = contents.replace(QLatin1String("pacman -S "), QLatin1String("/usr/bin/pacman -S "));
-  contents = contents.replace(QLatin1String("pacman -R "), QLatin1String("/usr/bin/pacman -R "));
+
+  if (!contents.contains(QLatin1String("/usr/bin/pacman -Fy")))
+    contents = contents.replace(QLatin1String("pacman -Fy"), QLatin1String("/usr/bin/pacman -Fy"));
+  if (!contents.contains(QLatin1String("/usr/bin/pacman -Syu")))
+    contents = contents.replace(QLatin1String("pacman -Syu"), QLatin1String("/usr/bin/pacman -Syu"));
+  if (!contents.contains(QLatin1String("/usr/bin/pacman -D ")))
+    contents = contents.replace(QLatin1String("pacman -D "), QLatin1String("/usr/bin/pacman -D "));
+  if (!contents.contains(QLatin1String("/usr/bin/pacman -S ")))
+    contents = contents.replace(QLatin1String("pacman -S "), QLatin1String("/usr/bin/pacman -S "));
+  if (!contents.contains(QLatin1String("/usr/bin/pacman -R ")))
+    contents = contents.replace(QLatin1String("pacman -R "), QLatin1String("/usr/bin/pacman -R "));
 
   //If there is a "pacman" process executing elsewhere, let's abort octopi-helper!
-  if (contents != QLatin1String("/usr/bin/killall pacman\n/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE +QLatin1Char('\n') && isAppRunning(QStringLiteral("pacman"), true))
+  if (contents != QLatin1String("/usr/bin/killall pacman\n/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE +QLatin1Char('\n')
+      && isAppRunning(QStringLiteral("pacman"), true))
   {
     log(QLatin1String("octopi-helper[aborted]: Pacman process already running"));
     return ctn_PACMAN_PROCESS_EXECUTING;

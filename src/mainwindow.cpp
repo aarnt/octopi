@@ -2577,10 +2577,10 @@ void MainWindow::doSysInfo()
   out += "\n\n";
 
   out += "----------------------------------------------------------------------------------------------------------\n";
-  out += "pacman -Qm\n";
+  out += "/usr/bin/pacman -Qm\n";
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-  command = QStringLiteral("pacman -Qm");
+  command = ctn_PACMANBIN + QStringLiteral(" -Qm");
   f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);

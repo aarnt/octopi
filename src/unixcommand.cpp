@@ -938,7 +938,7 @@ double UnixCommand::getCheckUpdatesSize()
 
   params.clear();
   params << QStringLiteral("-c");
-  params << QStringLiteral("pacman -Spu --print-format \"%s\" --dbpath \"") + tempPath + QStringLiteral("\" | awk '{sum+=$1;}END{print sum;}'");
+  params << ctn_PACMANBIN + QStringLiteral(" -Spu --print-format \"%s\" --dbpath \"") + tempPath + QStringLiteral("\" | awk '{sum+=$1;}END{print sum;}'");
   p.start(getShell(), params);
   p.waitForFinished();
 
