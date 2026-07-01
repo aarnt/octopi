@@ -53,6 +53,7 @@ void PackageTreeView::init()
   header()->setSectionsClickable(true);
   header()->setSectionsMovable(false);
   header()->setSectionResizeMode(QHeaderView::Interactive);
+  header()->setSectionResizeMode(PackageModel::ctn_PACKAGE_NAME_COLUMN, QHeaderView::Stretch);
   header()->setDefaultAlignment(Qt::AlignLeft);
   setUniformRowHeights(true);
 
@@ -135,6 +136,12 @@ void PackageTreeView::resizePackageView()
   }
   else
     hideColumn(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN);
+
+  for (int i = 0; i < model()->columnCount(); ++i)
+  {
+    if (!isColumnHidden(i) && i != PackageModel::ctn_PACKAGE_NAME_COLUMN)
+      resizeColumnToContents(i);
+  }
 }
 
 /*
