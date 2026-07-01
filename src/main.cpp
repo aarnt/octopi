@@ -36,9 +36,9 @@ int main(int argc, char *argv[])
     return (-1);
   }
 
-  if (!QFile::exists(ctn_OCTOPI_HELPER_PATH))
+  if (!QFile::exists(UnixCommand::getOctopiHelperPath()))
   {
-    qDebug() << "Aborting octopi as 'octphelper' binary could not be found! [" << ctn_OCTOPI_HELPER_PATH << "]";
+    qDebug() << "Aborting octopi as 'octphelper' binary could not be found! [" << UnixCommand::getOctopiHelperPath() << "]";
     return (-2);
   }
 

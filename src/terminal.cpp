@@ -78,7 +78,7 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
   if (removedLines) out += QLatin1String("echo \"") + StrConstants::getPressAnyKey() + QLatin1String("\"");
   out.remove(QLatin1String(";"));
 
-  QString commandToRun = ctn_OCTOPI_HELPER_PATH + QLatin1String(" -ts");
+  QString commandToRun = UnixCommand::getOctopiHelperPath() + QLatin1String(" -ts");
   QString cmd = getSudoProgram() + QLatin1String(" ") + commandToRun;
   QByteArray sharedData=out.toLatin1();
 

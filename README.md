@@ -110,6 +110,21 @@ $ make
 $ sudo make install
 ```
 
+### Steps to build Octopi source code (Nix)
+
+For development in a clean, isolated environment without installing dependencies system-wide, you can use Nix. This requires [Nix with flakes enabled](https://nixos.wiki/wiki/Flakes).
+
+```
+$ cd octopi
+$ nix develop  # or use direnv
+$ mkdir -p build && cd build
+$ cmake .. -DCMAKE_BUILD_TYPE=Release
+$ make -j$(nproc)
+$ ./octopi
+```
+
+The Nix environment provides all dependencies (`qt6`, `cmake`, `vala`, etc.) and builds `alpm_octopi_utils` and `qt-sudo` automatically. You can then follow the standard CMake or qmake build instructions above. The environment sets `OCTOPI_ALLOWED_PATHS` to allow running from the build directory.
+
 ### To run Octopi
 
 ```
