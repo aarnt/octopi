@@ -59,6 +59,7 @@ void PropertiesTabWidget::initTabInfo()
   QWidget *tabInfo = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout ( tabInfo );
   gridLayoutX->setSpacing(0);
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   gridLayoutX->setMargin(0);

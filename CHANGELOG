@@ -13,6 +13,7 @@
   BugFix: Heap corruption crash (SIGABRT) in PackageRepository::setAURData() — 
     erase-while-iterating bug with many foreign/AUR packages (thanks to eugenesflanagin-spec)
   BugFix: Make AUR voting work again.
+  BugFix: Remove margins of Info tab's textbrowser.
   Newer packages are now listed before installed packages.
   Added a dark mode theme (thanks to prezdev88).
   Updated translations.

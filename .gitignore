@@ -17,6 +17,7 @@ notifier/build/**
 notifier/.qtc_clangd/**
 notifier/.qtc/**
 notifier/.cmake/**
+notifier/build_dir/**
 notifier/CMakeCache*
 notifier/CMakeFiles*
 notifier/qtcsettings.cmake

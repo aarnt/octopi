@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
@@ -429,7 +429,7 @@
               <x>10</x>
               <y>55</y>
               <width>271</width>
-              <height>26</height>
+              <height>30</height>
              </rect>
             </property>
            </widget>
@@ -462,7 +462,7 @@
                <x>10</x>
                <y>60</y>
                <width>221</width>
-               <height>26</height>
+               <height>30</height>
               </rect>
              </property>
             </widget>
@@ -472,7 +472,7 @@
                <x>10</x>
                <y>120</y>
                <width>221</width>
-               <height>26</height>
+               <height>30</height>
               </rect>
              </property>
             </widget>
@@ -612,7 +612,7 @@ Any use of the provided files is at your own risk.</string>
               <x>19</x>
               <y>130</y>
               <width>220</width>
-              <height>26</height>
+              <height>30</height>
              </rect>
             </property>
             <property name="font">
@@ -645,7 +645,7 @@ Any use of the provided files is at your own risk.</string>
               <x>239</x>
               <y>130</y>
               <width>21</width>
-              <height>26</height>
+              <height>30</height>
              </rect>
             </property>
             <property name="text">
@@ -658,7 +658,7 @@ Any use of the provided files is at your own risk.</string>
               <x>260</x>
               <y>130</y>
               <width>21</width>
-              <height>26</height>
+              <height>30</height>
              </rect>
             </property>
             <property name="text">
@@ -861,7 +861,7 @@ Any use of the provided files is at your own risk.</string>
               <x>10</x>
               <y>10</y>
               <width>491</width>
-              <height>216</height>
+              <height>248</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_4">
@@ -1233,7 +1233,7 @@ Any use of the provided files is at your own risk.</string>
               <x>10</x>
               <y>50</y>
               <width>481</width>
-              <height>66</height>
+              <height>68</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1316,7 +1316,7 @@ Any use of the provided files is at your own risk.</string>
               <x>10</x>
               <y>120</y>
               <width>481</width>
-              <height>66</height>
+              <height>68</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_7">
