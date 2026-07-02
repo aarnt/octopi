@@ -139,7 +139,11 @@ void PackageTreeView::resizePackageView()
 
   for (int i = 0; i < model()->columnCount(); ++i)
   {
-    if (!isColumnHidden(i) && i != PackageModel::ctn_PACKAGE_NAME_COLUMN)
+    if (!isColumnHidden(i) &&
+        (i != PackageModel::ctn_PACKAGE_NAME_COLUMN &&
+         i != PackageModel::ctn_PACKAGE_LICENSES_COLUMN &&
+         i != PackageModel::ctn_PACKAGE_SIZE_COLUMN &&
+         i != PackageModel::ctn_PACKAGE_ISIZE_COLUMN))
       resizeColumnToContents(i);
   }
 }

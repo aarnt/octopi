@@ -124,5 +124,6 @@ int TransactionDialog::exec()
 {
   //Let's restore the dialog size saved...
   restoreGeometry(SettingsManager::getTransactionWindowSize());
+  ui->detailedText->setFocus();
   return QDialog::exec();
 }
