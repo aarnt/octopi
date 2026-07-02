@@ -141,6 +141,7 @@ void PackageTreeView::resizePackageView()
   {
     if (!isColumnHidden(i) &&
         (i != PackageModel::ctn_PACKAGE_NAME_COLUMN &&
+         i != PackageModel::ctn_PACKAGE_VERSION_COLUMN &&
          i != PackageModel::ctn_PACKAGE_LICENSES_COLUMN &&
          i != PackageModel::ctn_PACKAGE_SIZE_COLUMN &&
          i != PackageModel::ctn_PACKAGE_ISIZE_COLUMN))
