@@ -158,9 +158,11 @@ QTabBar::tab {
 
 QTabBar::tab:selected {
     background-color: #2b2b2b;
-    border-bottom-color: #2b2b2b; /* makes it merge with pane */
+    /*border-bottom-color: #2b2b2b;  makes it merge with pane */
+    border-bottom: 2px solid #CCCCCC;
 }
 
 QTabBar::tab:hover:!selected {
     background-color: #3e3e3e;
 }
+
