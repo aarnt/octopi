@@ -49,6 +49,10 @@ public:
   void setConsole(TermWidget* console);
   void setHelpUsageText(QString text);
 
+  void changeLinkColors();
+  //void refreshTextBrowsers();
+  //QTextBrowser* recreateTextBrowser(QTextBrowser *oldBrowser, bool openLinks, const QFont *font = nullptr);
+
   void updateTabOutput();
 
   inline QTextBrowser* getTextInfo() { return m_textInfo; };
@@ -93,6 +97,7 @@ private:
   QTextBrowser* m_textOutput;
   SearchBar* m_searchBarOutput;
 
+  QTextBrowser* m_textHelpUsage;
   SearchBar* m_searchBarHelpUsage;
 
   QAction *m_actionApply;

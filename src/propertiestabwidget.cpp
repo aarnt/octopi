@@ -46,12 +46,8 @@
 
 PropertiesTabWidget::PropertiesTabWidget(QWidget *parent):QTabWidget(parent)
 {
-  /*QString s = QStringLiteral("QTabBar::tab {"
-                             "height: 30px;"
-                             "}");
-  tabBar()->setStyleSheet(s);*/
-
   tabBar()->installEventFilter(this);
+  changeLinkColors();
 }
 
 void PropertiesTabWidget::initTabInfo()
@@ -88,6 +84,82 @@ void PropertiesTabWidget::initTabInfo()
   m_textInfo->show();
   m_textInfo->setFocus();
 }
+
+void PropertiesTabWidget::changeLinkColors()
+{
+  QPalette pal = qApp->palette();
+  pal.setColor(QPalette::Link, QColor(0,255,127)); //(204,204,204));
+  pal.setColor(QPalette::LinkVisited, QColor(0,255,127));
+  qApp->setPalette(pal);
+}
+
+/*QTextBrowser *PropertiesTabWidget::recreateTextBrowser(
+    QTextBrowser *oldBrowser,
+    bool openLinks,
+    const QFont *font)
+{
+  if (!oldBrowser)
+    return nullptr;
+
+  QWidget *parent = oldBrowser->parentWidget();
+  QGridLayout *layout = qobject_cast<QGridLayout *>(parent->layout());
+
+  int index = layout->indexOf(oldBrowser);
+
+  int row, column, rowSpan, columnSpan;
+  layout->getItemPosition(index, &row, &column, &rowSpan, &columnSpan);
+
+  QString html = oldBrowser->toHtml();
+  //QTextDocument *doc = oldBrowser->document();
+
+  int scrollPos = oldBrowser->verticalScrollBar()->value();
+
+  layout->removeWidget(oldBrowser);
+  oldBrowser->deleteLater();
+
+  QTextBrowser *browser = new QTextBrowser(parent);
+  browser->setObjectName(QStringLiteral("textBrowser"));
+  browser->setReadOnly(true);
+  browser->setFrameShape(QFrame::NoFrame);
+  browser->setFrameShadow(QFrame::Plain);
+  browser->setOpenExternalLinks(openLinks);
+  browser->setOpenLinks(!openLinks);
+
+  if (font)
+    browser->setFont(*font);
+
+  browser->setHtml(html);
+  layout->addWidget(browser, row, column, rowSpan, columnSpan);
+  browser->verticalScrollBar()->setValue(scrollPos);
+
+  return browser;
+}
+
+void PropertiesTabWidget::refreshTextBrowsers()
+{
+  qDebug() << "Estoy AQUI!";
+  changeLinkColors();
+
+  m_textInfo = recreateTextBrowser(m_textInfo, false);
+  m_textNews = recreateTextBrowser(m_textNews, true);
+
+  QFont f = QApplication::font();
+  f.setFamily(SettingsManager::getTerminalFontFamily());
+  f.setPointSizeF(SettingsManager::getTerminalFontPointSize() - 1.0);
+  m_textOutput = recreateTextBrowser(m_textOutput, false, &f);
+
+  m_textHelpUsage = recreateTextBrowser(m_textHelpUsage, true);
+
+  const auto browsers = findChildren<QTextBrowser *>();
+  QString doc;
+  for (QTextBrowser *tb : browsers)
+  {
+    doc = tb->document()->toHtml();
+    tb->document()->setHtml(QStringLiteral(""));
+    tb->document()->setHtml(doc);
+  }
+}
+*/
 
 void PropertiesTabWidget::initTabFiles()
 {
@@ -267,15 +339,16 @@ void PropertiesTabWidget::initTabHelpUsage()
   gridLayoutX->setSpacing(0);
   gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
-  QTextBrowser *text = new QTextBrowser(tabHelpUsage);
-  text->setObjectName(QStringLiteral("textBrowser"));
-  text->setReadOnly(true);
-  text->setFrameShape(QFrame::NoFrame);
-  text->setFrameShadow(QFrame::Plain);
-  text->setOpenExternalLinks(true);
-  gridLayoutX->addWidget(text, 0, 0, 1, 1);
+  //QTextBrowser *text = new QTextBrowser(tabHelpUsage);
+  m_textHelpUsage = new QTextBrowser(tabHelpUsage);
+  m_textHelpUsage->setObjectName(QStringLiteral("textBrowser"));
+  m_textHelpUsage->setReadOnly(true);
+  m_textHelpUsage->setFrameShape(QFrame::NoFrame);
+  m_textHelpUsage->setFrameShadow(QFrame::Plain);
+  m_textHelpUsage->setOpenExternalLinks(true);
+  gridLayoutX->addWidget(m_textHelpUsage, 0, 0, 1, 1);
 
-  text->setHtml(m_helpUsageText);
+  m_textHelpUsage->setHtml(m_helpUsageText);
 
   int tindex = addTab(tabHelpUsage, StrConstants::getHelp() );
   setTabText(indexOf(tabHelpUsage), StrConstants::getHelp());
@@ -285,9 +358,9 @@ void PropertiesTabWidget::initTabHelpUsage()
 
   gridLayoutX->addWidget(m_searchBarHelpUsage, 1, 0, 1, 1);
 
-  text->show();
+  m_textHelpUsage->show();
   setCurrentIndex(tindex);
-  text->setFocus();
+  m_textHelpUsage->setFocus();
 }
 
 void PropertiesTabWidget::initTabTerminal()

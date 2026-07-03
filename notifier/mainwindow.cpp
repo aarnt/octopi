@@ -89,6 +89,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
   }
 
+  QPalette pal = qApp->palette();
+  pal.setColor(QPalette::Link, QColor(0,255,127));
+  pal.setColor(QPalette::LinkVisited, QColor(0,255,127));
+  qApp->setPalette(pal);
+
   initSystemTrayIcon();
 }
 
