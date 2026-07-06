@@ -301,7 +301,7 @@ void MainWindow::onSendInfoToOctopiHelper()
   out.setVersion(QDataStream::Qt_5_15);
 
   //Is octopi-helper running?
-  bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();
+  bool isHelperExecuting = true; //UnixCommand::isOctopiHelperRunning();
 
   if (isHelperExecuting && m_commandExecuting != ectn_NONE)
   {

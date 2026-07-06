@@ -1636,8 +1636,6 @@ QProcessEnvironment UnixCommand::getProcessEnvironment()
  */
 bool UnixCommand::isOctopiHelperRunning()
 {
-  return true;
-
   bool res=false;
 
   QProcess proc;
@@ -1653,7 +1651,7 @@ bool UnixCommand::isOctopiHelperRunning()
 
   QString out = QString::fromUtf8(proc.readAll().trimmed());
 
-  qDebug() << "isOctopiHelperRunning(): " << out;
+  //qDebug() << "isOctopiHelperRunning(): " << out;
 
   if (out.contains(QLatin1String("|"))) return false;
   out=out.remove(QStringLiteral("\n"));
