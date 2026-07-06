@@ -301,6 +301,7 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_CHECKUPDATES_EXEC_OPT, ectn_SYSUPGRADE
 
 const QString ctn_OCTOPI_HELPER_NAME(QStringLiteral("octphelper"));
 const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper"));
+const QString ctn_OCTOPI_HELPER_PID(QStringLiteral("/usr/lib/octopi/octphelper.pid"));
 
 const int ctn_NO_TEMP_ACTIONS_FILE(1);
 const int ctn_PACMAN_PROCESS_EXECUTING(2);

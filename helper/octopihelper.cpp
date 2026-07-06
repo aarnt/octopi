@@ -116,7 +116,7 @@ OctopiHelper::OctopiHelper()
   if (QFileInfo::exists(QStringLiteral("/usr/lib/octopi/octopi-helper")))
     QFile::remove(QStringLiteral("/usr/lib/octopi/octopi-helper"));
 
-  QFile file(QStringLiteral("/usr/lib/octopi/octphelper.pid"));
+  QFile file(ctn_OCTOPI_HELPER_PID);
   if (file.exists())
     file.remove();
 
@@ -150,7 +150,7 @@ OctopiHelper::~OctopiHelper()
   if (m_logFile.isOpen())
     m_logFile.close();
 
-  QFile file(QStringLiteral("/usr/lib/octopi/octphelper.pid"));
+  QFile file(ctn_OCTOPI_HELPER_PID);
   if (file.exists())
     file.remove();
 }
