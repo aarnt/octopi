@@ -1636,7 +1636,10 @@ QProcessEnvironment UnixCommand::getProcessEnvironment()
  */
 bool UnixCommand::isOctopiHelperRunning()
 {
-  bool res=false;
+  return(QFile::exists(QStringLiteral("/usr/lib/octopi/octphelper.pid")));
+
+/*
+  bool res;
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
@@ -1659,4 +1662,5 @@ bool UnixCommand::isOctopiHelperRunning()
   if ((out == QLatin1String("/usr/lib/octopi/") + octoToolName) || out.contains(QLatin1String("/usr/lib/octopi/") + octoToolName + QLatin1String(" "))) res=true;
 
   return res;
+*/
 }

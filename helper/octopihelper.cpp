@@ -116,9 +116,18 @@ OctopiHelper::OctopiHelper()
   if (QFileInfo::exists(QStringLiteral("/usr/lib/octopi/octopi-helper")))
     QFile::remove(QStringLiteral("/usr/lib/octopi/octopi-helper"));
 
+  QFile file(QStringLiteral("/usr/lib/octopi/octphelper.pid"));
+  if (file.exists())
+    file.remove();
+
+  if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+  {
+  }
+
+  file.close();
+
   m_exitCode = -9999;
   m_process = new QProcess();
-  //m_suspiciousChars = QStringLiteral("(\\s|[][!#$&'()*,;<=+>?\\^`{}|~])");
   m_suspiciousChars = QStringLiteral("[!#$&'()*,;<=>?\\^`{}|~\\[\\]]");
 
   //These settings enable all "pacman" output go thru QProcess output methods
@@ -140,6 +149,10 @@ OctopiHelper::~OctopiHelper()
 
   if (m_logFile.isOpen())
     m_logFile.close();
+
+  QFile file(QStringLiteral("/usr/lib/octopi/octphelper.pid"));
+  if (file.exists())
+    file.remove();
 }
 
 /*
