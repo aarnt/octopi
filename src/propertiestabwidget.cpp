@@ -47,7 +47,9 @@
 PropertiesTabWidget::PropertiesTabWidget(QWidget *parent):QTabWidget(parent)
 {
   tabBar()->installEventFilter(this);
-  changeLinkColors();
+
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+    changeLinkColors();
 }
 
 void PropertiesTabWidget::initTabInfo()
