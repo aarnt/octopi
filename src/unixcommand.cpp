@@ -1028,6 +1028,10 @@ void UnixCommand::executeCommand(const QString &pCommand)
   m_process->setProcessEnvironment(env);
   QString suCommand = WMHelper::getSUCommand();
   QStringList sl;
+
+  if (SettingsManager::getDarkModeEnabled())
+    sl << ctn_QTSUDO_PATAMS_DARK_MODE;
+
   sl << ctn_QTSUDO_PARAMS;
   sl << getShell();
   sl << QLatin1String("-c");
@@ -1044,6 +1048,10 @@ void UnixCommand::executeCommandWithoutShell(const QString &pCommand)
   m_process->setProcessEnvironment(env);
   QString suCommand = WMHelper::getSUCommand();
   QStringList sl;
+
+  if (SettingsManager::getDarkModeEnabled())
+    sl << ctn_QTSUDO_PATAMS_DARK_MODE;
+
   sl << ctn_QTSUDO_PARAMS;
   sl << pCommand;
   m_process->start(suCommand, sl);
@@ -1062,17 +1070,13 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
-
-  /*if (!sharedMem->attach(QSharedMemory::ReadWrite))
-  {
-    qDebug() << "\nDetaching and creating new SharedMem...\n";
-    sharedMem->detach();
-    UnixCommand::removeSharedMemFiles();
-  }*/
-
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
 
   QStringList sl;
+
+  if (SettingsManager::getDarkModeEnabled())
+    sl << ctn_QTSUDO_PATAMS_DARK_MODE;
+
   sl << ctn_QTSUDO_PARAMS;
   sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
   m_process->start(WMHelper::getSUCommand(), sl);
@@ -1186,6 +1190,10 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   QStringList sl;
+
+  if (SettingsManager::getDarkModeEnabled())
+    sl << ctn_QTSUDO_PATAMS_DARK_MODE;
+
   sl << ctn_QTSUDO_PARAMS;
   sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
   pacman.start(WMHelper::getSUCommand(), sl);

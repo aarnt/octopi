@@ -230,7 +230,15 @@ QString WMHelper::getOctopiSudoCommand()
 {
   QString result = UnixCommand::findExecutable(ctn_QTSUDO);
   result += QStringLiteral(" ");
-  result += ctn_QTSUDO_PARAMS;
+
+  if (SettingsManager::getDarkModeEnabled())
+  {
+    result += ctn_QTSUDO_PATAMS_DARK_MODE + QStringLiteral(" ") + ctn_QTSUDO_PARAMS;
+  }
+  else
+  {
+    result += ctn_QTSUDO_PARAMS;
+  }
 
   return result;
 }

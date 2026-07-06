@@ -219,6 +219,7 @@ const QString ctn_NO_SU_COMMAND(QStringLiteral("none"));
 const QString ctn_ROOT_SH(QStringLiteral("/bin/sh -c "));
 
 const QString ctn_QTSUDO(QStringLiteral("qt-sudo"));
+const QString ctn_QTSUDO_PATAMS_DARK_MODE(QStringLiteral("--dark"));
 const QString ctn_QTSUDO_PARAMS(QStringLiteral("-d"));
 
 const QString ctn_KDE_DESKTOP(QStringLiteral("kwin"));
