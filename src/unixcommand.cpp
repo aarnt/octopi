@@ -1636,6 +1636,8 @@ QProcessEnvironment UnixCommand::getProcessEnvironment()
  */
 bool UnixCommand::isOctopiHelperRunning()
 {
+  return true;
+
   bool res=false;
 
   QProcess proc;
