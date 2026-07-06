@@ -19,7 +19,6 @@
 */
 
 #include "unixcommand.h"
-//#include "strconstants.h"
 #include "wmhelper.h"
 #include "terminal.h"
 #include <iostream>
@@ -1017,6 +1016,30 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
 }
 
 /*
+ * Checks if qt-sudo is at least 2.4.1 version
+ */
+bool UnixCommand::isSUCommandLatestVersion()
+{
+  bool res = true;
+  QString suCommand = WMHelper::getSUCommand();
+
+  QProcess p;
+  p.start(suCommand, QStringList() << QStringLiteral("--version"));
+  p.waitForFinished();
+
+  QString output = QString::fromUtf8(p.readAllStandardOutput());
+
+  if (output.contains(QStringLiteral("2.4.0")) ||
+      output.contains(QStringLiteral("2.3.0")) ||
+      output.contains(QStringLiteral("2.2.0")) ||
+      output.contains(QStringLiteral("2.0.1")) ||
+      output.contains(QStringLiteral("2.0.0")))
+    res = false;
+
+  return res;
+}
+
+/*
  * Executes the given command using QProcess async technology
  */
 void UnixCommand::executeCommand(const QString &pCommand)
@@ -1029,7 +1052,7 @@ void UnixCommand::executeCommand(const QString &pCommand)
   QString suCommand = WMHelper::getSUCommand();
   QStringList sl;
 
-  if (SettingsManager::getDarkModeEnabled())
+  if (SettingsManager::getDarkModeEnabled() && isSUCommandLatestVersion())
     sl << ctn_QTSUDO_PATAMS_DARK_MODE;
 
   sl << ctn_QTSUDO_PARAMS;
@@ -1049,7 +1072,7 @@ void UnixCommand::executeCommandWithoutShell(const QString &pCommand)
   QString suCommand = WMHelper::getSUCommand();
   QStringList sl;
 
-  if (SettingsManager::getDarkModeEnabled())
+  if (SettingsManager::getDarkModeEnabled() && isSUCommandLatestVersion())
     sl << ctn_QTSUDO_PATAMS_DARK_MODE;
 
   sl << ctn_QTSUDO_PARAMS;
@@ -1074,7 +1097,7 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
 
   QStringList sl;
 
-  if (SettingsManager::getDarkModeEnabled())
+  if (SettingsManager::getDarkModeEnabled() && isSUCommandLatestVersion())
     sl << ctn_QTSUDO_PATAMS_DARK_MODE;
 
   sl << ctn_QTSUDO_PARAMS;
@@ -1191,7 +1214,7 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   QStringList sl;
 
-  if (SettingsManager::getDarkModeEnabled())
+  if (SettingsManager::getDarkModeEnabled() && isSUCommandLatestVersion())
     sl << ctn_QTSUDO_PATAMS_DARK_MODE;
 
   sl << ctn_QTSUDO_PARAMS;

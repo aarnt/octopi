@@ -137,6 +137,8 @@ public:
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
+  static bool isSUCommandLatestVersion();
+
   static void execCommandAsNormalUser(const QString pCommand, QStringList params);
   static QByteArray execCommandAsNormalUserExt(const QString &pCommand);
   static void execCommand(const QString &pCommand);
