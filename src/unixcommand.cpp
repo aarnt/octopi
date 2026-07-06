@@ -1650,6 +1650,9 @@ bool UnixCommand::isOctopiHelperRunning()
   proc.waitForFinished();
 
   QString out = QString::fromUtf8(proc.readAll().trimmed());
+
+  qDebug() << "isOctopiHelperRunning(): " << out;
+
   if (out.contains(QLatin1String("|"))) return false;
   out=out.remove(QStringLiteral("\n"));
   out=out.remove(QStringLiteral("COMMAND"));
