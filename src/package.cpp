@@ -503,11 +503,15 @@ QStringList *Package::getOutdatedAURStringList()
 
   //qDebug() << "PackageTuples: " << packageTuples;
 
-  if ((packageTuples.size() == 1 && packageTuples.at(0).contains(QStringLiteral("error while loading shared libraries:"))) ||
-      (packageTuples.at(0).contains(QStringLiteral("error:"))) ||
-      (packageTuples.at(0).contains(QStringLiteral("error occurred:"))))
+  if (packageTuples.size() == 1 && packageTuples.at(0).contains(QStringLiteral("error while loading shared libraries:")))
   {
     res->append(QStringLiteral("ERROR"));
+    return res;
+  }
+  else if (packageTuples.at(0).contains(QStringLiteral("error:")) ||
+      packageTuples.at(0).contains(QStringLiteral("error occurred:")))
+  {
+    res->append(QStringLiteral("NOINTERNET"));
     return res;
   }
 
@@ -1368,7 +1372,21 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
       if (packageTuple == QStringLiteral("ERROR"))
       {
         PackageListData pld =
-            PackageListData(QStringLiteral("ERROR"), QStringLiteral("ERROR"), QStringLiteral("ERROR"), QStringLiteral("ERROR"), ectn_NON_INSTALLED, QStringLiteral("ERROR"));
+            PackageListData(QStringLiteral("ERROR"),
+                            QStringLiteral("ERROR"),
+                            QStringLiteral("ERROR"),
+                            QStringLiteral("ERROR"), ectn_NON_INSTALLED, QStringLiteral("ERROR"));
+        res->append(pld);
+
+        return res;
+      }
+      else if (packageTuple == QStringLiteral("NOINTERNET"))
+      {
+        PackageListData pld =
+            PackageListData(QStringLiteral("NOINTERNET"),
+                            QStringLiteral("NOINTERNET"),
+                            QStringLiteral("NOINTERNET"),
+                            QStringLiteral("NOINTERNET"), ectn_NON_INSTALLED, QStringLiteral("NOINTERNET"));
         res->append(pld);
 
         return res;
@@ -2404,12 +2422,16 @@ QHash<QString, QString> Package::getForeignToolOutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
         const QString& pkgName = nameVersion.at(0);
 
-        if (pkgName.contains(QStringLiteral("yay:")) ||
-          pkgName.trimmed().isEmpty() ||
+        if (pkgName.contains(QStringLiteral("yay:")))
+        {
+          hash.insert(QLatin1String("ERROR"), QLatin1String("ERROR"));
+          return hash;
+        }
+        else if (pkgName.trimmed().isEmpty() ||
           pkgName.contains(QStringLiteral("error")) ||
           pkgName.contains(QStringLiteral("*")))
         {
-          hash.insert(QLatin1String("ERROR"), QLatin1String("ERROR"));
+          hash.insert(QLatin1String("NOINTERNET"), QLatin1String("NOINTERNET"));
           return hash;
         }
 

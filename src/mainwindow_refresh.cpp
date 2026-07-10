@@ -1283,7 +1283,9 @@ void MainWindow::showToolButtonAUR()
 
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
-  if (m_outdatedAURPackagesNameVersion->size() == 1 && m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("ERROR"))
+  if (m_outdatedAURPackagesNameVersion->size() == 1 &&
+    (m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("ERROR") ||
+     m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("NOINTERNET")))
   {
     m_outdatedAURPackagesNameVersion->clear();
     return;
