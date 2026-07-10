@@ -499,10 +499,9 @@ QStringList *Package::getOutdatedAURStringList()
 
   QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-  if (packageTuples.size() == 1 &&
-    ((packageTuples.at(0).contains(QStringLiteral("error while loading shared libraries:"))) ||
-    (packageTuples.at(0).contains(QStringLiteral("error:"))) ||
-    (packageTuples.at(0).contains(QStringLiteral("error occorred:")))))
+  if ((packageTuples.size() == 1 && packageTuples.at(0).contains(QStringLiteral("error while loading shared libraries:"))) ||
+      (packageTuples.at(0).contains(QStringLiteral("error:"))) ||
+      (packageTuples.at(0).contains(QStringLiteral("error occorred:"))))
   {
     res->append(QStringLiteral("ERROR"));
     return res;
