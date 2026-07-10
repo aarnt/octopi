@@ -1090,6 +1090,10 @@ void MainWindow::refreshAppIcon()
         QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(SettingsManager::getAURToolName()));
         m_outdatedAURStringList->clear();
       }
+      else if (m_outdatedAURStringList->size() == 1 && m_outdatedAURStringList->at(0) == QStringLiteral("NOINTERNET"))
+      {
+        m_outdatedAURStringList->clear();
+      }
 
       for(int c=0; c<m_outdatedAURStringList->count(); ++c)
       {
