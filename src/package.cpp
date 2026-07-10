@@ -508,8 +508,8 @@ QStringList *Package::getOutdatedAURStringList()
     res->append(QStringLiteral("ERROR"));
     return res;
   }
-  else if (packageTuples.at(0).contains(QStringLiteral("error:")) ||
-      packageTuples.at(0).contains(QStringLiteral("error occurred:")))
+  else if (packageTuples.size() >= 1 && (packageTuples.at(0).contains(QStringLiteral("error:")) ||
+          packageTuples.at(0).contains(QStringLiteral("error occurred:"))))
   {
     res->append(QStringLiteral("NOINTERNET"));
     return res;
