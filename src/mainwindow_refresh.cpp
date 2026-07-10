@@ -453,7 +453,10 @@ void MainWindow::preBuildAURPackageList()
       m_cic = nullptr;
     }
 
+#ifdef OCTOPI_MAIN_APP
     QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(Package::getForeignRepositoryToolName()));
+#endif
+
     m_listOfAURPackages->clear();
   }
 
@@ -1098,7 +1101,10 @@ void MainWindow::postRefreshOutdatedAURStringList()
 
   if (m_outdatedAURStringList->size() == 1 && m_outdatedAURStringList->at(0) == QStringLiteral("ERROR"))
   {
+#ifdef OCTOPI_MAIN_APP
     QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(Package::getForeignRepositoryToolName()));
+#endif
+
     m_outdatedAURStringList->clear();
     return;
   }
