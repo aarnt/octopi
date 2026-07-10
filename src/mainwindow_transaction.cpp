@@ -876,10 +876,7 @@ void MainWindow::doCheckUpdates()
     if (m_outdatedAURPackagesNameVersion->size() == 1 && m_outdatedAURPackagesNameVersion->begin().value() == QStringLiteral("ERROR"))
     {
       m_outdatedAURPackagesNameVersion->clear();
-
-#ifdef OCTOPI_MAIN_APP
       QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURToolNotWorking().arg(Package::getForeignRepositoryToolName()));
-#endif
     }
 
     QString pkg, html, availableVersion;
