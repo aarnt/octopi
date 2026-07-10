@@ -497,7 +497,11 @@ QStringList *Package::getOutdatedAURStringList()
   QString outPkgList = removeColorCodesFromStr(QString::fromUtf8(UnixCommand::getOutdatedAURPackageList()));
   outPkgList = outPkgList.trimmed();
 
+  qDebug() << "OutPkgList: " << outPkgList;
+
   QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
+
+  qDebug() << "PackageTuples: " << packageTuples;
 
   if ((packageTuples.size() == 1 && packageTuples.at(0).contains(QStringLiteral("error while loading shared libraries:"))) ||
       (packageTuples.at(0).contains(QStringLiteral("error:"))) ||
