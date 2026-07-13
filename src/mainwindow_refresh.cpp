@@ -1573,7 +1573,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
           html += QLatin1String("<table border=\"0\">");
 
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
-        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
         QString aurPkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
         QString url = Package::getURL(aurPkgInfo);
@@ -1581,6 +1580,8 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         {
           html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
         }
+
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
         if (Package::getForeignRepositoryToolName() != ctn_CHASER_TOOL)
         {
