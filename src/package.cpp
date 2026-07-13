@@ -527,6 +527,8 @@ QStringList *Package::getOutdatedAURStringList()
           getForeignRepositoryToolName() == ctn_PARU_TOOL ||
           getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
+        if (parts[0] == QStringLiteral("::")) continue;
+
         QString pkgName;
         pkgName = parts[0];
 
