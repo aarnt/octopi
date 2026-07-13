@@ -33,8 +33,14 @@ QPushButton:hover, QToolButton:hover, QComboBox:hover {
     border: 1px solid #666;
 }
 
-QPushButton:pressed, QToolButton:pressed, QComboBox:pressed {
+QPushButton:pressed, QComboBox:pressed {
     background-color: #222;
+}
+
+QToolButton:checked {
+    background-color: #1a1a1a;
+    border: 1px solid #0078d4;
+    /* color: #0078d4; */
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit {
