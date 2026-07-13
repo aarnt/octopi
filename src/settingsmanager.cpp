@@ -314,7 +314,11 @@ bool SettingsManager::getShowPackageInstallReasonColumn()
 bool SettingsManager::getMakeInterfaceLessCondensed()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_MAKE_INTERFACE_LESS_CONDENSED, false)).toBool();
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_MAKE_INTERFACE_LESS_CONDENSED, false)).toBool();
+  else
+    return (p_instance.getSYSsettings()->value(ctn_KEY_MAKE_INTERFACE_LESS_CONDENSED, true)).toBool();
 }
 
 bool SettingsManager::getUseDefaultAppIcon()
