@@ -1345,7 +1345,8 @@ You may need to synchronize database!</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="636"/>
         <source>%1 is not working.
 Please, upgrade the package and try again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 no está funcionando.
+Mejore al paquete e inténtelo otra vez.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
