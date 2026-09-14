@@ -2424,6 +2424,8 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
   m_lblTotalCounters->setText(text);
   m_lblSelCounter->setText(newMessage);
 
+  if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES) return;
+
   QTreeView *const tvPkgFileList = ui->twProperties->getTvPkgFileList();
   if (tvPkgFileList)
   {
