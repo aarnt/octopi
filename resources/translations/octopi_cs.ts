@@ -554,220 +554,225 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
-        <source>Enable internet checking</source>
-        <translation>Povolit internetovou kontrolu</translation>
+        <source>Confirm active internet connection using:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="184"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
+        <source>Enable dark theme</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>Povolit potvrzovací dialog při povýšení systému</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="210"/>
         <source>Increase text spacing in the main interface</source>
         <translation>Zvětšit mezery textu v hlavním rozhraní</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Use alternating row colors</source>
         <translation>Použití střídavých barev řádků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Zobrazit sloupec &quot;Licence&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Zobrazit sloupec &quot;Instalovaná velikost&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Zobrazit sloupec &quot;Datum sestavení&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Zobrazit sloupec &quot;Datum instalace&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Zobrazit sloupec &quot;Důvod instalace&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Enable package tooltips</source>
         <translation>Povolit popisky balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
         <source>Show &quot;Repository&quot; column</source>
         <translation>Zobrazit sloupec &quot;Úložiště&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="329"/>
         <source>Show &quot;Download Size&quot; column</source>
         <translation>Zobrazit sloupec &quot;Stažená velikost&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="350"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="363"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Vyberte nástroj AUR, který má Octopi používat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="476"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>User name</source>
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="502"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="520"/>
         <source>Register</source>
         <translation>Registrovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="525"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="538"/>
         <source>Connect</source>
         <translation>Spojit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="544"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="557"/>
         <source>Enable AUR voting</source>
         <translation>Povolit hlasování AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="565"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Balíčky AUR jsou obsahem vytvořeným uživateli. 
 Jakékoli použití poskytnutých souborů je na vaše vlastní nebezpečí.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="626"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="639"/>
         <source>Build directory</source>
         <translation>Adresář sestavení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="742"/>
-        <source>Select the backend Octopi should use</source>
-        <translation>Vyberte jádro (podpůrnou vrstvu), kterou má Octopi používat</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="785"/>
-        <source>Use default notification icons</source>
-        <translation>Používat výchozí ikony pro oznamování</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="860"/>
-        <source>Red icon</source>
-        <translation>Červená ikona</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="950"/>
-        <source>Busy icon</source>
-        <translation>Ikona pro zaneprázdněn</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1019"/>
-        <source>Yellow icon</source>
-        <translation>Žlutá ikona</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1103"/>
-        <source>Green icon</source>
-        <translation>Zelená ikona</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1402"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="710"/>
         <source>Search for outdated AUR packages</source>
         <translation>Hledat zastaralé balíčky AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1452"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="779"/>
+        <source>Select the backend Octopi should use</source>
+        <translation>Vyberte jádro (podpůrnou vrstvu), kterou má Octopi používat</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="822"/>
+        <source>Use default notification icons</source>
+        <translation>Používat výchozí ikony pro oznamování</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="897"/>
+        <source>Red icon</source>
+        <translation>Červená ikona</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="987"/>
+        <source>Busy icon</source>
+        <translation>Ikona pro zaneprázdněn</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1056"/>
+        <source>Yellow icon</source>
+        <translation>Žlutá ikona</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1140"/>
+        <source>Green icon</source>
+        <translation>Zelená ikona</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
         <source>Color Scheme</source>
         <translation>Barevné schéma</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1478"/>
         <source>Font Family</source>
         <translation>Písmo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1498"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1511"/>
         <source>Font Size</source>
         <translation>Velikost písma</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1521"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
         <translation>Přehrát upozornění, pokud je v terminálu vyžadováno heslo uživatele root</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1547"/>
         <source>Force use of BASH shell</source>
         <translation>Vynutit použití shellu BASH</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="103"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="119"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="135"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="152"/>
         <source>Open Image</source>
         <translation>Otevřít obrázek</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="103"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="119"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="135"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="152"/>
         <source>Image Files</source>
         <translation>Obrázkové soubory</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="174"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
         <source>Backend</source>
         <translation>Podpůrná vrstva (jádro)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="196"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
         <source>General</source>
         <translation>Obecné</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="199"/>
         <source>Package List</source>
         <translation>Seznam balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="200"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
         <source>Icon</source>
         <translation>Ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
         <source>Updates</source>
         <translation>Aktualizace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="203"/>
         <source>Terminal</source>
         <translation>Terminál</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="218"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="220"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -1337,107 +1342,113 @@ Možná je potřeba synchronizovat databázi!</translation>
         <translation>Stahuje se dočasný &quot;yay-bin&quot;...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="635"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="636"/>
+        <source>%1 is not working.
+Please, upgrade the package and try again.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Retrieving %1</source>
         <translation>Získává se %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="644"/>
         <source>Total download size: %1 KB</source>
         <translation>Celková stažená velikost: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>The following package needs to be retrieved</source>
         <translation>Je potřeba získat následující balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="647"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="652"/>
         <source>The following package will be removed</source>
         <translation>Následující  balíček bude odstraněn</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="656"/>
         <source>The following %n packages need to be retrieved</source>
         <translation><numerusform>Je potřeba získat následující %n balíček</numerusform><numerusform>Je potřeba získat následující %n balíčky</numerusform><numerusform>Je potřeba získat následujících %n balíčků</numerusform><numerusform>Je potřeba získat následujících %n balíčků</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>The following %n packages will be removed</source>
         <translation><numerusform>Následující %n balíček bude odstraněn</numerusform><numerusform>Následující %n balíčky budou odstraněny</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>V seznamu k balíčků k odstranění jsou zakázané balíčky!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="663"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="668"/>
         <source>There are no new updates available!</source>
         <translation>Nejsou dostupné žádné aktualizace!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="667"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="672"/>
         <source>There is an update available!</source>
         <translation>Je dostupná aktualizace</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="676"/>
         <source>There are %n updates available!</source>
         <translation><numerusform>Je dostupná %n aktualizace!</numerusform><numerusform>Jsou dostupné %n aktualizace!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>Confirm?</source>
         <translation>Potvrdit?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="679"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="684"/>
         <source>Warning!!!</source>
         <translation>Varování!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="683"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="688"/>
         <source>Confirmation</source>
         <translation>Potvrzení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="687"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="692"/>
         <source>There has been a transaction error!</source>
         <translation>Při transakci se vyskytla chyba !</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="696"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Opravdu chcete tento příkaz provést v terminálu?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="695"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
         <source>Do you really want to cancel actions?</source>
         <translation>Chcete skutečně zrušit činnosti?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="699"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="704"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Zadejte, prosím, heslo správce</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Nejsou tu žádné prostředky, jak získat oprávnění správce systému.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="715"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
         <translation>Pacman již běží nebo nebyl správně ukončen (existuje /var/lib/pacman/db.lck)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
         <translation>Abyste mohli používat Octopi, musíte nainstalovat &quot;qt-sudo&quot;.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="724"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
@@ -1446,96 +1457,96 @@ Možná je potřeba synchronizovat databázi!</translation>
 %1, %2, %3 %4 nebo %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="728"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
         <translation>Je třeba balíček, abyste mohli používat AUR.
 Chcete ho nainstalovat?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="739"/>
         <source>Connection is OK!</source>
         <translation>Připojení je OK!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="743"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>Chcete pomoci tomuto projektu a hlasovat pro něj?
 Stačí potvrdit a počkat pár sekund.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>Děkujeme za hlasování pro Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>Uživatelské jméno a/nebo heslo jsou nesprávné.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>AUR username is not set.</source>
         <translation>AUR uživatelské jméno není zadáno.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
         <source>AUR password is not set.</source>
         <translation>AUR heslo není zadáno.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
         <source>Select the build directory for the AUR packages</source>
         <translation>Vyberte adresář sestavení pro AUR balíčky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="768"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="773"/>
         <source>Icon path information is not set.</source>
         <translation>Nebyla zadána cesta k ikonám.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="772"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="777"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
         <translation>Ke spuštění Octopi musíte použít &quot;/usr/bin/octopi&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="781"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
         <translation>Ke spuštění oznamování Octopi musíte použít &quot;/usr/bin/octopi-notifier&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="785"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
         <translation>Ke spuštění čističe vyrovnávací paměti musíte použít &quot;/usr/bin/octopi-cachecleaner&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="789"/>
         <source>You must use &quot;/usr/bin/octopi-repoeditor&quot; to run Octopi Repository Editor</source>
         <translation>Ke spuštění editoru úložiště musíte použít &quot;/usr/bin/octopi-repoeditor&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Octopi nemůžete spustit s oprávněními správce.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>Zrušení probíhající transakce může poškodit váš systém!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>There are pending actions</source>
         <translation>Máte nevyřízené činnosti.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>Do you really want to quit?</source>
         <translation>Opravdu chcete skončit?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="810"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1554,184 +1565,184 @@ Přejete si pokračovat?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="818"/>
         <source>Executing command</source>
         <translation>Provádí se příkaz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="822"/>
         <source>Run in terminal</source>
         <translation>Spustit v terminálu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="826"/>
         <source>This change needs application restart to take effect</source>
         <translation>Aby se tato změna projevila, je potřeba program spustit znovu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="830"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Aby se tyto změny projevily, je potřeba program spustit znovu!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
         <source>Select the packages you want to install</source>
         <translation>Vyberte balíček, jejž chcete nainstalovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Zdá se, že tento soubor není prostým textem.
 Opravdu jej chcete otevřít?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="843"/>
         <source>To be installed</source>
         <translation>K instalování</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
         <source>To be removed</source>
         <translation>K odstranění</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="850"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
         <source>Install</source>
         <translation>Instalovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
         <source>Reinstall</source>
         <translation>Přeinstalovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Change Install Reason</source>
         <translation>Změnit důvod instalace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="870"/>
         <source>Update</source>
         <translation>Aktualizovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="874"/>
         <source>Remove item</source>
         <translation>Odstranit položku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="878"/>
         <source>Remove items</source>
         <translation>Odstranit položky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="882"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Stiskněte Ctrl+A pro vybrání/zrušení výběru všeho</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="886"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>Použít nástroj &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="890"/>
         <source>Copy path to clipboard</source>
         <translation>Uložit cestu do schránky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="894"/>
         <source>Setup</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="898"/>
         <source>Check for package updates interval</source>
         <translation>Interval kontroly aktualizací</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="902"/>
         <source>Once a day</source>
         <translation>Jednou za den</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="906"/>
         <source>Once a day, at</source>
         <translation>Dvakrát denně v</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="910"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(hodnoty ve 24-hodinovém formátu: 0 až 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="914"/>
         <source>Once every</source>
         <translation>Jednou každý</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(hodnoty v minutách: %1 až %2)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="917"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
         <source>Set interval...</source>
         <translation>Nastavit interval...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
         <source>Stop</source>
         <translation>Zastavit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
         <source>%1 could not be found in the system!</source>
         <translation>%1 se v systému nepodařilo nalézt!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
         <source>Zoom in</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
         <source>Zoom out</source>
         <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
         <source>Maximize</source>
         <translation>Zvětšit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
         <source>Paste</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
         <source>Upgrading...</source>
         <translation>Povyšuje se...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="972"/>
         <source>Exit</source>
         <translation>Ukončit</translation>
     </message>

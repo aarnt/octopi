@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
@@ -121,7 +121,7 @@
           <rect>
            <x>9</x>
            <y>78</y>
-           <width>611</width>
+           <width>1000</width>
            <height>23</height>
           </rect>
          </property>

@@ -554,8 +554,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
-        <source>Enable internet checking</source>
-        <translation>啟用網路檢查</translation>
+        <source>Confirm active internet connection using:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
@@ -720,59 +720,59 @@ Any use of the provided files is at your own risk.</source>
         <translation>強制使用 BASH 殼層</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="103"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="119"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="135"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="152"/>
         <source>Open Image</source>
         <translation>開啟圖片</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="103"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="119"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="135"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="152"/>
         <source>Image Files</source>
         <translation>圖片檔</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="174"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
         <source>Backend</source>
         <translation>後端</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="196"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
         <source>General</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="199"/>
         <source>Package List</source>
         <translation>軟體包清單</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="200"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
         <source>Icon</source>
         <translation>圖示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
         <source>Updates</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="203"/>
         <source>Terminal</source>
         <translation>終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="218"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
         <source>Ok</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="220"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
