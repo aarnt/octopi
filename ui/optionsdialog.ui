@@ -126,7 +126,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Enable internet checking</string>
+          <string>Confirm active internet connection using:</string>
          </property>
         </widget>
         <widget class="QCheckBox" name="cbEnableDarkMode">
