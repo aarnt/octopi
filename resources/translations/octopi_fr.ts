@@ -555,12 +555,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Confirm active internet connection using:</source>
-        <translation type="unfinished"/>
+        <translation>Confirmez la connexion Internet active en utilisant :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
         <source>Enable dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Activer le thème sombre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
@@ -570,7 +570,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="210"/>
         <source>Increase text spacing in the main interface</source>
-        <translation type="unfinished"/>
+        <translation>Augmenter l&apos;espacement du texte dans l&apos;interface principale</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
@@ -610,12 +610,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
         <source>Show &quot;Repository&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Afficher la colonne &quot;Dépôt&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="329"/>
         <source>Show &quot;Download Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Afficher la colonne &quot;Taille du téléchargement&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="363"/>
@@ -1345,7 +1345,8 @@ Vous devrez peut-être synchroniser la base de données !</translation>
         <location filename="Projects/octopi/src/strconstants.cpp" line="636"/>
         <source>%1 is not working.
 Please, upgrade the package and try again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ne fonctionne pas.
+Veuillez mettre à jour le paquet et réessayer.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>

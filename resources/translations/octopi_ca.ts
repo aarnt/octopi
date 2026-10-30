@@ -555,7 +555,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Confirm active internet connection using:</source>
-        <translation type="unfinished"/>
+        <translation>Confirmeu que hi hagi una connexió a Internet activa:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>

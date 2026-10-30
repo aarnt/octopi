@@ -555,12 +555,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Confirm active internet connection using:</source>
-        <translation type="unfinished"/>
+        <translation>Patvirtinti aktyvų interneto ryšį naudojant:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
         <source>Enable dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti tamsų apipavidalinimą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
@@ -1345,7 +1345,8 @@ Gali būti, kad turite sinchronizuoti duomenų bazes!</translation>
         <location filename="Projects/octopi/src/strconstants.cpp" line="636"/>
         <source>%1 is not working.
 Please, upgrade the package and try again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 neveikia.
+Naujinkite paketą ir bandykite dar kartą.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>

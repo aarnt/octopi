@@ -555,7 +555,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Confirm active internet connection using:</source>
-        <translation type="unfinished"/>
+        <translation>請使用以下方式確認網際網路連線是否正常：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
