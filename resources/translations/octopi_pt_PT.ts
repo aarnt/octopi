@@ -555,12 +555,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Confirm active internet connection using:</source>
-        <translation type="unfinished"/>
+        <translation>Confirme se existe uma ligação à Internet ativa utilizando:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="142"/>
         <source>Enable dark theme</source>
-        <translation type="unfinished"/>
+        <translation>Ativar tema escuro</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
@@ -1345,7 +1345,8 @@ Será necessário sincronizar a base de dados!</translation>
         <location filename="Projects/octopi/src/strconstants.cpp" line="636"/>
         <source>%1 is not working.
 Please, upgrade the package and try again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 não está a funcionar.
+Atualize o pacote e tente novamente.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
