@@ -103,7 +103,7 @@ QString MainWindow::generateHelpUsageHtmlText()
     html +=
         QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
         QStringLiteral("<p>") + strForMoreInfo + QLatin1Char(' ') +
-        QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
+        QStringLiteral("<a href=\"https://tintaescura.inf95.org/projects/octopi/\">https://tintaescura.inf95.org/projects/octopi</a><br>");
     html += QStringLiteral("<br><br>") +
         tr("Package classification:") +
 
@@ -214,7 +214,7 @@ QString MainWindow::generateHelpUsageHtmlText()
     html +=
         QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
         QStringLiteral("<p>") + strForMoreInfo + QLatin1Char(' ') +
-        QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
+        QStringLiteral("<a href=\"https://tintaescura.inf95.org/projects/octopi/\">https://tintaescura.inf95.org/projects/octopi</a><br>");
     html += QStringLiteral("<br><br>") +
         tr("Package classification:") +
 
@@ -366,7 +366,7 @@ void MainWindow::onHelpAbout()
   aboutText += StrConstants::getVersion() + QLatin1String(": ") + ctn_APPLICATION_VERSION /*StrConstants::getApplicationVersion()*/ +
       QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
   aboutText += StrConstants::getURL() + QLatin1String(": ") +
-      QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
+      QStringLiteral("<a href=\"https://tintaescura.inf95.org/projects/octopi/\">https://tintaescura.inf95.org/projects/octopi</a><br>");
   aboutText += StrConstants::getLicenses() + QLatin1String(": ") + QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
   aboutText += QLatin1String("&copy; Alexandre Albuquerque Arnt<br><br>");
 
